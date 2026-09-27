@@ -102,6 +102,74 @@
   <script src="passkeys-bundle.js"></script>
 </head>
 <body>
+  <script>
+    // Android: open the installed app instead of this web app.
+    //
+    // A QR or link to app.nosus.foo often lands in a browser (camera apps and
+    // Lens open links in a tab), where Google sign-in and the device keys are
+    // weaker than in the app. Same handoff as nosus.foo's legacy-link shim:
+    // intent://open?u=<this url> → MainActivity → unwrapAppOpenLink(), and
+    // Chrome falls back to browser_fallback_url when the app isn't installed.
+    // The fallback carries ?nosus_web=1 so it can never loop.
+    //
+    //  - App links (#/go/, #/burn/, #/join/ …): hand off at once.
+    //  - Plain visits: a dismissible "Open in the app" bar, no redirect.
+    //  - Sign-in callbacks: never — the session belongs to this tab.
+    (function (w) {
+      try {
+        if (!/android/i.test(w.navigator.userAgent || '')) return;
+        var l = w.location, h = l.hash || '', s = l.search || '';
+        if (/[?&]code=/.test(s) || /(access_token|refresh_token|error_description|type=recovery)/.test(h)) return;
+        var params = new URLSearchParams(s);
+        var stay = params.get('nosus_web') === '1';
+        params.delete('nosus_web');
+        var q = params.toString();
+        var here = l.origin + l.pathname + (q ? '?' + q : '') + h;
+        if (stay) {
+          try { w.history.replaceState(null, '', l.pathname + (q ? '?' + q : '') + h); } catch (e) {}
+          return;
+        }
+        var fallback = l.origin + l.pathname + '?' + (q ? q + '&' : '') + 'nosus_web=1' + h;
+        var intent = 'intent://open?u=' + encodeURIComponent(here) +
+          '#Intent;scheme=foo.nosus.app;package=foo.nosus.app;S.browser_fallback_url=' +
+          encodeURIComponent(fallback) + ';end';
+        if (/^#\/?(go|burn|burnfile|burnfiles|redeem|v|join)\//.test(h)) {
+          w.location.replace(intent);
+          return;
+        }
+        try { if (w.sessionStorage.getItem('nosus_open_app_dismissed')) return; } catch (e) {}
+        w.addEventListener('DOMContentLoaded', function () {
+          var bar = document.createElement('div');
+          bar.setAttribute('role', 'region');
+          bar.setAttribute('aria-label', 'Open in the NO SUS app');
+          bar.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));' +
+            'z-index:999998;display:flex;align-items:center;gap:8px;padding:10px 10px 10px 16px;border-radius:14px;' +
+            'background:#FFFFFF;color:#0D0D0D;font:600 14px ui-sans-serif,system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.35)';
+          bar.innerHTML = '<span style="flex:1">Open in the NO SUS app</span>' +
+            '<a id="nosus-open-app" href="#" style="background:#0D0D0D;color:#FFF;padding:10px 16px;border-radius:10px;text-decoration:none;min-height:24px">Open</a>' +
+            '<button id="nosus-open-app-x" aria-label="Dismiss" style="background:none;border:0;font-size:20px;line-height:1;padding:8px;min-width:44px;min-height:44px;color:#0D0D0D">×</button>';
+          document.body.appendChild(bar);
+          document.getElementById('nosus-open-app').addEventListener('click', function (e) {
+            e.preventDefault();
+            // Re-read: the Flutter app may have routed since load.
+            var cur = w.location;
+            var curQ = new URLSearchParams(cur.search || '');
+            curQ.delete('nosus_web');
+            var qs = curQ.toString();
+            var now = cur.origin + cur.pathname + (qs ? '?' + qs : '') + (cur.hash || '');
+            var back = cur.origin + cur.pathname + '?' + (qs ? qs + '&' : '') + 'nosus_web=1' + (cur.hash || '');
+            w.location.href = 'intent://open?u=' + encodeURIComponent(now) +
+              '#Intent;scheme=foo.nosus.app;package=foo.nosus.app;S.browser_fallback_url=' +
+              encodeURIComponent(back) + ';end';
+          });
+          document.getElementById('nosus-open-app-x').addEventListener('click', function () {
+            try { w.sessionStorage.setItem('nosus_open_app_dismissed', '1'); } catch (e) {}
+            bar.remove();
+          });
+        });
+      } catch (e) {}
+    })(window);
+  </script>
   <div id="boot-loader">
     <div class="boot-mark" role="status" aria-live="polite" aria-label="NO SUS opening application">NO SUS<span class="boot-stop" aria-hidden="true"></span></div>
   </div>
