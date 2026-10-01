@@ -11,7 +11,7 @@ async function signal(action,extra={}) {
 }
 async function gather() {
   if(pc.iceGatheringState==='complete')return;
-  await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>{pc.removeEventListener('icegatheringstatechange',change);reject(Error('Could not gather local connection details'));},15000);const change=()=>{if(pc.iceGatheringState==='complete'){clearTimeout(timeout);pc.removeEventListener('icegatheringstatechange',change);resolve();}};pc.addEventListener('icegatheringstatechange',change);});
+  await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>{pc.removeEventListener('icegatheringstatechange',change);if(pc.localDescription?.sdp?.includes('a=candidate:'))resolve();else reject(Error('Could not gather local connection details'));},15000);const change=()=>{if(pc.iceGatheringState==='complete'){clearTimeout(timeout);pc.removeEventListener('icegatheringstatechange',change);resolve();}};pc.addEventListener('icegatheringstatechange',change);});
 }
 function bindChannel(c) {
   channel=c;c.bufferedAmountLowThreshold=65536;
