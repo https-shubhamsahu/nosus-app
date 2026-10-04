@@ -158269,7 +158269,7 @@ case 4:if(o)throw A.e(A.a0("Session closed"))
 case 1:return A.j(q,r)}})
 return A.k($async$DQ,r)},
 wj(a){return this.btF(!1)},
-btF(a){var s=0,r=A.l(t.H),q=this,p,o,n,m,l,k,j
+btF(a){var s=0,r=A.l(t.H),q=this,p,o,n,m,l,k,j,i,h
 var $async$wj=A.h(function(b,c){if(b===1)return A.i(c,r)
 for(;;)switch(s){case 0:q.cx=!1
 q.ax="Preparing connection\u2026"
@@ -158277,11 +158277,11 @@ q.rf()
 s=2
 return A.d(q.xA(!0),$async$wj)
 case 2:p=q.a
-j=p
+h=p
 s=4
 return A.d(p.W8(0),$async$wj)
 case 4:s=3
-return A.d(j.HT(0,c),$async$wj)
+return A.d(h.HT(0,c),$async$wj)
 case 3:s=5
 return A.d(q.DQ(),$async$wj)
 case 5:s=6
@@ -158299,10 +158299,13 @@ m.l(0,"sid",A.bG(l,"=",""))
 l=q.c.b
 l=B.b5.geq().aZ(l)
 m.l(0,"pub",A.bG(l,"=",""))
-m.l(0,"expires",Date.now()+q.fr+9e5)
-l=o.a
-l.toString
-m.l(0,"sdp",l)
+l=Date.now()
+k=q.fr
+j=q.cx?15:14
+m.l(0,"expires",l+k+j*6e4)
+j=o.a
+j.toString
+m.l(0,"sdp",j)
 q.d=m
 q.aoR()
 q.ax="Waiting for the phone"
@@ -158315,10 +158318,10 @@ s=8
 break
 case 9:m=A.n7(8)
 q.ch=new A.ah(m,new A.aLX(),A.d6(m).i("ah<a2.E,f>")).pa(0)
-k=A.zJ(A.n7(32))
+i=A.zJ(A.n7(32))
 s=10
-return A.d(q.Al("create",A.S(["offer",q.d,"code",q.ch,"token",k],p,n)),$async$wj)
-case 10:q.ay="https://nosus.foo/receive/#device="+k
+return A.d(q.Al("create",A.S(["offer",q.d,"code",q.ch,"token",i],p,n)),$async$wj)
+case 10:q.ay="https://nosus.foo/receive/#device="+i
 q.x=A.kK(B.dQ,new A.aLY(q))
 case 8:q.rf()
 return A.j(null,r)}})
