@@ -25,7 +25,7 @@ apksigner verify --print-certs app-release.apk
 
 | | |
 |---|---|
-| v1.6.0 APK SHA-256 | `fed694b4afbff020326997ade86fc5e978153d01bd1e05467215e85f33af610e` |
+| v1.7.0 APK SHA-256 | `15f03fd242c8bfb103677f63db4e6364a742020a44159ee729f3674b7fecb562` |
 | Signing certificate SHA-256 | `9b4ca036eae243470ec4ff7d6105c2ab73d568360c7d297c679ea9303656f1af` |
 
 The APK hash changes every release (each release page lists it next to the file). The certificate never changes. If it doesn't match, don't install.
@@ -41,7 +41,7 @@ The APK hash changes every release (each release page lists it next to the file)
 - **Watermarked link**: anyone can open it, no account needed, with their name on every page.
 - **Canary**: every copy is traceable, so if it leaks you can see whose copy it was.
 
-**Opens any PDF** *(from 1.7.0)*. Pick NO SUS in Android's "Open with", then share it safely from there.
+**Opens any PDF** **. Pick NO SUS in Android's "Open with", then share it safely from there.
 
 From 1.7.0 the app is two tabs, **Chat** and **Send**, and sign-in is Google only.
 
