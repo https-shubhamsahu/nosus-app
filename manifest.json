@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0D0D0D",
     "theme_color": "#0D0D0D",
-    "description": "NO SUS — secure document sharing with watermarking, blur-until-touch protection, and tamper-evident audit logs.",
+    "description": "NO SUS: your own chat in your Google Drive, plus links that open once or carry the reader’s name.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
