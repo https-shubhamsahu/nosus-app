@@ -101,6 +101,35 @@
     })();
   </script>
 
+  <script>
+    // google_sign_in_web appends Google's sign-in script
+    // (accounts.google.com/gsi/client) as soon as the app starts, so every
+    // visitor, even someone only opening a one-time link, would contact Google.
+    // Hold that one script back; the app calls nosusLoadGoogleSignIn() right
+    // before Drive needs Google (lib/features/address/google_script.dart).
+    // Supabase's "Continue with Google" is a redirect and does not need it.
+    (function () {
+      var GSI = 'https://accounts.google.com/gsi/client';
+      var append = Node.prototype.appendChild;
+      var held = null;
+      var released = false;
+      Node.prototype.appendChild = function (node) {
+        if (!released && node && node.tagName === 'SCRIPT' &&
+            String(node.src || '').indexOf(GSI) === 0) {
+          held = { parent: this, node: node };
+          return node;
+        }
+        return append.call(this, node);
+      };
+      window.nosusLoadGoogleSignIn = function () {
+        if (released) return;
+        released = true;
+        if (held) append.call(held.parent, held.node);
+        held = null;
+      };
+    })();
+  </script>
+
   <!--
     supabase_flutter's Auth client wires up passkey/WebAuthn support by
     default, which pulls in the `passkeys_web` plugin. That plugin's
