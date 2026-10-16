@@ -38,10 +38,10 @@
     real frame is ready, so branding never creates a minimum load time.
   -->
   <style>
-    /* Night ("Lamp") paper by default, Day ("Notebook") when the saved choice
+    /* Day ("Notebook") paper by default, Night ("Lamp") when the saved choice
        says so (see the script below). Never pure black or white. */
-    :root { color-scheme: dark; --boot-bg: #141311; --boot-ink: #ECE6DA; }
-    :root.boot-day { color-scheme: light; --boot-bg: #F7F5EE; --boot-ink: #1F2433; }
+    :root { color-scheme: light; --boot-bg: #F7F5EE; --boot-ink: #1F2433; }
+    :root.boot-night { color-scheme: dark; --boot-bg: #141311; --boot-ink: #ECE6DA; }
     html, body { margin: 0; min-height: 100%; background: var(--boot-bg); }
     #boot-loader {
       position: fixed;
@@ -89,14 +89,14 @@
   <script>
     // The app keeps Day / Night / Follow phone in localStorage (SharedPreferences
     // on web: key "flutter.nosus_theme_mode", value JSON-encoded). Read it before
-    // first paint so a Day reader is not flashed a dark boot screen.
+    // first paint so a Night reader is not flashed a bright boot screen.
     (function () {
       try {
         var raw = localStorage.getItem('flutter.nosus_theme_mode');
-        var mode = raw ? JSON.parse(raw) : 'dark';
-        var day = mode === 'light' ||
-          (mode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
-        if (day) document.documentElement.classList.add('boot-day');
+        var mode = raw ? JSON.parse(raw) : 'light';
+        var night = mode === 'dark' ||
+          (mode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (night) document.documentElement.classList.add('boot-night');
       } catch (e) {}
     })();
   </script>
