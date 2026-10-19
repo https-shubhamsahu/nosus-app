@@ -236,10 +236,14 @@
     })();
   </script>
   <script>
+    // Android only: a sign-in that came back to this browser tab can be
+    // handed to the installed app (the legacy login-callback scheme). There is
+    // no NO SUS app for iPhone or iPad, so there the button went nowhere: they
+    // stay on the web app, which finishes the sign-in in this tab.
     (function() {
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isAndroid = /Android/i.test(navigator.userAgent);
       const hasCode = window.location.search.includes('code=') || window.location.hash.includes('access_token=');
-      if (isMobile && hasCode) {
+      if (isAndroid && hasCode) {
         const overlay = document.createElement('div');
         overlay.style.position = 'fixed';
         overlay.style.top = '0';
