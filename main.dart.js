@@ -371,11 +371,11 @@ aOV(a){var s,r,q,p=new Float32Array(16)
 for(s=0;s<4;++s)for(r=s*4,q=0;q<4;++q)p[q*4+s]=a[r+q]
 return p},
 aht(a){var s,r,q,p=new Float32Array(9)
-for(s=a.length,r=0;r<9;++r){q=B.FP[r]
+for(s=a.length,r=0;r<9;++r){q=B.FQ[r]
 if(q<s)p[r]=a[q]
 else p[r]=0}return p},
 ahu(a){var s,r,q,p=new Float32Array(9)
-for(s=a.length,r=0;r<9;++r){q=B.FP[r]
+for(s=a.length,r=0;r<9;++r){q=B.FQ[r]
 if(q<s)p[r]=a[q]
 else p[r]=0}return p},
 aOW(a){var s=new Float32Array(2)
@@ -1117,7 +1117,7 @@ p.aS3()
 return p},
 cER(a){return new A.aZP($.ay,a)},
 c9k(){var s,r,q,p,o=v.G,n=o.window,m=A.cDA(n.navigator)
-if(m==null||m.length===0)return B.G4
+if(m==null||m.length===0)return B.G5
 s=A.a([],t.ss)
 for(n=m.length,r=0;r<m.length;m.length===n||(0,A.F)(m),++r){q=m[r]
 p=new o.Intl.Locale(q)
@@ -1684,10 +1684,10 @@ return s},
 ccs(a){var s=!1
 if($.d_().gh4()===B.cs||$.d_().gh4()===B.ey)if(a!=null)s=a===".SF Pro Text"||a===".SF Pro Display"||a===".SF UI Text"||a===".SF UI Display"
 return s},
-cq5(){if(A.csK())return B.FU
+cq5(){if(A.csK())return B.FV
 if($.d_().gh4()===B.cs||$.d_().gh4()===B.ey)return B.aiI
 throw A.f(A.a8("Should only be called on Mac or iOS."))},
-cTg(){if(A.csK())return B.FU
+cTg(){if(A.csK())return B.FV
 if($.d_().gh4()===B.cs||$.d_().gh4()===B.ey)return A.cq5()
 return B.aiA},
 crQ(a,b){var s,r,q,p,o=new A.et("")
@@ -9268,9 +9268,9 @@ r=a<2.5?(a-2)*10:(a-2.5)*2+6-1
 q=B.b.aR(B.d.hb(r),0,9)
 p=r-q
 s=1-p
-o=B.FS[q]
+o=B.FT[q]
 n=o[0]
-m=B.FS[q+1]
+m=B.FT[q+1]
 return new A.aD(s*n+p*m[0],1-1/(s*o[1]+p*m[1]))},
 aH2(a,b,c,d){var s,r=b.Z(0,a),q=new A.J(Math.abs(c.a),Math.abs(c.b)),p=q.giq(),o=p===0?B.rp:q.fW(0,p),n=r.a,m=Math.abs(n)/o.a,l=r.b,k=Math.abs(l)/o.b
 n/=m
@@ -9755,7 +9755,7 @@ r=(r|a&1)<<1>>>0
 if(--b,b>0){a=s
 continue}else break}while(!0)
 return A.oR(r,1)},
-coy(a){return a<256?B.FT[a]:B.FT[256+A.oR(a,7)]},
+coy(a){return a<256?B.FU[a]:B.FU[256+A.oR(a,7)]},
 cc3(a,b,c,d,e){return new A.bYc(a,b,c,d,e)},
 oR(a,b){if(a>=0)return B.b.h8(a,b)
 else return B.b.h8(a,b)+B.b.cS(2,(~b>>>0)+65536&65535)},
@@ -15175,7 +15175,7 @@ cic(a,b,c){if(b!=null&&!b.j(0,B.w))return A.Hq(b.bl(A.cEI(c)),a)
 return a},
 cEI(a){var s,r,q,p,o,n
 if(a<0)return 0
-for(s=0;r=B.G7[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.G7[s-1]
+for(s=0;r=B.G8[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.G8[s-1]
 o=p.a
 n=p.b
 return n+(a-o)/(q-o)*(r.b-n)},
@@ -32547,7 +32547,7 @@ c3W:function c3W(a){this.a=a},
 c3V:function c3V(a,b){this.a=a
 this.b=b},
 cAU(a){var s,r
-for(s=0;s<8;++s){r=B.G0[s]
+for(s=0;s<8;++s){r=B.G1[s]
 if(r.b===a)return r}return null},
 oZ:function oZ(a,b,c){this.c=a
 this.a=b
@@ -33336,7 +33336,7 @@ r=a.ak()
 q=a.ak()
 p=a.a3()
 if(p>=14)A.a9(A.bO("Unsupported BMP compression type: "+p))
-p=B.GG[p]
+p=B.GH[p]
 a.a3()
 k[0]=a.a3()
 k[0]=a.a3()
@@ -35627,8 +35627,8 @@ _.z=j},
 cm6(a,b,c){var s,r,q,p,o,n=c.a
 n===$&&A.b()
 n=A.dz(A.a2q(n+240),40)
-s=A.dz(A.aXr(c,B.G9,B.ard),24)
-r=A.dz(A.aXr(c,B.G9,B.ari),32)
+s=A.dz(A.aXr(c,B.Ga,B.ard),24)
+r=A.dz(A.aXr(c,B.Ga,B.ari),32)
 q=A.dz(c.a+15,8)
 p=A.dz(c.a+15,12)
 c.d===$&&A.b()
@@ -35778,8 +35778,8 @@ _.z=j},
 cmd(a,b,c){var s,r,q,p,o,n=c.a
 n===$&&A.b()
 n=A.dz(n,200)
-s=A.dz(A.aXr(c,B.G5,B.aiV),24)
-r=A.dz(A.aXr(c,B.G5,B.anW),32)
+s=A.dz(A.aXr(c,B.G6,B.aiV),24)
+r=A.dz(A.aXr(c,B.G6,B.anW),32)
 q=A.dz(c.a,10)
 p=A.dz(c.a,12)
 c.d===$&&A.b()
@@ -37087,7 +37087,7 @@ cib(a,b,c){if(b!=null&&!b.j(0,B.w))return A.Hq(b.bl(A.cEH(c)),a)
 return a},
 cEH(a){var s,r,q,p,o,n
 if(a<0)return 0
-for(s=0;r=B.G6[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.G6[s-1]
+for(s=0;r=B.G7[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.G7[s-1]
 o=p.a
 n=p.b
 return n+(a-o)/(q-o)*(r.b-n)},
@@ -42920,10 +42920,10 @@ bEL:function bEL(a){this.a=a},
 ah5:function ah5(){},
 cG8(a){var s,r,q=B.auX.h(0,a)
 if(q==null)q=a
-for(s=0;s<15;++s){r=B.GK[s]
+for(s=0;s<15;++s){r=B.FO[s]
 if(r.a===q)return r}return null},
 cG9(a){var s=t.rR
-s=A.U(new A.b6(B.GK,new A.b3W(a),s),s.i("y.E"))
+s=A.U(new A.b6(B.FO,new A.b3W(a),s),s.i("y.E"))
 s.$flags=1
 return s},
 jq:function jq(a,b,c,d,e,f){var _=this
@@ -78898,7 +78898,7 @@ m===$&&A.b()
 n.T=m+1
 m=n.p1
 m===$&&A.b()
-s=(B.G_[b]+256+1)*2
+s=(B.G0[b]+256+1)*2
 r=m[s]
 m.$flags&2&&A.t(m)
 m[s]=r+1
@@ -78938,7 +78938,7 @@ r=m.xr
 r===$&&A.b()
 p=l[r+s]&255;++s
 if(q===0)m.F1(p,a)
-else{o=B.G_[p]
+else{o=B.G0[p]
 m.F1(o+256+1,a)
 n=B.FI[o]
 if(n!==0)m.jR(p-B.afp[o],n);--q
@@ -78994,7 +78994,7 @@ if(o<=p)p=o}else{o=m+5
 p=o
 q=0}if(m+4<=p&&s!==-1)n.auu(s,m,a)
 else if(o===p){n.jR(2+(a?1:0),3)
-n.akK(B.q7,B.G2)}else{n.jR(4+(a?1:0),3)
+n.akK(B.q7,B.G3)}else{n.jR(4+(a?1:0),3)
 m=n.p4.b
 m===$&&A.b()
 s=n.R8.b
@@ -80944,7 +80944,7 @@ r=A.nd(B.Mz,B.j,r==null?1:r)
 r.toString
 q=p.ag(0,q.gp(q))
 if(q==null)q=1
-return A.Ah(A.bgV(null,B.p,new A.Df(q,B.Gd,new A.d6(B.AS,this.e)),s,1,B.T3),r)}}
+return A.Ah(A.bgV(null,B.p,new A.Df(q,B.Ge,new A.d6(B.AS,this.e)),s,1,B.T3),r)}}
 A.agh.prototype={
 l(){var s=this,r=s.b9$
 if(r!=null)r.P(0,s.geN())
@@ -83660,7 +83660,7 @@ r=A.nd(B.Mz,B.j,r==null?1:r)
 r.toString
 q=p.ag(0,q.gp(q))
 if(q==null)q=1
-return A.Ah(A.bgV(null,B.p,new A.Df(q,B.Gd,new A.d6(B.AS,this.e)),s,1,B.T3),r)}}
+return A.Ah(A.bgV(null,B.p,new A.Df(q,B.Ge,new A.d6(B.AS,this.e)),s,1,B.T3),r)}}
 A.agi.prototype={
 l(){var s=this,r=s.b9$
 if(r!=null)r.P(0,s.geN())
@@ -87409,7 +87409,7 @@ q=m.w
 m=m.cx
 p=o.gb9J()
 o.a.toString
-return new A.a8R(l,q,n,new A.bM8(),n,n,n,n,n,r,B.av1,n,n,n,B.Gz,o.gba0(),m,n,B.aKC,s,n,p,n,n,B.G4,!1,!1,n,n,n,new A.Ib(o,t.jv))},
+return new A.a8R(l,q,n,new A.bM8(),n,n,n,n,n,r,B.av1,n,n,n,B.GA,o.gba0(),m,n,B.aKC,s,n,p,n,n,B.G5,!1,!1,n,n,n,new A.Ib(o,t.jv))},
 A(a){var s,r=this.aVG(a)
 this.a.toString
 s=this.d
@@ -90435,7 +90435,7 @@ return new A.Vz(s.d,s.c,null)},
 $S:1469}
 A.Vz.prototype={
 A(a){var s=null
-return A.ciZ(A.cku(B.u,s,s,B.Gz,A.csU(),s,new A.bNf(this),s,A.a([new A.Mk(this.d,s,s)],t.Ql),!1,s,B.aOw))},
+return A.ciZ(A.cku(B.u,s,s,B.GA,A.csU(),s,new A.bNf(this),s,A.a([new A.Mk(this.d,s,s)],t.Ql),!1,s,B.aOw))},
 gW(){return this.d}}
 A.bNf.prototype={
 $2(a,b){this.a.c.$1(b)
@@ -93931,7 +93931,7 @@ r.f=s.d},
 $S:0}
 A.apH.prototype={
 A(a){var s=this.c.a1(0,new A.v(0,40.95))
-return A.bgV(A.mX(null,B.Ci,!0),B.u,new A.Df(1,B.GD,new A.d6(B.AR,B.y)),s,1.25,B.T6)}}
+return A.bgV(A.mX(null,B.Ci,!0),B.u,new A.Df(1,B.GE,new A.d6(B.AR,B.y)),s,1.25,B.T6)}}
 A.J5.prototype={
 E(){return"MaterialType."+this.b}}
 A.Di.prototype={
@@ -94448,7 +94448,7 @@ $R:3,
 $S:262}
 A.a3s.prototype={
 a2f(a){var s=t.Tr
-s=A.U(new A.aq(B.Gl,new A.bcG(a),s),s.i("aG.E"))
+s=A.U(new A.aq(B.Gm,new A.bcG(a),s),s.i("aG.E"))
 return s},
 j(a,b){var s,r=this
 if(b==null)return!1
@@ -105479,8 +105479,8 @@ s=r.aa
 r.eZ=s==null?null:s.gQL()
 a.a=!1},
 y3(a,b,c){var s,r,q,p,o=this
-o.cJ=A.clK(o.cJ,B.GA)
-o.ba=A.clK(o.ba,B.GA)
+o.cJ=A.clK(o.cJ,B.GB)
+o.ba=A.clK(o.ba,B.GB)
 s=o.cJ
 r=s!=null&&!s.ga7(s)
 s=o.ba
@@ -126150,7 +126150,7 @@ gHw(){var s=this.a,r=this.b
 if(r==null)s=null
 else{r.a.toString
 s=!0}return s===!0},
-gP6(){return B.Gu},
+gP6(){return B.Gv},
 w7(){},
 yp(){var s=A.cbg()
 s.c4(new A.bkA(this),t.H)
@@ -126829,7 +126829,7 @@ A(a){var s,r,q=this,p=null,o=q.gb5o(),n=A.Cw(a),m=q.bO$,l=q.d
 l===$&&A.b()
 s=q.a.ay
 if(l.gaA()==null){r=q.gaiS()
-r=J.og(r.slice(0),A.ak(r).c)}else r=B.Gu
+r=J.og(r.slice(0),A.ak(r).c)}else r=B.Gv
 return A.ciZ(new A.fg(new A.bbx(q,a),A.vw(B.cV,new A.ai9(!1,A.c9y(A.ob(!0,p,A.a8o(m,new A.Rq(r,s,l)),p,p,p,q.y,!1,p,p,p,p,p,!0),p,n),p),p,o,q.gb5f(),p,p,p,p,o),p,t.eq))}}
 A.bbs.prototype={
 $1(a){var s,r=this.a
@@ -138729,7 +138729,7 @@ break A}if("SIGNED_OUT"===r){s=B.fe
 break A}if("TOKEN_REFRESHED"===r){s=B.lb
 break A}if("USER_UPDATED"===r){s=B.tJ
 break A}if("MFA_CHALLENGE_VERIFIED"===r){s=B.As
-break A}s=A.yL(B.G0,new A.b2W(m))
+break A}s=A.yL(B.G1,new A.b2W(m))
 break A}q=s
 if(q!=null){p=null
 if(n.h(a,"session")!=null)p=A.a6g(n.h(a,"session"))
@@ -140020,7 +140020,7 @@ b0.a.m(0,b1,e)}catch(b5){continue}}}b9.e=b7
 return!1},
 ard(a,b){var s,r,q,p,o,n,m,l=a.ak(),k=a.ak(),j=a.a3(),i=new A.aC8(l,null)
 if(k>=14)return i
-s=B.Gf[k]
+s=B.Gg[k]
 r=j*B.wL[k]
 q=a.d
 if((r>4?a.d=a.a3()+b:q)+r>a.c)return i
@@ -141773,7 +141773,7 @@ i=a9.ak()
 h=a9.ak()
 g=a9.a3()
 if(g>=14)A.a9(A.bO("Unsupported BMP compression type: "+g))
-g=B.GG[g]
+g=B.GH[g]
 a9.a3()
 k[0]=a9.a3()
 k[0]=a9.a3()
@@ -142633,7 +142633,7 @@ q=B.b.N(r+7,3)
 p=B.b.N(r*a8+7,3)
 o=A.a([null,null],t.oO)
 n=A.a([0,0,0,0],t.t)
-for(a0=a6>1,m=a6-a4,l=a5,k=0,j=0;k<a9;++k,l+=a7,++a.e){i=B.GC[J.w(a2.a,a2.d++)]
+for(a0=a6>1,m=a6-a4,l=a5,k=0,j=0;k<a9;++k,l+=a7,++a.e){i=B.GD[J.w(a2.a,a2.d++)]
 h=a2.j2(p)
 a2.d=a2.d+(h.c-h.d)
 a1=h.fJ()
@@ -142663,7 +142663,7 @@ k=A.a([0,0,0,0],t.t)
 a=a2.a
 j=a.ga5(a)
 j.t()
-for(i=0,h=0;i<p;++i,h=e){g=B.GC[J.w(a1.a,a1.d++)]
+for(i=0,h=0;i<p;++i,h=e){g=B.GD[J.w(a1.a,a1.d++)]
 f=a1.j2(o)
 a1.d=a1.d+(f.c-f.d)
 a=f.fJ()
@@ -143892,7 +143892,7 @@ a7=c5.Qg()
 a8=B.cX[m][2]
 a9=c6.Qg()
 b0=B.cX[m][3]
-b1=B.Gn[n+o&3]
+b1=B.Go[n+o&3]
 b2=b1[0]
 b3=b1[1]
 b4=B.b.N((e.a*d+c.a*b+a.a*a0+a1.a*a2)*b2+(a3.a*a4+a5.a*a6+a7.a*a8+a9.a*b0)*b3,7)
@@ -143940,7 +143940,7 @@ c=e.a1(0,new A.lA(d.a*c,d.b*c,d.c*c,d.d*c))
 d=b5.Qi()
 e=B.cX[m][3]
 a0=c.a1(0,new A.lA(d.a*e,d.b*e,d.c*e,d.d*e))
-a1=B.Gn[n+o&3]
+a1=B.Go[n+o&3]
 e=a1[0]
 d=a1[1]
 a2=B.b.N(a.a*e+a0.a*d,7)
@@ -144201,7 +144201,7 @@ r+=s}},
 a3g(a,b,c){var s,r,q,p,o,n,m,l,k=this
 k.d=0
 for(s=k.a,r=!0;c<s;){while(r){q=k.xt(10)
-p=B.Gs[q]
+p=B.Gt[q]
 o=B.b.N(p,1)&15
 if(o===12){p=B.qa[(q<<2&12|k.nG(2))>>>0]
 n=B.b.N(p,1)
@@ -144217,7 +144217,7 @@ k.x=s+1
 k.w=0}break}while(!r){p=B.FN[k.nG(4)]
 m=p>>>5&2047
 l=!0
-if(m===100){p=B.FY[k.xt(9)]
+if(m===100){p=B.FZ[k.xt(9)]
 o=B.b.N(p,1)&15
 m=B.b.N(p,5)&2047
 if(o===12){k.jT(5)
@@ -144267,7 +144267,7 @@ if(!(m<s))break
 a0.an3(l,k,q)
 i=q[0]
 h=q[1]
-g=B.Go[a0.nG(7)]&255
+g=B.Gp[a0.nG(7)]&255
 f=g>>>3&15
 e=g&7
 if(f===0){if(!k){h.toString
@@ -144325,7 +144325,7 @@ if(!(l<s))break
 a4.an3(k,j,q)
 h=q[0]
 g=q[1]
-f=B.Go[a4.nG(7)]&255
+f=B.Gp[a4.nG(7)]&255
 e=f>>>3&15
 d=f&7
 if(e===0){if(!j){g.toString
@@ -144379,7 +144379,7 @@ a4.d=i+1
 o+=r}},
 St(){var s,r,q,p,o,n,m=this
 for(s=0,r=!0;r;){q=m.xt(10)
-p=B.Gs[q]
+p=B.Gt[q]
 o=B.b.N(p,1)&15
 if(o===12){p=B.qa[(q<<2&12|m.nG(2))>>>0]
 n=B.b.N(p,1)
@@ -144392,7 +144392,7 @@ if((p&1)===0)r=!1}}return s},
 Ss(){var s,r,q,p,o,n,m=this
 for(s=0,r=!1;!r;){q=B.FN[m.nG(4)]
 p=q>>>5&2047
-if(p===100){q=B.FY[m.xt(9)]
+if(p===100){q=B.FZ[m.xt(9)]
 o=B.b.N(q,1)&15
 n=B.b.N(q,5)
 if(o===12){m.jT(5)
@@ -144521,7 +144521,7 @@ for(s=d.a,r=0;r<a;++r){q=a0.ak()
 p=a0.ak()
 o=a0.a3()
 if(p>13){a0.d+=4
-continue}n=B.Gf[p]
+continue}n=B.Gg[p]
 if(o*B.wL[p]>4)m=a0.a3()
 else{m=a0.d
 a0.d=m+4}l=new A.awF(q,n,o,m,b)
@@ -145555,8 +145555,8 @@ a4.alL(i,new A.ls(j,o,Math.min(384,384),o,!1),c)}}o=n.f
 o===$&&A.b()
 l=A.cnN(p,a6,n.d)
 l.toString
-B.G1[l].$1(r)
-B.G1[l].$1(q)
+B.G2[l].$1(r)
+B.G2[l].$1(q)
 l=Math.min(384,384)
 b=new A.ls(j,256,l,256,!1)
 if((o&255)!==0){f=a4.e
@@ -146109,9 +146109,9 @@ s+=3+B.b.cS(8,q)}return s},
 a4g(a,b,c,d,e,f){var s,r,q,p,o,n,m,l,k=b[e].a[c]
 for(;e<16;e=s){if(a.hv(k[0])===0)return e
 while(a.hv(k[1])===0){++e
-k=b[B.GB[e]].a[0]
+k=b[B.GC[e]].a[0]
 if(e===16)return 16}s=e+1
-r=b[B.GB[s]].a
+r=b[B.GC[s]].a
 if(a.hv(k[2])===0){k=r[1]
 q=1}else{q=this.b2d(a,k)
 k=r[2]}p=B.am6[e]
@@ -146119,8 +146119,8 @@ o=a.b
 o===$&&A.b()
 n=a.ajn(B.b.N(o,1))
 o=a.b
-m=B.Gr[o]
-a.b=B.Gq[o]
+m=B.Gs[o]
+a.b=B.Gr[o]
 o=a.d
 o===$&&A.b()
 a.d=o-m
@@ -146145,8 +146145,8 @@ B.i.cW(f,0,4,r)}else{q=s.c
 for(i=f.$flags|0,p=0,o=0;o<4;++o,p=k){r=f[o]
 for(n=0;n<4;++n){e=h+n
 m=B.amk[g[e]][r]
-l=B.Gc[j.c.hv(m[0])]
-while(l>0)l=B.Gc[2*l+j.c.hv(m[l])]
+l=B.Gd[j.c.hv(m[0])]
+while(l>0)l=B.Gd[2*l+j.c.hv(m[l])]
 r=-l
 g.$flags&2&&A.t(g)
 g[e]=r}k=p+4
@@ -146205,8 +146205,8 @@ return 1}else{n.b=a
 return 0}},
 bj8(){var s,r=this,q=r.b
 q===$&&A.b()
-s=B.Gr[q]
-r.b=B.Gq[q]
+s=B.Gs[q]
+r.b=B.Gr[q]
 q=r.d
 q===$&&A.b()
 r.d=q-s}}
@@ -146738,10 +146738,10 @@ for(q=0;q<a8;++q)r[q]=A.cG2()
 a4=new A.anR(new A.a1_())
 a4.aij(a8*a5)
 a1.ay=a4
-for(a4=!a6,p=0;p<a9;++p)if(a4&&b0[p]===-1)for(o=0;o<5;++o){n=B.FX[o]
+for(a4=!a6,p=0;p<a9;++p)if(a4&&b0[p]===-1)for(o=0;o<5;++o){n=B.FY[o]
 if(a1.arf(o===0&&a3?n+B.b.cS(1,a7):n,s,a2)===0)return a2}else{m=r[a6?p:b0[p]]
 l=m.a
-for(k=0,j=!0,i=0,o=0;o<5;++o){n=B.FX[o]
+for(k=0,j=!0,i=0,o=0;o<5;++o){n=B.FY[o]
 if(o===0&&a3)n+=B.b.cS(1,a7)
 h=a1.arf(n,s,a1.ay)
 g=a1.ay.b
@@ -153941,7 +153941,7 @@ r.f=s.d},
 $S:0}
 A.apG.prototype={
 A(a){var s=this.c.a1(0,new A.v(0,40.95))
-return A.bgV(A.mX(null,B.Ci,!0),B.u,new A.Df(1,B.GD,new A.d6(B.AR,B.y)),s,1.25,B.T6)}}
+return A.bgV(A.mX(null,B.Ci,!0),B.u,new A.Df(1,B.GE,new A.d6(B.AR,B.y)),s,1.25,B.T6)}}
 A.J6.prototype={
 E(){return"MaterialType."+this.b}}
 A.a2j.prototype={
@@ -154148,7 +154148,7 @@ A.aFL.prototype={}
 A.ay9.prototype={}
 A.aqY.prototype={
 bdm(a){var s=t.Tr
-s=A.U(new A.aq(B.Gl,new A.bcH(a),s),s.i("aG.E"))
+s=A.U(new A.aq(B.Gm,new A.bcH(a),s),s.i("aG.E"))
 return s},
 j(a,b){if(b==null)return!1
 if(this===b)return!0
@@ -159484,7 +159484,7 @@ return A.e(n.Ei(),$async$AW)
 case 7:$.X6()
 m=A.c9J(null)
 s=8
-return A.e(m.a8L(B.Gk),$async$AW)
+return A.e(m.a8L(B.Gl),$async$AW)
 case 8:l=c
 if(l!=null){A.c9f(l.a,A.anq())
 g=l.a
@@ -159495,7 +159495,7 @@ if(k!=null){q=k
 s=1
 break}if(!a)throw A.f(B.CB)
 s=9
-return A.e(m.ME(B.Gk),$async$AW)
+return A.e(m.ME(B.Gl),$async$AW)
 case 9:j=c
 A.c9f(j.a,A.anq())
 g=j.a
@@ -161446,7 +161446,7 @@ if(l!=null){s=A.a([],n)
 if(q.Q.a===B.je)s.push(A.eE(B.rN,p,p,q.garZ(),p,p))
 m.push(new A.NP(l,s,p))}l=q.z
 s=l?"Show passwords":"Hide passwords"
-s=A.NQ(B.GH,!0,q.x,!0,p,"At least 6 characters",p,o,l,p,A.dR(p,p,p,A.c6(l?B.cC:B.pQ,p,p,20),p,p,new A.bUI(q),p,p,p,s),B.kK,new A.bUJ())
+s=A.NQ(B.GI,!0,q.x,!0,p,"At least 6 characters",p,o,l,p,A.dR(p,p,p,A.c6(l?B.cC:B.pQ,p,p,20),p,p,new A.bUI(q),p,p,p,s),B.kK,new A.bUJ())
 l=A.NQ(p,!1,q.y,!0,p,"Type it again",p,"Confirm new password",l,new A.bUK(q,k),p,B.dv,new A.bUL(q))
 r=k?"Saving\u2026":"Save new password"
 m.push(new A.NU(A.ai(A.a([s,B.a7,l,B.bt,A.aJ(r,k,!0,p,B.Q,k?p:q.garZ())],n),B.W,p,B.f,B.h),p))
@@ -161758,7 +161758,7 @@ return null},
 $S:0}
 A.akH.prototype={
 A(a){var s=null,r=A.M(a).ok.Q,q=t.p
-return A.ai(A.a([A.P("By continuing you agree to the",s,s,s,s,s,r,B.av,s),A.Ah(A.iK(B.t0,A.a([B.aRI,A.P(" and the ",s,s,s,s,s,r,s,s),B.aRJ],q),B.fa,0,0),B.awW)],q),B.o,s,B.f,B.K)}}
+return A.ai(A.a([A.P("By continuing you agree to the",s,s,s,s,s,r,B.av,s),A.Ah(A.iK(B.t0,A.a([B.aRJ,A.P(" and the ",s,s,s,s,s,r,s,s),B.aRI],q),B.fa,0,0),B.awW)],q),B.o,s,B.f,B.K)}}
 A.abR.prototype={
 A(a){var s=null,r=A.aA(a),q=A.bE(16),p=r.y.bH(0.3),o=A.M(a).ok.Q
 o=o==null?s:o.brt(r.c,B.nk,B.b0)
@@ -162465,7 +162465,7 @@ p===$&&A.b()
 s=A.bE(20)
 r=A.ho(B.aQ,3)
 q=this.a
-return A.h3(p,new A.bHX(this),A.dH(new A.aj(B.d9,A.asx(B.n,q.c,B.pk,"qr code",q.d,-1),null),new A.br(B.n,null,r,s,B.Gj,null,B.F),B.aj))}}
+return A.h3(p,new A.bHX(this),A.dH(new A.aj(B.d9,A.asx(B.n,q.c,B.pk,"qr code",q.d,-1),null),new A.br(B.n,null,r,s,B.Gk,null,B.F),B.aj))}}
 A.bHX.prototype={
 $2(a,b){var s,r
 if(A.aR(a,B.aI,t.w).w.ax)s=0
@@ -163013,7 +163013,7 @@ h=A.ce(o,B.aNs,B.p,o,o,new A.br(B.aQ,o,A.ho(B.A,2),h,o,o,B.F),o,o,o,o,B.a6L,o,o,
 s=A.P("Someone shared a private note with you.",o,o,o,o,o,A.cA(o,o,B.A,o,o,o,o,o,"Outfit",o,o,j?38:28,o,o,B.ar,o,1.1,!0,o,-0.8,o,o,o,o,o,o),o,o)
 k=A.aR(a,B.aI,k).w.ax?B.M:B.i6
 r=A.bE(20)
-q=l?B.Gj:o
+q=l?B.Gk:o
 k=A.NC(A.lK(o,B.aqx,!1,o,!0,B.u,o,A.mJ(),p.w,o,o,o,o,o,2,B.ad9,B.L,!0,o,!0,!p.z,!1,m,B.bV,o,o,o,o,o,o,40,o,1,o,o,!1,"\u2022",o,o,o,new A.bDG(p),o,!1,o,o,!1,o,!0,o,B.ao,o,o,o,o,o,o,o,o,o,o,o,B.aLr,!0,B.ap,o,B.cH,o,B.rJ,o,o),o,B.ad,new A.br(o,o,o,r,q,o,B.F),k,o,o,o,o,o)
 q=p.z
 m=A.a([new A.de(B.bI,o,o,h,o),B.bt,s,B.c7,B.aM_,B.fI,k,B.S,new A.de(B.bI,o,o,A.b71(q,B.abe,"Open my copy",q?o:p.gaWq(p)),o)],t.p)
@@ -165926,7 +165926,7 @@ for(;;)switch(s){case 0:s=2
 return A.e(A.cf(q).a2(0,$.Br(),t.DA).qu(a,b),$async$qu)
 case 2:return A.l(null,r)}})
 return A.m($async$qu,r)},
-b9T(a){var s=a.d===B.yt?B.ie:B.c.oS(B.Gg,new A.b3i(a),new A.b3j()),r=a.f
+b9T(a){var s=a.d===B.yt?B.ie:B.c.oS(B.Gh,new A.b3i(a),new A.b3j()),r=a.f
 return new A.dx(a.a,a.c,s,a.b,r,r,a.r,a.e,a.w,a.x,B.c.oS(B.arw,new A.b3k(a),new A.b3l()))}}
 A.b3n.prototype={
 $1(a){var s=a.gp(a)
@@ -166048,7 +166048,7 @@ A.c48.prototype={
 $2(a,b){return this.aI_(a,b)},
 aI_(a,b){var s=0,r=A.n(t.lc),q
 var $async$$2=A.j(function(c,d){if(c===1)return A.k(d,r)
-for(;;)switch(s){case 0:if(!a.a2(0,$.cfD(),t.y)){q=B.Gt
+for(;;)switch(s){case 0:if(!a.a2(0,$.cfD(),t.y)){q=B.Gu
 s=1
 break}q=a.a2(0,$.um(),t.s7).Qb(b)
 s=1
@@ -166757,7 +166757,7 @@ if(o.length===0)n=p
 else{m=A.ak(p).i("b6<1>")
 n=A.U(new A.b6(p,new A.bMG(o),m),m.i("y.E"))}l=d.b6($.ahX().$1(g.a.d),t._l)
 k=l.gp(l)
-if(k==null)k=B.Gt
+if(k==null)k=B.Gu
 d=t.p
 p=A.a([],d)
 if(c.gu(b)>=8)p.push(A.ou(!0,f,g.w,!0,f,f,"Name",f,"Search members",f,1,f,!1,new A.bMH(g),f,f))
@@ -167796,7 +167796,7 @@ h=m.b0G(a,m.d,m.e,"e.g., Lecture 4 Notes","Document name",new A.bLF(m),B.kK)
 g=m.amd(a,m.c,m.f,"https://drive.google.com/file/d/...",B.nm,"Google Drive link",new A.bLG(m),B.dv)
 f=A.P("Document type",l,l,l,l,l,j.at,l,l)
 e=A.a([],d)
-for(s=m.r,r=0;r<4;++r){q=B.Gg[r]
+for(s=m.r,r=0;r<4;++r){q=B.Gh[r]
 p=s===q
 o=A.c2V(q)
 n=A.P(A.c2V(q),l,l,l,l,l,l,l,l)
@@ -167961,7 +167961,7 @@ if(s.a){s=this.a.gd_().e.a
 s=(s==null?null:s.r)!=null}else s=r
 return s},
 bE5(){var s,r,q
-if(!this.gKE())return A.F_(B.Gv,t.CE)
+if(!this.gKE())return A.F_(B.Gw,t.CE)
 s=this.a
 r=s.gd_().e.a
 q=(r==null?null:r.r).a
@@ -168324,7 +168324,7 @@ A.c5l.prototype={
 $1(a){var s=a.b6($.dA(),t.C)
 s=s.gp(s)==null
 if(!s)$.e6()
-if(s)return A.F_(B.Gv,t.CE)
+if(s)return A.F_(B.Gw,t.CE)
 return a.b6($.Ns(),t.Ez).bE5()},
 $S:964}
 A.c6R.prototype={
@@ -168907,7 +168907,7 @@ return A.m($async$xj,r)},
 A(a){var s,r=this,q=null,p=r.x,o=p?"Setting up\u2026":"Start using NO SUS"
 o=A.aJ(o,p,!0,q,B.Q,new A.bIG(r))
 s=t.p
-return A.e5(B.Y,A.ai(A.a([o,B.au,A.aJ("Skip for now",!1,!0,q,B.aK,p?q:new A.bIH(r))],s),B.o,q,B.f,B.K),A.a([B.aw6,B.aAj,B.aB4,A.ou(!0,B.GI,r.w,!r.x,q,q,"Member",q,"What should people call you?",q,1,q,!1,q,new A.bII(r),B.dv),B.aEJ],s),q,16,q,q,!1,"Set up")}}
+return A.e5(B.Y,A.ai(A.a([o,B.au,A.aJ("Skip for now",!1,!0,q,B.aK,p?q:new A.bIH(r))],s),B.o,q,B.f,B.K),A.a([B.aw6,B.aAj,B.aB4,A.ou(!0,B.GJ,r.w,!r.x,q,q,"Member",q,"What should people call you?",q,1,q,!1,q,new A.bII(r),B.dv),B.aEJ],s),q,16,q,q,!1,"Set up")}}
 A.bIF.prototype={
 $0(){var s=this.a
 s.x=!0
@@ -169181,7 +169181,7 @@ q=A.as(j,j,j,B.aD1,!1,j,j,!1,j,!1,j,j,!0,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j
 p=s==null
 o=p?"Preparing preview":"Photo preview"
 o=A.ck(A.as(j,j,j,A.ch3(A.L8(A.mX(p?B.a34:A.aod(s,B.ua,!0,new A.d7(h.a,t.Ec)),B.m,!0),160)),!1,j,j,!1,j,!1,j,j,j,j,j,j,!0,j,j,j,o,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,B.l,j),j,j)
-n=B.c.fT(B.FQ,h.a)
+n=B.c.fT(B.FR,h.a)
 m=h.a
 if(m===B.tS)m="Dithered 1-bit pixel art \u2014 the NO SUS look."
 else m=m===B.AG?"Black & white photograph.":"Your photo, full colour."
@@ -169247,7 +169247,7 @@ $1(a){var s=this.a
 if(!s.b)this.b.$1(new A.bS3(s,a))},
 $S:21}
 A.bS3.prototype={
-$0(){return this.a.a=B.FQ[this.b]},
+$0(){return this.a.a=B.FR[this.b]},
 $S:0}
 A.bS_.prototype={
 $1(a){var s=null,r=A.aA(a),q=A.M(a).ok,p=this.a
@@ -169282,7 +169282,7 @@ A.aC(r.d,!1).fa()},
 $S:0}
 A.bS1.prototype={
 $1(a){var s=null,r=this.b,q=new A.bS2(this.a,r,this.c,a)
-return A.eO(!0,new A.aj(new A.a7(20,0,20,A.aR(a,s,t.w).w.f.d+20),A.hI(A.ai(A.a([A.as(s,s,s,B.aD0,!1,s,s,!1,s,!1,s,s,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.l,s),B.au,B.aBZ,B.a7,A.ou(!0,B.GI,r,!0,s,s,s,s,"Display name",s,1,s,!1,s,new A.bS0(q),B.dv),B.a7,A.aJ("Save",!1,!0,s,B.Q,q)],t.p),B.W,s,B.f,B.K),s,B.L,s,s,s,B.a5),s),B.N,!1)},
+return A.eO(!0,new A.aj(new A.a7(20,0,20,A.aR(a,s,t.w).w.f.d+20),A.hI(A.ai(A.a([A.as(s,s,s,B.aD0,!1,s,s,!1,s,!1,s,s,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.l,s),B.au,B.aBZ,B.a7,A.ou(!0,B.GJ,r,!0,s,s,s,s,"Display name",s,1,s,!1,s,new A.bS0(q),B.dv),B.a7,A.aJ("Save",!1,!0,s,B.Q,q)],t.p),B.W,s,B.f,B.K),s,B.L,s,s,s,B.a5),s),B.N,!1)},
 $S:108}
 A.bS2.prototype={
 $0(){var s,r=this,q=B.e.bg(r.b.a.a)
@@ -170248,10 +170248,10 @@ A.boB.prototype={
 $0(){return this.a.V4(this.b,this.c)},
 $S:0}
 A.boC.prototype={
-$0(){return A.cdj(this.a,B.Fu)},
+$0(){return A.cdj(this.a,B.Fv)},
 $S:0}
 A.boD.prototype={
-$0(){return A.cdj(this.a,B.Fv)},
+$0(){return A.cdj(this.a,B.Fu)},
 $S:0}
 A.bpj.prototype={
 $0(){return this.a.aY3(this.b,this.c)},
@@ -170269,7 +170269,7 @@ return new A.wc(new A.boW(s.a,s.b,s.c,s.d,s.e),null)},
 $S:152}
 A.boW.prototype={
 $2(a,b){var s,r,q=this,p=null,o=q.a,n=q.b,m=q.c,l=new A.boX(o,n,b,m,q.d,a,q.e),k=o.b
-n=A.ou(!1,B.GH,n,!0,p,p,"At least 6 characters",p,"New password",p,1,p,k,p,p,B.kK)
+n=A.ou(!1,B.GI,n,!0,p,p,"At least 6 characters",p,"New password",p,1,p,k,p,p,B.kK)
 m=A.ou(!1,p,m,!0,o.c,p,"Type it again",p,"Confirm new password",p,1,p,k,p,new A.boP(l),B.dv)
 s=A.c6(k?B.cC:B.pQ,p,p,18)
 r=t.p
@@ -171057,7 +171057,7 @@ A.aSM.prototype={
 $1(a){},
 $S:26}
 A.ajI.prototype={
-agx(a,b,c){var s=A.eU(c,t.hD),r=new A.xa(s,b,B.Gw,$.au())
+agx(a,b,c){var s=A.eU(c,t.hD),r=new A.xa(s,b,B.Gx,$.au())
 s=s.length
 r.c=A.b0(s,B.uc,!1,t.H6)
 r.d=A.b0(s,0,!1,t.i)
@@ -171974,7 +171974,7 @@ if(a<1048576)return B.d.b3(a/1024,1)+" KB"
 return B.d.b3(a/1048576,1)+" MB"},
 ga7q(){var s=this.y
 s=s==null?null:s.x
-return s==null?B.Gw:s},
+return s==null?B.Gx:s},
 bgL(){this.F(new A.bAF(this))},
 A(a7){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4=this,a5=null,a6=a4.y
 if((a6==null?a5:a6.w)!=null)return a4.aVu()
@@ -174005,10 +174005,10 @@ l=q.a
 s=l.d
 A:{if(s instanceof A.DK){m=q.Q
 if(m==null)m=l.e
-l=A.eU(B.Gx,t.X)
+l=A.eU(B.Gy,t.X)
 m=new A.RG(new A.arj(s.a,q.gaj8(),!0,p,!0,!0,new A.zc("nosus:"+m,l)),q.w,j,p)
 break A}if(s instanceof A.arm){r=s.a
-m=A.eU(B.Gx,t.X)
+m=A.eU(B.Gy,t.X)
 m=new A.RG(new A.ark(r,q.gaj8(),!0,!0,!0,new A.zc(r,m)),q.w,j,p)
 break A}m=p}return new A.OB(q.ax?B.Dj:B.Dk,m,p)},
 aVv(a){var s,r,q=this,p=null,o=A.aA(a),n=A.M(a),m=q.x,l=m==null,k=l?p:m.d.length
@@ -174093,7 +174093,7 @@ $S:1055}
 A.bPn.prototype={
 $2(a,b){var s,r=this.a
 if(r.c==null)return
-if(r.x==null){s=new A.art(r.w,B.Gy,B.es,A.G(t.S,t.RL),A.a([],t.qj))
+if(r.x==null){s=new A.art(r.w,B.Gz,B.es,A.G(t.S,t.RL),A.a([],t.qj))
 s.bgi()
 s.a6(0,r.gaqf())
 r.x=s}r.F(new A.bPm(r,a,b))},
@@ -181503,7 +181503,7 @@ s.b=A.cI(B.e4,new A.bds(s,a,!0,!0,++s.c))},
 aL7(a,b){return this.agz(a,!0,b)},
 a6H(a,b){var s=this
 s.ajS()
-s.d=B.Gy
+s.d=B.Gz
 s.e=B.es
 s.w=s.r=null
 s.z=!1
@@ -197126,7 +197126,7 @@ q.aMK()
 s=q.at
 if(s!==-1){r=q.a
 r===$&&A.b()
-q.slK(r.dl(s,t.SD))}switch(A.en(B.GE,q.as).a){case 3:if(!(q.cy instanceof A.ZC))q.srt((q.gFw()?B.wz:B.wy).a)
+q.slK(r.dl(s,t.SD))}switch(A.en(B.GF,q.as).a){case 3:if(!(q.cy instanceof A.ZC))q.srt((q.gFw()?B.wz:B.wy).a)
 break
 case 2:if(!(q.cy instanceof A.mZ))q.srt((q.gFw()?B.wz:B.wy).a)
 break
@@ -197632,7 +197632,7 @@ dY(){},
 cV(){var s,r=this,q=r.ay
 if(q!==-1&&!(r.dy instanceof A.PC)){s=r.a
 s===$&&A.b()
-r.slK(s.dl(q,t.SD))}switch(A.en(B.GE,r.ax).a){case 2:if(!(r.fx instanceof A.mZ))if(!(r.dy instanceof A.PC))r.srt(1)
+r.slK(s.dl(q,t.SD))}switch(A.en(B.GF,r.ax).a){case 2:if(!(r.fx instanceof A.mZ))if(!(r.dy instanceof A.PC))r.srt(1)
 break
 default:break}},
 byd(a){var s,r,q=this.as
@@ -199136,9 +199136,9 @@ default:return r}},
 gOm(){var s=this,r=s.bO
 switch(r==null?null:A.en(B.md,r.v)){case B.ma:r=s.fi
 if(r==null){r=s.bO
-r=r==null?null:A.en(B.Gp,r.T)}return r==null?B.mb:r
+r=r==null?null:A.en(B.Gq,r.T)}return r==null?B.mb:r
 case B.q_:r=s.bO
-r=r==null?null:A.en(B.Gp,r.T)
+r=r==null?null:A.en(B.Gq,r.T)
 return r==null?B.mb:r
 default:return B.mb}},
 gw8(){var s=this.bO
@@ -199155,7 +199155,7 @@ s.O2(new A.b6P(s))},
 axZ(){this.f6=this.fi=null
 this.bq=0},
 ga8B(){var s=this.bO,r=s==null
-if((r?null:B.Gm[s.an])===B.Ft)s=(r?null:A.en(B.md,s.v))!==B.Fn&&this.gOm()!==B.mb&&this.gw8()>0
+if((r?null:B.Gn[s.an])===B.Ft)s=(r?null:A.en(B.md,s.v))!==B.Fn&&this.gOm()!==B.mb&&this.gw8()>0
 else s=!1
 return s},
 ZN(a){this.rF()},
@@ -199262,7 +199262,7 @@ o=A.chd(i)
 if(o==null)o=h
 else{o=o.bO
 o=o==null?h:B.ql[o.K]}n=B.c.n(p,o)
-switch(B.FZ[a.aI&15].a){case 0:if(n)i.bR.sw1(0,0)
+switch(B.G_[a.aI&15].a){case 0:if(n)i.bR.sw1(0,0)
 break
 case 1:p=i.bR
 if(n)p.sw1(0,1)
@@ -199277,7 +199277,7 @@ o=A.chd(i)
 if(o==null)o=h
 else{o=o.bO
 o=o==null?h:B.ql[o.K]}m=B.c.n(p,o)
-switch(B.FZ[a.aI>>>4&15].a){case 0:if(m)i.bR.sw1(0,0)
+switch(B.G_[a.aI>>>4&15].a){case 0:if(m)i.bR.sw1(0,0)
 break
 case 1:p=i.bR
 if(m)p.sw1(0,1)
@@ -199288,7 +199288,7 @@ if(m)p.sw1(0,0)
 else p.sWh(0,B.Fi)
 break
 default:break}l=B.c.n(A.a([B.wC,B.wD],s),B.ql[a.K])
-switch(B.Gi[a.aH].a){case 0:case 1:case 2:case 9:s=i.bR
+switch(B.Gj[a.aH].a){case 0:case 1:case 2:case 9:s=i.bR
 if(l)s.sFk(0,B.Fj)
 else s.sCe(0,B.Fq)
 break
@@ -199299,7 +199299,7 @@ break
 case 6:case 7:case 8:case 11:s=i.bR
 if(l)s.sFk(0,B.Fl)
 else s.sCe(0,B.Fs)
-break}switch(B.Gi[a.aH].a){case 0:case 3:case 6:s=i.bR
+break}switch(B.Gj[a.aH].a){case 0:case 3:case 6:s=i.bR
 if(l)s.sCe(0,B.Fq)
 else s.sFk(0,B.Fj)
 break
@@ -199359,7 +199359,7 @@ p=B.b2[a.cp]
 s.eL(0,B.q5,new A.hv(a.to,p))
 p=B.akN[a.a0]
 $.cpT.b0().call(null,s.a,p.a)
-p=B.Gm[a.an]
+p=B.Gn[a.an]
 $.cq4.b0().call(null,s.a,p.a)
 k=a.x1
 p=$.cpU.b0()
@@ -199484,7 +199484,7 @@ M5(){var s,r,q,p,o,n,m,l,k,j,i,h=this,g=h.jn
 if(g!=null){s=new Float32Array(A.ah(A.a([1,0,0,1,0,0],t.n)))
 r=new A.bP(s)
 A.a2i(r,h.ae)
-q=B.Ge[h.dX]
+q=B.Gf[h.dX]
 p=g.d
 o=g.b
 p=p.a
@@ -199495,7 +199495,7 @@ n=s===0?0:1/s
 s=h.aE
 A.b7x(r,n,s===0?0:1/s)}else{o.sbh(0,p)
 o.sau(0,g.d.b)
-switch(B.Ge[h.dX].a){case 2:m=Math.max(h.aX,h.aE)
+switch(B.Gf[h.dX].a){case 2:m=Math.max(h.aX,h.aE)
 break
 case 1:m=Math.min(h.aX,h.aE)
 break
@@ -199595,7 +199595,7 @@ s.bs(32)},
 bC(a,b){var s,r,q,p,o,n,m,l,k,j,i,h
 if((b&288)!==0){s=this.p3
 s.bi(0)
-s.sGm(A.en(B.Ga,this.dx))
+s.sGm(A.en(B.Gb,this.dx))
 for(r=this.p4,q=r.length,p=t.ZD,o=s.r,n=0;n<r.length;r.length===q||(0,A.F)(r),++n){m=r[n]
 l=m.nT
 k=m.k_
@@ -199815,7 +199815,7 @@ var s=this.at
 if(t.tl.b(s))s.bo5(this)},
 rl(a,b){var s,r=this
 if(!r.y1||r.aq.mt$===0)return
-b.sGm(B.Ga[r.aX])
+b.sGm(B.Gb[r.aX])
 s=r.ae
 s===$&&A.b()
 a.eR(b,s)}}
@@ -201421,7 +201421,7 @@ if(n===0)p.push(l.N3(r))
 else p.push(i.aDP(a,l.N3(r),n))}return p},
 bC(a,b){}}
 A.btZ.prototype={
-$1(a){return A.en(B.FV,a.aH)===B.TJ},
+$1(a){return A.en(B.FW,a.aH)===B.TJ},
 $S:1421}
 A.btY.prototype={
 $1(a){return new A.v6(a.a,a.b)},
@@ -201456,7 +201456,7 @@ s=a.length
 r=p.aX
 if(r!=null){q=r.gds(0)
 s=q+p.aX.dx.length}else q=0
-switch(A.en(B.FV,p.aH).a){case 1:p.ab=A.cly(a,q,s,d,!0)
+switch(A.en(B.FW,p.aH).a){case 1:p.ab=A.cly(a,q,s,d,!0)
 break
 case 2:p.ab=A.cJG(a,q,s)
 break
@@ -202725,7 +202725,7 @@ g=A.cgT(n,32)
 f=A.cgT(n,40)
 e=A.cBA(n,48)
 d=n.getUint16(64,!0)
-s.push(new A.a0H(i,h,g,f,e,B.Gh[n.getUint8(66)],d,new A.a0p(m,l),k,j))}}}
+s.push(new A.a0H(i,h,g,f,e,B.Gi[n.getUint8(66)],d,new A.a0p(m,l),k,j))}}}
 A.a0H.prototype={}
 A.a0p.prototype={
 k(a){return"FontWasm "+this.b},
@@ -202792,7 +202792,7 @@ h=j.a3()
 g=A.a([],t.II)
 for(s=t.wz,f=0;f<h;++f,i+=12){r=J.ig(B.i.gaf(k),i,null)
 o=A.a([],s)
-o=new A.ard(r,B.Gh[r.getUint8(8)],o)
+o=new A.ard(r,B.Gi[r.getUint8(8)],o)
 o.aSx(r)
 g.push(o)}s=new A.awt(l,g)
 $.aPh().y5(s,l,s)
@@ -214202,8 +214202,8 @@ B.mb=new A.IR(0,"hold")
 B.wE=new A.IR(1,"linear")
 B.ip=new A.IS(1,"point")
 B.mc=new A.IS(3,"auto")
-B.Fu=new A.api("Terms of service","Last updated: October 2026\n\n1. What NO SUS does\nNO SUS keeps your own chat, the notes and files you send yourself, in a NO SUS folder in your Google Drive. You can share files and notes with groups you start or join. You can send a link that opens once: it is encrypted on your phone first and the stored copy is deleted after the first open. You can send a watermarked link that shows the reader\u2019s name on every page, and revoke it. NO SUS shows no ads.\n\n2. Your content\nYou are responsible for what you upload and send. Do not use NO SUS to share things you have no right to share or to harass anyone. Content and accounts that break this can be removed. You can report content in a group from the app.\n\n3. Limits\nA watermark or a screenshot block cannot stop someone photographing a screen. NO SUS is provided as is: we are not responsible for network failures, lost content, or what a recipient does with what you send.\n\n4. Changes\nWhen these terms change, the new text appears here.",0,"terms")
-B.Fv=new A.api("Privacy policy","Last updated: October 2026\n\n1. Data Collection\nWe store your email, display name and avatar in our database (Supabase). Group documents are kept encrypted in our storage and are decrypted on your device when you open them. A PDF you open from another app stays on your phone. Your own chat lives in your Google Drive, which we access only for files NO SUS created.\n\n2. Burn notes and files\nThey are encrypted on your device before upload, and the key travels in the link, not to us. Only if you ask for a 6-digit code is a copy of the key kept on our servers, until the code is used or for up to 10 minutes; then it is deleted. (On our website, a single note or file also gets a two-digit code, which keeps a copy for up to 20 minutes.) The encrypted content is deleted after it is opened or when it expires. If you are signed in, our server knows which account sent each link until it is opened or expires, so it can tell you it was opened, never who opened it. Turn that off in Settings \u2192 Notifications \u2192 Link opened.\n\n3. Audit Logs\nTo help trace leaks, we record events such as file openings, link views and blocked screenshot attempts, with the account email and time. Group members can see the activity of their group. These records are deleted with your account.\n\n4. Product Analytics\nWe record a small set of product events \u2014 app opened, first-run setup started/completed, sign-up completed, first document uploaded or viewed, and notification permission outcomes \u2014 against your account so we can see where the app is confusing. These records never contain document names, document contents, group names, or message text.\n\n5. Notifications\nIf you enable push notifications we store a device token so messages can be delivered. Notification text never includes a document name or its contents. Signing out releases that device token.\n\n6. Data Deletion\nYou may delete your account at any time. Account deletion removes your profile, profile picture, memberships, every file you uploaded (including files in groups other people still use) and the group activity records of what you did. Product analytics records and feedback are kept without any link to your account.",1,"privacy")
+B.Fu=new A.api("Privacy policy","Last updated: October 2026\n\n1. Data Collection\nWe store your email, display name and avatar in our database (Supabase). Group documents are kept encrypted in our storage and are decrypted on your device when you open them. A PDF you open from another app stays on your phone. Your own chat lives in your Google Drive, which we access only for files NO SUS created.\n\n2. Burn notes and files\nThey are encrypted on your device before upload, and the key travels in the link, not to us. Only if you ask for a 6-digit code is a copy of the key kept on our servers, until the code is used or for up to 10 minutes; then it is deleted. (On our website, a single note or file also gets a two-digit code, which keeps a copy for up to 20 minutes.) The encrypted content is deleted after it is opened or when it expires. If you are signed in, our server knows which account sent each link until it is opened or expires, so it can tell you it was opened, never who opened it. Turn that off in Settings \u2192 Notifications \u2192 Link opened.\n\n3. Audit Logs\nTo help trace leaks, we record events such as file openings, link views and blocked screenshot attempts, with the account email and time. Group members can see the activity of their group. These records are deleted with your account.\n\n4. Product Analytics\nWe record a small set of product events \u2014 app opened, first-run setup started/completed, sign-up completed, first document uploaded or viewed, and notification permission outcomes \u2014 against your account so we can see where the app is confusing. These records never contain document names, document contents, group names, or message text.\n\n5. Notifications\nIf you enable push notifications we store a device token so messages can be delivered. Notification text never includes a document name or its contents. Signing out releases that device token.\n\n6. Data Deletion\nYou may delete your account at any time. Account deletion removes your profile, profile picture, memberships, every file you uploaded (including files in groups other people still use) and the group activity records of what you did. Product analytics records and feedback are kept without any link to your account.",1,"privacy")
+B.Fv=new A.api("Terms of service","Last updated: October 2026\n\n1. What NO SUS does\nNO SUS keeps your own chat, the notes and files you send yourself, in a NO SUS folder in your Google Drive. You can share files and notes with groups you start or join. You can send a link that opens once: it is encrypted on your phone first and the stored copy is deleted after the first open. You can send a watermarked link that shows the email the reader enters on every page, and revoke it. NO SUS shows no ads.\n\n2. Your content\nYou are responsible for what you upload and send. Do not use NO SUS to share things you have no right to share or to harass anyone. Content and accounts that break this can be removed. You can report content in a group from the app.\n\n3. Limits\nA watermark or a screenshot block cannot stop someone photographing a screen. NO SUS is provided as is: we are not responsible for network failures, lost content, or what a recipient does with what you send.\n\n4. Changes\nWhen these terms change, the new text appears here.",0,"terms")
 B.iq=new A.tm("CONFIG",700)
 B.Fw=new A.tm("FINER",400)
 B.cp=new A.tm("FINEST",300)
@@ -214276,10 +214276,117 @@ B.FN=s([3226,6412,200,168,38,38,134,134,100,100,100,100,68,68,68,68],t.t)
 B.afD=s([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,7],t.t)
 B.afI=s([B.aQ,B.oH,B.A,B.n],t.t_)
 B.afT=s([3,3,11],t.t)
+B.aaE=new A.d0("Home","At the top is You: a chat with yourself, kept in your own Google Drive. Below it are your groups, and All files, which lists every file from your groups.",!1)
+B.aap=new A.d0("Send","Tap Send at the bottom of Home. Pick a file or write a note, pick where it goes, then pick how it opens: One open, Watermarked or Traceable copies.",!1)
+B.aaa=new A.d0("What needs an account","Nothing, to send a note or file that opens once, or to open a link or code. Your own chat and groups need you to sign in with Google.",!1)
+B.aa5=new A.d0("Everything else","Your picture at the top opens your account. Settings has Activity, notifications and Help.",!1)
+B.apF=s([B.aaE,B.aap,B.aaa,B.aa5],t.eH)
+B.amv=s(["about","overview","start","what is this","purpose","tabs","navigation","where"],t.s)
+B.aaK=new A.jq("what-is-no-sus","What NO SUS is","Home is everything you keep. The Send button is everything you give away.",B.Em,B.apF,B.amv)
+B.abX=new A.b_(63023,"MaterialIcons",!1)
+B.aad=new A.d0("Where it lives","In a NO SUS folder in your own Google Drive. NO SUS can open only the files it creates there, so connecting does not let it see the rest of your Drive.",!1)
+B.aa7=new A.d0("Adding to it","Open Chat, then You. Type a note or attach a file. You can also share something to NO SUS from another app: it opens Send with You already picked.",!1)
+B.aas=new A.d0("Before Drive is connected","What you add waits on this phone as Not saved yet, and is stored as soon as you connect.",!1)
+B.ahG=s([B.aad,B.aa7,B.aas],t.eH)
+B.ap8=s(["saved","you","drive","google drive","notes to self","library","keep"],t.s)
+B.aaJ=new A.jq("no-sus-chat","NO SUS Chat","A chat with yourself for notes, links and files, kept in your own Google Drive.",B.abX,B.ahG,B.ap8)
+B.aa4=new A.d0("How","On the other screen, open nosus.foo/go. On your phone, open Chat, tap Open on any screen and scan the QR it shows. Match the number, then choose what that screen can open.",!1)
+B.aaw=new A.d0("Your account stays on your phone","The other screen only gets the items you approve, and only while the session is open.",!1)
+B.aah=new A.d0("After the session","Ending the session stops that screen from opening anything else. Files you downloaded or printed there can stay on it, so use a screen you trust.",!0)
+B.alM=s([B.aa4,B.aaw,B.aah],t.eH)
+B.aov=s(["go","computer","borrowed","laptop","qr","scan","print","desk"],t.s)
+B.aaT=new A.jq("open-on-any-screen","Open on any screen","Open your own chat on a computer without signing in to Google there.",B.m6,B.alM,B.aov)
+B.aaf=new A.d0("What and where","Choose a file or write a note. Send it to You, to one of your groups, or to Anyone with a link. Anyone with a link needs no account to open it.",!1)
+B.aa9=new A.d0("How it opens","For a link, turn on one of: One open, Watermarked, or Traceable copies. Each one says what it does right under it.",!1)
+B.a9W=new A.d0("Opening a link or code","Send \u2192 Open a link or code. Codes work once and expire.",!1)
+B.aaB=new A.d0("Sending nearby","Sending between two phones on the same Wi-Fi was removed. Send a link instead.",!1)
+B.ajq=s([B.aaf,B.aa9,B.a9W,B.aaB],t.eH)
+B.anq=s(["share","send","link","share sheet","nearby","receive","address","drop"],t.s)
+B.aaN=new A.jq("send","Send","One flow: what, where, how.",B.Eu,B.ajq,B.anq)
+B.aaA=new A.d0("How it works","It is encrypted on your phone first. The key goes in the link, after the # sign, which browsers never send to a server. The first person to open the link gets it, and the stored copy is deleted.",!1)
+B.a9T=new A.d0("Limits","Up to 10 files and 50 MB together in one link. Instead of a link you can ask for a 6-digit code to type in. While that code is unused, a copy of the key is kept on our server for up to 10 minutes.",!1)
+B.aan=new A.d0("It really is one open","If a chat app previews the link, that counts as the open. The person then sees that it was already opened, which tells you something got to it first.",!0)
+B.aa2=new A.d0("Did they open it?","Links you sent, on Send, shows if each one was opened and when. Nobody learns who opened it. Signed in, you are told when it happens: to do that, our server knows which account sent which link (never what is in it) until it is opened or expires. Turn off Link opened in Settings \u2192 Notifications and new links are not tied to you. Not signed in, a link is tied to no one.",!1)
+B.amt=s([B.aaA,B.a9T,B.aan,B.aa2],t.eH)
+B.ap6=s(["burn","burn note","burn file","secret","self destruct","one time","password","anonymous","size limit","opened","read receipt"],t.s)
+B.aaO=new A.jq("one-open","One open","A note or file that is gone after the first person opens it. No account needed on either end.",B.wo,B.amt,B.ap6)
+B.wm=new A.b_(61170,"MaterialIcons",!1)
+B.a9V=new A.d0("How it works","Watermarked links are made from a file in one of your groups, so Send adds the file to a group first. You set how long the link works and how many times it can be opened.",!1)
+B.aam=new A.d0("What you see","Each link has a log of when it was opened. You can revoke it at any time.",!1)
+B.a9S=new A.d0("In a browser","A browser cannot block screenshots. The name on every page is what points back to the reader.",!0)
+B.aj8=s([B.a9V,B.aam,B.a9S],t.eH)
+B.ahe=s(["securesend","share link","access controls","expiry","view limit","revoke","analytics"],t.s)
+B.aaQ=new A.jq("watermarked","Watermarked","A link to one file that shows the email the reader enters on every page. You can revoke it.",B.wm,B.aj8,B.ahe)
+B.abZ=new A.b_(63330,"MaterialIcons",!1)
+B.aae=new A.d0("How it works","NO SUS makes one copy per reader, each with tiny wording changes that read the same. The note needs enough lines for the changes to fit; if it is too short, add a few more.",!1)
+B.a9Z=new A.d0("If it leaks","Paste the leaked text into the leak check on your note. It tells you which copy it came from.",!1)
+B.aag=new A.d0("Notes only for now",u.fD,!1)
+B.aaq=new A.d0("What it can\u2019t catch","Someone who rewrites the text in their own words can remove the changes.",!0)
+B.amM=s([B.aae,B.a9Z,B.aag,B.aaq],t.eH)
+B.ap3=s(["canary","leak","trace","fingerprint","copies","who leaked"],t.s)
+B.aaM=new A.jq("traceable-copies","Traceable copies","Each person gets a slightly different copy of a note. If it leaks, you\u2019ll know whose.",B.abZ,B.amM,B.ap3)
+B.abD=new A.b_(61657,"MaterialIcons",!1)
+B.aar=new A.d0("Joining","Chat \u2192 Join with a link, then paste the invite link or code. You see the group name and how many members it has before you join. There is no list of groups to browse.",!1)
+B.aa6=new A.d0("Starting one","Chat \u2192 New group. You become its admin. You can turn on an 8-character invite code, or invite people only with links you make.",!1)
+B.aa1=new A.d0("Leaving","Open the group \u2192 Group options (top right) \u2192 Leave group. Anything you added stays with the group. The only admin has to make someone else admin first, and the only member deletes the group by leaving.",!1)
+B.agD=s([B.aar,B.aa6,B.aa1],t.eH)
+B.aqC=s(["community","join","invite","create group","leave","new group"],t.s)
+B.aaI=new A.jq("groups","Groups","A group chat for files, with its own members and activity. You join by invite.",B.abD,B.agD,B.aqC)
+B.aay=new A.d0("Members can","Read every file in the group, add their own, rename and delete what they added, and see the group\u2019s activity.",!1)
+B.aal=new A.d0("Admins can also","Promote and demote members, remove and ban people, delete any file, manage invite links, and delete the group.",!1)
+B.aaC=new A.d0("How it is enforced","By the database, not the app. The check runs on the server on every change, so an edited app gets a refusal, not a shortcut.",!1)
+B.aqj=s([B.aay,B.aal,B.aaC],t.eH)
+B.alk=s(["admin","member","permission","promote","demote","remove","ban","moderation"],t.s)
+B.aaU=new A.jq("roles","Roles and permissions","Groups have admins and members. Admins manage people and files; members read and add.",B.Ev,B.aqj,B.alk)
+B.a9U=new A.d0("Adding","Open a group \u2192 Add a group file, or Send a file to the group. Everyone in the group can read it.",!1)
+B.aaz=new A.d0("Reading","Tap a file to open it in the protected viewer. Chat \u2192 All files lists every file from your groups.",!1)
+B.aaD=new A.d0("Touch to reveal","The page stays blurred until you hold your finger on it, which stops the person behind you. Turn it off in Settings \u2192 Privacy & Security.",!1)
+B.aau=new A.d0("What this does not do","Group files are not end-to-end encrypted. They are stored on our server and access is checked by database rules. For that, send a One open link instead: it is encrypted on your phone.",!0)
+B.apx=s([B.a9U,B.aaz,B.aaD,B.aau],t.eH)
+B.ajy=s(["file","upload","pdf","vault","all files","viewer","study desk"],t.s)
+B.aaH=new A.jq("secure-documents","Files in groups","Files in a group open in the protected viewer, marked with the reader\u2019s name.",B.c4,B.apx,B.ajy)
+B.aaj=new A.d0("Watermarks","Your email and the time are drawn over every page you open. A photo of the screen carries them too, so a leaked page points back to who opened it.",!1)
+B.a9P=new A.d0("Screenshot blocking is Android-only","On Android the app blocks screenshots and screen recording, and records the attempt. On the web and on iOS nothing can stop a screenshot. There, the watermark and the activity log protect you.",!0)
+B.a9Y=new A.d0("A camera always wins","No app can stop someone photographing their screen with another phone. These controls tell you who, after the fact.",!0)
+B.aku=s([B.aaj,B.a9P,B.a9Y],t.eH)
+B.app=s(["watermark","screenshot","screen record","capture","leak"],t.s)
+B.aaL=new A.jq("watermarking","Watermarks and screenshots","Open files carry your name on screen, and on Android screenshots are blocked.",B.wm,B.aku,B.app)
+B.abE=new A.b_(61697,"MaterialIcons",!1)
+B.aac=new A.d0("What is recorded","Joins and leaves, files added, renamed, deleted and opened, screenshot attempts, and admin actions. It records who and when, never what a file says.",!1)
+B.aa8=new A.d0("Visible to everyone in the group","Members see what admins do as easily as admins see members. Nobody gets a private log.",!1)
+B.a9Q=new A.d0("Tamper evidence","Entries are chained, so removing or editing one breaks the chain. Nothing can be quietly taken back, including by admins.",!1)
+B.aqV=s([B.aac,B.aa8,B.a9Q],t.eH)
+B.asf=s(["audit","log","activity","history","who opened","tamper","security alerts"],t.s)
+B.aaS=new A.jq("audit-log","Activity","A record of what happened in your groups and on your account. Settings \u2192 Activity.",B.abE,B.aqV,B.asf)
+B.abH=new A.b_(62005,"MaterialIcons",!1)
+B.a9X=new A.d0("What you can hear about","Invites and join requests, role changes, admin actions that affect you, files added to your groups, a one-open link you sent being opened, and security alerts (your account was locked, or a screen connected to it). Turn each one off in Settings \u2192 Notifications.",!1)
+B.aat=new A.d0("Nothing sensitive on the lock screen","A notification names the group and what kind of thing happened, never a file\u2019s name or what it says.",!1)
+B.aa_=new A.d0("If you said no to the permission","Android asks once. Everything still shows under the bell in the app, and Settings \u2192 Notifications has a button to open the system setting.",!1)
+B.aiY=s([B.a9X,B.aat,B.aa_],t.eH)
+B.afQ=s(["push","alert","permission","mute","lock screen","privacy"],t.s)
+B.aaP=new A.jq("notifications","Notifications","Hear when something you care about happens, without details on your lock screen.",B.abH,B.aiY,B.afQ)
+B.abk=new A.b_(58519,"MaterialIcons",!1)
+B.aav=new A.d0("Signing in","New accounts use Google. If you made your account with email, GitHub or a phone number, tap Other ways to sign in.",!1)
+B.a9R=new A.d0("What is stored","Your email, display name and avatar. Files you add to groups. Activity entries for things you did. Your own chat is kept in your Google Drive, not on our server.",!1)
+B.aa3=new A.d0("Who can see your email","Members of your groups. Activity names people by email, which is what makes it useful.",!0)
+B.aao=new A.d0("Deleting your account","Your picture \u2192 Settings \u2192 Danger zone \u2192 Delete account. It removes your profile, your group memberships, every file you added (in every group) and the activity records of what you did. It can\u2019t be undone. Your own chat stays in your Google Drive.",!1)
+B.asr=s([B.aav,B.a9R,B.aa3,B.aao],t.eH)
+B.ak6=s(["profile","password","delete account","privacy","email","data","google","github","phone"],t.s)
+B.aaR=new A.jq("account","Your account and your data","What is stored about you, who can see it, and how to delete it.",B.abk,B.asr,B.ak6)
+B.abw=new A.b_(61190,"MaterialIcons",!1)
+B.aab=new A.d0('"This link has already been opened"',"A One open link is gone after the first open. Ask for a new one. If you never opened it, assume something else did.",!1)
+B.aax=new A.d0('"This invite has expired or been revoked"',"Invite links can expire, have a limit, or be revoked by an admin. Ask for a new one.",!1)
+B.aa0=new A.d0("A file will not open","Usually your access was removed or the file was deleted. Pull down to refresh.",!1)
+B.aak=new A.d0("The app says it is offline","Groups, files, your own chat and sending need a connection. Settings \u2192 Connection check shows whether this phone can reach NO SUS.",!1)
+B.aai=new A.d0("Asked to sign in again","If unusual security signals show up on your account, the app asks you to sign in again. Signing back in clears it once the risk has passed.",!1)
+B.asC=s([B.aab,B.aax,B.aa0,B.aak,B.aai],t.eH)
+B.aj7=s(["error","expired","broken","cannot open","offline","stuck","failed"],t.s)
+B.aaG=new A.jq("troubleshooting","When something goes wrong","The problems people actually hit, and what each one means.",B.abw,B.asC,B.aj7)
+B.FO=s([B.aaK,B.aaJ,B.aaT,B.aaN,B.aaO,B.aaQ,B.aaM,B.aaI,B.aaU,B.aaH,B.aaL,B.aaS,B.aaP,B.aaR,B.aaG],A.am("z<jq>"))
 B.agB=s([4,9,14,19],t.t)
 B.agC=s([4,-3,2],t.n)
 B.x0=s([128,128,128,128,128,128,128,128,128,128,128],t.t)
-B.FR=s([B.x0,B.x0,B.x0],t.q)
+B.FS=s([B.x0,B.x0,B.x0],t.q)
 B.ai4=s([253,136,254,255,228,219,128,128,128,128,128],t.t)
 B.akm=s([189,129,242,255,227,213,255,219,128,128,128],t.t)
 B.akr=s([106,126,227,252,214,209,255,255,128,128,128],t.t)
@@ -214304,11 +214411,11 @@ B.agY=s([1,152,252,255,240,255,128,128,128,128,128],t.t)
 B.as_=s([177,135,243,255,234,225,128,128,128,128,128],t.t)
 B.amp=s([80,129,211,255,194,224,128,128,128,128,128],t.t)
 B.anE=s([B.agY,B.as_,B.amp],t.q)
-B.FW=s([1,1,255,128,128,128,128,128,128,128,128],t.t)
+B.FX=s([1,1,255,128,128,128,128,128,128,128,128],t.t)
 B.aoy=s([246,1,255,128,128,128,128,128,128,128,128],t.t)
 B.alS=s([255,128,128,128,128,128,128,128,128,128,128],t.t)
-B.ask=s([B.FW,B.aoy,B.alS],t.q)
-B.aiE=s([B.FR,B.anF,B.aph,B.amI,B.ahf,B.aiU,B.anE,B.ask],t.wX)
+B.ask=s([B.FX,B.aoy,B.alS],t.q)
+B.aiE=s([B.FS,B.anF,B.aph,B.amI,B.ahf,B.aiU,B.anE,B.ask],t.wX)
 B.ar9=s([198,35,237,223,193,187,162,160,145,155,62],t.t)
 B.ai3=s([131,45,198,221,172,176,220,157,252,221,1],t.t)
 B.ar8=s([68,47,146,208,149,167,221,162,255,223,128],t.t)
@@ -214370,7 +214477,7 @@ B.aqM=s([1,134,252,255,255,128,128,128,128,128,128],t.t)
 B.anr=s([213,62,250,255,255,128,128,128,128,128,128],t.t)
 B.arV=s([55,93,255,128,128,128,128,128,128,128,128],t.t)
 B.anL=s([B.aqM,B.anr,B.arV],t.q)
-B.ahQ=s([B.aof,B.apR,B.aps,B.aqf,B.agH,B.afO,B.anL,B.FR],t.wX)
+B.ahQ=s([B.aof,B.apR,B.aps,B.aqf,B.agH,B.afO,B.anL,B.FS],t.wX)
 B.anu=s([202,24,213,235,186,191,220,160,240,175,255],t.t)
 B.ai1=s([126,38,182,232,169,184,228,174,255,187,128],t.t)
 B.agK=s([61,46,138,219,151,178,240,170,255,216,128],t.t)
@@ -214401,7 +214508,7 @@ B.aoa=s([42,80,160,240,162,185,255,205,128,128,128],t.t)
 B.akB=s([B.alz,B.amC,B.aoa],t.q)
 B.as9=s([244,1,255,128,128,128,128,128,128,128,128],t.t)
 B.aes=s([238,1,255,128,128,128,128,128,128,128,128],t.t)
-B.aoq=s([B.FW,B.as9,B.aes],t.q)
+B.aoq=s([B.FX,B.as9,B.aes],t.q)
 B.af9=s([B.apM,B.apJ,B.apI,B.aro,B.aqa,B.ain,B.akB,B.aoq],t.wX)
 B.agI=s([B.aiE,B.apH,B.ahQ,B.af9],t.B1)
 B.aqB=s([137,80,78,71,13,10,26,10],t.Z)
@@ -214431,7 +214538,7 @@ B.alK=s([0.41233895,0.35762064,0.18051042],t.n)
 B.aiZ=s([0.2126,0.7152,0.0722],t.n)
 B.arO=s([0.01932141,0.11916382,0.95034478],t.n)
 B.ah1=s([B.alK,B.aiZ,B.arO],t.zg)
-B.FP=s([0,4,12,1,5,13,3,7,15],t.t)
+B.FQ=s([0,4,12,1,5,13,3,7,15],t.t)
 B.aha=s([1,2,4,8,16,32,64,128,27,54,108,216,171,77,154,47,94,188,99,198,151,53,106,212,179,125,250,239,197,145],t.t)
 B.ahb=s([63,207,243,252],t.t)
 B.ahc=s([65533],t.t)
@@ -214441,7 +214548,7 @@ B.aQc=new A.Ul(2,"middle")
 B.it=s([B.zH,B.aQb,B.aQc],A.am("z<Ul>"))
 B.md=s([B.Fn,B.ma,B.q_],A.am("z<QF>"))
 B.a_3=new A.BH(0,"original")
-B.FQ=s([B.tS,B.AG,B.a_3],A.am("z<BH>"))
+B.FR=s([B.tS,B.AG,B.a_3],A.am("z<BH>"))
 B.ai8=s([8,8,4,2],t.t)
 B.aeL=s([173,148,140],t.t)
 B.aeM=s([176,155,140,135],t.t)
@@ -214482,7 +214589,7 @@ B.al5=s([4.08649929,2.23811846],t.n)
 B.amc=s([4.85481134,2.47563463],t.n)
 B.aiX=s([5.62945551,2.72948597],t.n)
 B.akA=s([6.43023796,2.98020421],t.n)
-B.FS=s([B.akx,B.afX,B.apv,B.apK,B.aiC,B.ajn,B.amU,B.al5,B.amc,B.aiX,B.akA],t.zg)
+B.FT=s([B.akx,B.afX,B.apv,B.apK,B.aiC,B.ajn,B.amU,B.al5,B.amc,B.aiX,B.akA],t.zg)
 B.aim=s(["From this device","Drive link"],t.s)
 B.a_p=new A.fy(0,"clear")
 B.a_q=new A.fy(1,"src")
@@ -214515,7 +214622,7 @@ B.aiA=s(["Arial"],t.s)
 B.aiB=s([B.tG,B.tI],A.am("z<Y_>"))
 B.aiH=s([0,1,3,7,15,31,63,127,255,511,1023,2047,4095],t.t)
 B.aiI=s(["-apple-system","BlinkMacSystemFont"],t.s)
-B.FT=s([0,1,2,3,4,4,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,0,0,16,17,18,18,19,19,20,20,20,20,21,21,21,21,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],t.t)
+B.FU=s([0,1,2,3,4,4,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,0,0,16,17,18,18,19,19,20,20,20,20,21,21,21,21,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],t.t)
 B.aiM=s([B.jf],t.kg)
 B.aJw=new A.Ad(0,"add")
 B.aJx=new A.Ad(1,"subtract")
@@ -214524,7 +214631,7 @@ B.aJz=new A.Ad(3,"min")
 B.aJA=new A.Ad(4,"max")
 B.aJB=new A.Ad(5,"difference")
 B.aiP=s([B.aJw,B.aJx,B.aJy,B.aJz,B.aJA,B.aJB],A.am("z<Ad>"))
-B.FU=s(["BlinkMacSystemFont"],t.s)
+B.FV=s(["BlinkMacSystemFont"],t.s)
 B.aiT=s([u.O,"email"],t.s)
 B.aiV=s([18,15,10,12,15,18,15,12,12],t.n)
 B.wL=s([0,1,1,2,4,8,1,1,2,4,8,4,8,4],t.t)
@@ -214532,7 +214639,7 @@ B.aJE=new A.Lt(0,"characters")
 B.aJF=new A.Lt(1,"charactersExcludingSpaces")
 B.aJG=new A.Lt(2,"words")
 B.TJ=new A.Lt(3,"lines")
-B.FV=s([B.aJE,B.aJF,B.aJG,B.TJ],A.am("z<Lt>"))
+B.FW=s([B.aJE,B.aJF,B.aJG,B.TJ],A.am("z<Lt>"))
 B.a39=new A.Z3(null)
 B.aFL=new A.auL(null)
 B.aj4=s([B.a39,B.aFL],t.p)
@@ -214589,8 +214696,8 @@ B.amL=s([0.125,1,1],t.l)
 B.aom=s([0.125,0,2],t.l)
 B.aib=s([B.alU,B.akE,B.afn,B.akI,B.amL,B.aom],t.Zd)
 B.aji=s([B.amS,B.aic,B.ao8,B.ajA,B.aib],A.am("z<x<x<b8>>>"))
-B.FX=s([280,256,256,256,40],t.t)
-B.FY=s([62,62,30,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,588,588,588,588,588,588,588,588,1680,1680,20499,22547,24595,26643,1776,1776,1808,1808,-24557,-22509,-20461,-18413,1904,1904,1936,1936,-16365,-14317,782,782,782,782,814,814,814,814,-12269,-10221,10257,10257,12305,12305,14353,14353,16403,18451,1712,1712,1744,1744,28691,30739,-32749,-30701,-28653,-26605,2061,2061,2061,2061,2061,2061,2061,2061,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,750,750,750,750,1616,1616,1648,1648,1424,1424,1456,1456,1488,1488,1520,1520,1840,1840,1872,1872,1968,1968,8209,8209,524,524,524,524,524,524,524,524,556,556,556,556,556,556,556,556,1552,1552,1584,1584,2000,2000,2032,2032,976,976,1008,1008,1040,1040,1072,1072,1296,1296,1328,1328,718,718,718,718,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,490,490,490,490,490,490,490,490,490,490,490,490,490,490,490,490,4113,4113,6161,6161,848,848,880,880,912,912,944,944,622,622,622,622,654,654,654,654,1104,1104,1136,1136,1168,1168,1200,1200,1232,1232,1264,1264,686,686,686,686,1360,1360,1392,1392,12,12,12,12,12,12,12,12,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390],t.t)
+B.FY=s([280,256,256,256,40],t.t)
+B.FZ=s([62,62,30,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,3225,588,588,588,588,588,588,588,588,1680,1680,20499,22547,24595,26643,1776,1776,1808,1808,-24557,-22509,-20461,-18413,1904,1904,1936,1936,-16365,-14317,782,782,782,782,814,814,814,814,-12269,-10221,10257,10257,12305,12305,14353,14353,16403,18451,1712,1712,1744,1744,28691,30739,-32749,-30701,-28653,-26605,2061,2061,2061,2061,2061,2061,2061,2061,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,750,750,750,750,1616,1616,1648,1648,1424,1424,1456,1456,1488,1488,1520,1520,1840,1840,1872,1872,1968,1968,8209,8209,524,524,524,524,524,524,524,524,556,556,556,556,556,556,556,556,1552,1552,1584,1584,2000,2000,2032,2032,976,976,1008,1008,1040,1040,1072,1072,1296,1296,1328,1328,718,718,718,718,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,456,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,326,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,358,490,490,490,490,490,490,490,490,490,490,490,490,490,490,490,490,4113,4113,6161,6161,848,848,880,880,912,912,944,944,622,622,622,622,654,654,654,654,1104,1104,1136,1136,1168,1168,1200,1200,1232,1232,1264,1264,686,686,686,686,1360,1360,1392,1392,12,12,12,12,12,12,12,12,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390,390],t.t)
 B.wM=s([4,5,6,7,8,9,10,10,11,12,13,14,15,16,17,17,18,19,20,20,21,21,22,22,23,23,24,25,25,26,27,28,29,30,31,32,33,34,35,36,37,37,38,39,40,41,42,43,44,45,46,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,76,77,78,79,80,81,82,83,84,85,86,87,88,89,91,93,95,96,98,100,101,102,104,106,108,110,112,114,116,118,122,124,126,128,130,132,134,136,138,140,143,145,148,151,154,157],t.t)
 B.ajp=s(["...##.","...#.#","...#..","...#..",".###..","####..",".##..."],t.s)
 B.r6=new A.tM(0,"pdf")
@@ -214603,7 +214710,7 @@ B.wO=s([4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,
 B.aES=new A.SJ(0,"fixed")
 B.aET=new A.SJ(1,"fill")
 B.aEU=new A.SJ(2,"hug")
-B.FZ=s([B.aES,B.aET,B.aEU],A.am("z<SJ>"))
+B.G_=s([B.aES,B.aET,B.aEU],A.am("z<SJ>"))
 B.a90=new A.amF(null)
 B.ajG=s([B.a90],t.p)
 B.a1f=new A.a0m()
@@ -214675,17 +214782,17 @@ B.aux=new A.fB("image/heic",B.agf,B.hj)
 B.ajl=s([0,0,0,0,102,116,121,112,109,105,102,49],t.t)
 B.auh=new A.fB("image/heif",B.ajl,B.hj)
 B.ajT=s([B.au9,B.aum,B.aug,B.auA,B.aur,B.auu,B.aus,B.auv,B.aun,B.auj,B.aut,B.auc,B.aul,B.auf,B.auw,B.aub,B.aup,B.auz,B.aud,B.aue,B.auq,B.aui,B.auB,B.aua,B.auk,B.auo,B.auy,B.aux,B.auh],t.gg)
-B.G_=s([0,1,2,3,4,5,6,7,8,8,9,9,10,10,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28],t.t)
+B.G0=s([0,1,2,3,4,5,6,7,8,8,9,9,10,10,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28],t.t)
 B.ak_=s([1116352408,1899447441,3049323471,3921009573,961987163,1508970993,2453635748,2870763221,3624381080,310598401,607225278,1426881987,1925078388,2162078206,2614888103,3248222580,3835390401,4022224774,264347078,604807628,770255983,1249150122,1555081692,1996064986,2554220882,2821834349,2952996808,3210313671,3336571891,3584528711,113926993,338241895,666307205,773529912,1294757372,1396182291,1695183700,1986661051,2177026350,2456956037,2730485921,2820302411,3259730800,3345764771,3516065817,3600352804,4094571909,275423344,430227734,506948616,659060556,883997877,958139571,1322822218,1537002063,1747873779,1955562222,2024104815,2227730452,2361852424,2428436474,2756734187,3204031479,3329325298],t.t)
 B.ak3=s([B.Dr,B.w2,B.w3],A.am("z<PI>"))
 B.q6=s([0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13],t.t)
 B.ZI=new A.oZ("",6,"userDeleted")
-B.G0=s([B.jc,B.hO,B.fX,B.fe,B.lb,B.tJ,B.ZI,B.As],A.am("z<oZ>"))
+B.G1=s([B.jc,B.hO,B.fX,B.fe,B.lb,B.tJ,B.ZI,B.As],A.am("z<oZ>"))
 B.am=s([1353184337,1399144830,3282310938,2522752826,3412831035,4047871263,2874735276,2466505547,1442459680,4134368941,2440481928,625738485,4242007375,3620416197,2151953702,2409849525,1230680542,1729870373,2551114309,3787521629,41234371,317738113,2744600205,3338261355,3881799427,2510066197,3950669247,3663286933,763608788,3542185048,694804553,1154009486,1787413109,2021232372,1799248025,3715217703,3058688446,397248752,1722556617,3023752829,407560035,2184256229,1613975959,1165972322,3765920945,2226023355,480281086,2485848313,1483229296,436028815,2272059028,3086515026,601060267,3791801202,1468997603,715871590,120122290,63092015,2591802758,2768779219,4068943920,2997206819,3127509762,1552029421,723308426,2461301159,4042393587,2715969870,3455375973,3586000134,526529745,2331944644,2639474228,2689987490,853641733,1978398372,971801355,2867814464,111112542,1360031421,4186579262,1023860118,2919579357,1186850381,3045938321,90031217,1876166148,4279586912,620468249,2548678102,3426959497,2006899047,3175278768,2290845959,945494503,3689859193,1191869601,3910091388,3374220536,0,2206629897,1223502642,2893025566,1316117100,4227796733,1446544655,517320253,658058550,1691946762,564550760,3511966619,976107044,2976320012,266819475,3533106868,2660342555,1338359936,2720062561,1766553434,370807324,179999714,3844776128,1138762300,488053522,185403662,2915535858,3114841645,3366526484,2233069911,1275557295,3151862254,4250959779,2670068215,3170202204,3309004356,880737115,1982415755,3703972811,1761406390,1676797112,3403428311,277177154,1076008723,538035844,2099530373,4164795346,288553390,1839278535,1261411869,4080055004,3964831245,3504587127,1813426987,2579067049,4199060497,577038663,3297574056,440397984,3626794326,4019204898,3343796615,3251714265,4272081548,906744984,3481400742,685669029,646887386,2764025151,3835509292,227702864,2613862250,1648787028,3256061430,3904428176,1593260334,4121936770,3196083615,2090061929,2838353263,3004310991,999926984,2809993232,1852021992,2075868123,158869197,4095236462,28809964,2828685187,1701746150,2129067946,147831841,3873969647,3650873274,3459673930,3557400554,3598495785,2947720241,824393514,815048134,3227951669,935087732,2798289660,2966458592,366520115,1251476721,4158319681,240176511,804688151,2379631990,1303441219,1414376140,3741619940,3820343710,461924940,3089050817,2136040774,82468509,1563790337,1937016826,776014843,1511876531,1389550482,861278441,323475053,2355222426,2047648055,2383738969,2302415851,3995576782,902390199,3991215329,1018251130,1507840668,1064563285,2043548696,3208103795,3939366739,1537932639,342834655,2262516856,2180231114,1053059257,741614648,1598071746,1925389590,203809468,2336832552,1100287487,1895934009,3736275976,2632234200,2428589668,1636092795,1890988757,1952214088,1113045200],t.t)
 B.akH=s([254,253,251,247,239,223,191,127],t.t)
 B.q7=s([12,8,140,8,76,8,204,8,44,8,172,8,108,8,236,8,28,8,156,8,92,8,220,8,60,8,188,8,124,8,252,8,2,8,130,8,66,8,194,8,34,8,162,8,98,8,226,8,18,8,146,8,82,8,210,8,50,8,178,8,114,8,242,8,10,8,138,8,74,8,202,8,42,8,170,8,106,8,234,8,26,8,154,8,90,8,218,8,58,8,186,8,122,8,250,8,6,8,134,8,70,8,198,8,38,8,166,8,102,8,230,8,22,8,150,8,86,8,214,8,54,8,182,8,118,8,246,8,14,8,142,8,78,8,206,8,46,8,174,8,110,8,238,8,30,8,158,8,94,8,222,8,62,8,190,8,126,8,254,8,1,8,129,8,65,8,193,8,33,8,161,8,97,8,225,8,17,8,145,8,81,8,209,8,49,8,177,8,113,8,241,8,9,8,137,8,73,8,201,8,41,8,169,8,105,8,233,8,25,8,153,8,89,8,217,8,57,8,185,8,121,8,249,8,5,8,133,8,69,8,197,8,37,8,165,8,101,8,229,8,21,8,149,8,85,8,213,8,53,8,181,8,117,8,245,8,13,8,141,8,77,8,205,8,45,8,173,8,109,8,237,8,29,8,157,8,93,8,221,8,61,8,189,8,125,8,253,8,19,9,275,9,147,9,403,9,83,9,339,9,211,9,467,9,51,9,307,9,179,9,435,9,115,9,371,9,243,9,499,9,11,9,267,9,139,9,395,9,75,9,331,9,203,9,459,9,43,9,299,9,171,9,427,9,107,9,363,9,235,9,491,9,27,9,283,9,155,9,411,9,91,9,347,9,219,9,475,9,59,9,315,9,187,9,443,9,123,9,379,9,251,9,507,9,7,9,263,9,135,9,391,9,71,9,327,9,199,9,455,9,39,9,295,9,167,9,423,9,103,9,359,9,231,9,487,9,23,9,279,9,151,9,407,9,87,9,343,9,215,9,471,9,55,9,311,9,183,9,439,9,119,9,375,9,247,9,503,9,15,9,271,9,143,9,399,9,79,9,335,9,207,9,463,9,47,9,303,9,175,9,431,9,111,9,367,9,239,9,495,9,31,9,287,9,159,9,415,9,95,9,351,9,223,9,479,9,63,9,319,9,191,9,447,9,127,9,383,9,255,9,511,9,0,7,64,7,32,7,96,7,16,7,80,7,48,7,112,7,8,7,72,7,40,7,104,7,24,7,88,7,56,7,120,7,4,7,68,7,36,7,100,7,20,7,84,7,52,7,116,7,3,8,131,8,67,8,195,8,35,8,163,8,99,8,227,8],t.t)
-B.G1=s([A.cZE(),A.cZw(),A.cZL(),A.cZJ(),A.cZG(),A.cZF(),A.cZH()],t.ox)
-B.G2=s([0,5,16,5,8,5,24,5,4,5,20,5,12,5,28,5,2,5,18,5,10,5,26,5,6,5,22,5,14,5,30,5,1,5,17,5,9,5,25,5,5,5,21,5,13,5,29,5,3,5,19,5,11,5,27,5,7,5,23,5],t.t)
+B.G2=s([A.cZE(),A.cZw(),A.cZL(),A.cZJ(),A.cZG(),A.cZF(),A.cZH()],t.ox)
+B.G3=s([0,5,16,5,8,5,24,5,4,5,20,5,12,5,28,5,2,5,18,5,10,5,26,5,6,5,22,5,14,5,30,5,1,5,17,5,9,5,25,5,5,5,21,5,13,5,29,5,3,5,19,5,11,5,27,5,7,5,23,5],t.t)
 B.cw=new A.l9(0,"icon")
 B.d7=new A.l9(1,"input")
 B.bv=new A.l9(2,"label")
@@ -214703,22 +214810,22 @@ B.ae2=new A.a1S(0,"flex")
 B.ae3=new A.a1S(1,"none")
 B.akN=s([B.ae2,B.ae3],A.am("z<a1S>"))
 B.asH=new A.yW("en",null,"US")
-B.G4=s([B.asH],t.ss)
-B.G5=s([0,41,61,101,131,181,251,301,360],t.n)
+B.G5=s([B.asH],t.ss)
+B.G6=s([0,41,61,101,131,181,251,301,360],t.n)
 B.aR1=new A.AG(0,0)
 B.aRb=new A.AG(1,0.05)
 B.aR7=new A.AG(3,0.08)
 B.aR9=new A.AG(6,0.11)
 B.aR5=new A.AG(8,0.12)
 B.aR3=new A.AG(12,0.14)
-B.G7=s([B.aR1,B.aRb,B.aR7,B.aR9,B.aR5,B.aR3],A.am("z<AG>"))
+B.G8=s([B.aR1,B.aRb,B.aR7,B.aR9,B.aR5,B.aR3],A.am("z<AG>"))
 B.aR2=new A.AH(0,0)
 B.aRc=new A.AH(1,0.05)
 B.aR8=new A.AH(3,0.08)
 B.aRa=new A.AH(6,0.11)
 B.aR6=new A.AH(8,0.12)
 B.aR4=new A.AH(12,0.14)
-B.G6=s([B.aR2,B.aRc,B.aR8,B.aRa,B.aR6,B.aR4],A.am("z<AH>"))
+B.G7=s([B.aR2,B.aRc,B.aR8,B.aRa,B.aR6,B.aR4],A.am("z<AH>"))
 B.es=s([],t.t)
 B.ahi=s([6,18],t.t)
 B.ahj=s([6,22],t.t)
@@ -214780,10 +214887,10 @@ B.zr=new A.jZ(16,"unknown")
 B.al3=s([B.zq,B.aO0,B.aO7,B.zs,B.aO8,B.Xg,B.aO9,B.aOa,B.aOb,B.aOc,B.aO1,B.aO2,B.aO3,B.aO4,B.aO5,B.aO6,B.zr],A.am("z<jZ>"))
 B.er=s(["NotoSansDevanagari"],t.s)
 B.ali=s([B.XZ],t.p)
-B.G9=s([0,21,51,121,151,191,271,321,360],t.n)
+B.Ga=s([0,21,51,121,151,191,271,321,360],t.n)
 B.x=new A.a3A(0,"nonZero")
 B.xU=new A.a3A(1,"evenOdd")
-B.Ga=s([B.x,B.xU],A.am("z<a3A>"))
+B.Gb=s([B.x,B.xU],A.am("z<a3A>"))
 B.alt=s([B.o9,B.oa,B.ux,B.BM,B.uy,B.uz,B.uA,B.BN,B.BO,B.BP],t.EO)
 B.QG=new A.a42(0,"source")
 B.QH=new A.a42(1,"over")
@@ -214799,12 +214906,12 @@ B.aef=new A.QK(2,"wrapReverse")
 B.aly=s([B.aed,B.aee,B.aef],A.am("z<QK>"))
 B.alA=s([-1,0,0,1,0,0,-1,0,1,0,0,0,-1,1,0,1,1,1,1,0],t.n)
 B.alB=s([17,18,0,1,2,3,4,5,16,6,7,8,9,10,11,12,13,14,15],t.t)
-B.Gc=s([-0.0,1,-1,2,-2,3,4,6,-3,5,-4,-5,-6,7,-7,8,-8,-9],t.t)
+B.Gd=s([-0.0,1,-1,2,-2,3,4,6,-3,5,-4,-5,-6,7,-7,8,-8,-9],t.t)
 B.a_O=new A.ajt(2,"outer")
 B.C3=new A.a_(0.09803921568627451,0,0,0,B.k)
 B.j=new A.v(0,0)
 B.a0A=new A.eH(0.2,B.a_O,B.C3,B.j,11)
-B.Gd=s([B.a0A],t.sq)
+B.Ge=s([B.a0A],t.sq)
 B.avZ=new A.vF(0,"fill")
 B.aw_=new A.vF(1,"contain")
 B.aw0=new A.vF(2,"cover")
@@ -214812,8 +214919,8 @@ B.aw1=new A.vF(3,"fitWidth")
 B.aw2=new A.vF(4,"fitHeight")
 B.Mk=new A.vF(5,"resizeArtboard")
 B.aw3=new A.vF(6,"none")
-B.Ge=s([B.avZ,B.aw_,B.aw0,B.aw1,B.aw2,B.Mk,B.aw3],A.am("z<vF>"))
-B.Gf=s([B.P,B.EN,B.bs,B.b7,B.cW,B.dJ,B.ES,B.k4,B.ET,B.EU,B.EO,B.EP,B.EQ,B.ER],A.am("z<lp>"))
+B.Gf=s([B.avZ,B.aw_,B.aw0,B.aw1,B.aw2,B.Mk,B.aw3],A.am("z<vF>"))
+B.Gg=s([B.P,B.EN,B.bs,B.b7,B.cW,B.dJ,B.ES,B.k4,B.ET,B.EU,B.EO,B.EP,B.EQ,B.ER],A.am("z<lp>"))
 B.MX=new A.mk("unknown",0,"unknown")
 B.ay_=new A.mk("xyz",1,"xyz")
 B.axT=new A.mk("fit",2,"fit")
@@ -214828,7 +214935,7 @@ B.alW=s(["SM"],t.s)
 B.Tn=new A.a75(0,"left")
 B.To=new A.a75(1,"right")
 B.am0=s([B.Tn,B.To],A.am("z<a75>"))
-B.Gg=s([B.m2,B.pA,B.ie,B.w7],A.am("z<m9>"))
+B.Gh=s([B.m2,B.pA,B.ie,B.w7],A.am("z<m9>"))
 B.am6=s([0,1,4,8,5,2,3,6,9,12,13,10,7,11,14,15],t.t)
 B.a8E=new A.t1(1,"rle")
 B.a8F=new A.t1(2,"zips")
@@ -214845,7 +214952,7 @@ B.al=new A.Lr(1,"ltr")
 B.wS=s([B.bh,B.al],A.am("z<Lr>"))
 B.zd=new A.a7y(0,"ltr")
 B.ze=new A.a7y(1,"rtl")
-B.Gh=s([B.zd,B.ze],A.am("z<a7y>"))
+B.Gi=s([B.zd,B.ze],A.am("z<a7y>"))
 B.aJs=new A.a7F(0,"top")
 B.rL=new A.a7F(1,"baseline")
 B.wT=s([B.aJs,B.rL],A.am("z<a7F>"))
@@ -215015,21 +215122,21 @@ B.ae0=new A.n9(8,"bottomRight")
 B.ae1=new A.n9(9,"spaceBetweenStart")
 B.adT=new A.n9(10,"spaceBetweenCenter")
 B.adU=new A.n9(11,"spaceBetweenEnd")
-B.Gi=s([B.adR,B.adS,B.adV,B.adW,B.adX,B.adY,B.adZ,B.ae_,B.ae0,B.ae1,B.adT,B.adU],A.am("z<n9>"))
+B.Gj=s([B.adR,B.adS,B.adV,B.adW,B.adX,B.adY,B.adZ,B.ae_,B.ae0,B.ae1,B.adT,B.adU],A.am("z<n9>"))
 B.an_=s(["WRITE","SHARE","CATCH"],t.s)
 B.MH=new A.v(5,5)
 B.a0x=new A.eH(0,B.bJ,B.A,B.MH,0)
-B.Gj=s([B.a0x],t.sq)
+B.Gk=s([B.a0x],t.sq)
 B.a9M=new A.yu("No notes yet","Notes are Markdown or text files. Use Add a group file and choose MD to add one.",B.a2,B.Y,null)
 B.an0=s([B.a9M],t.p)
 B.anc=s([0,1,1,1,0],t.t)
 B.ane=s([A.cZo(),A.cZv(),A.cZx(),A.cZq(),A.cZt(),A.cZz(),A.cZs(),A.cZy(),A.cZp(),A.cZr()],t.ox)
-B.Gk=s([u.O],t.s)
+B.Gl=s([u.O],t.s)
 B.bz=new A.lJ(1,"fuchsia")
-B.Gl=s([B.ae,B.bz,B.X,B.bA,B.aL,B.bB],A.am("z<lJ>"))
+B.Gm=s([B.ae,B.bz,B.X,B.bA,B.aL,B.bB],A.am("z<lJ>"))
 B.ae7=new A.QJ(0,"static")
 B.ae8=new A.QJ(2,"absolute")
-B.Gm=s([B.ae7,B.Ft,B.ae8],A.am("z<QJ>"))
+B.Gn=s([B.ae7,B.Ft,B.ae8],A.am("z<QJ>"))
 B.Y4=new A.UN(0,"topLeft")
 B.Y7=new A.UN(3,"bottomRight")
 B.aQX=new A.AE(B.Y4,B.Y7)
@@ -215044,16 +215151,16 @@ B.wJ=s([8,0,8,0],t.t)
 B.ah5=s([5,3,5,3],t.t)
 B.afU=s([3,5,3,5],t.t)
 B.FE=s([0,8,0,8],t.t)
-B.FO=s([4,4,4,4],t.t)
+B.FP=s([4,4,4,4],t.t)
 B.agA=s([4,4,0,0],t.t)
-B.Gn=s([B.wJ,B.ah5,B.afU,B.FE,B.wJ,B.FO,B.agA,B.FE],t.q)
+B.Go=s([B.wJ,B.ah5,B.afU,B.FE,B.wJ,B.FP,B.agA,B.FE],t.q)
 B.anK=s(["EVERY OPEN = 1 RECEIPT ON SOLANA DEVNET","ONLY HASHES GO ON CHAIN, NEVER TEXT OR NAMES","NO WALLET NEEDED TO READ","LEAK MATCHING STAYS ON YOUR DEVICE","IT CANNOT STOP SCREENSHOTS. IT CAN TRACE THEM TO A COPY."],t.s)
 B.aeb=new A.IS(0,"undefined")
 B.aec=new A.IS(2,"percent")
 B.b2=s([B.aeb,B.ip,B.aec,B.mc],A.am("z<IS>"))
 B.a2r=new A.aEG()
 B.anN=s([B.a2r],t.a9)
-B.Go=s([80,88,23,71,30,30,62,62,4,4,4,4,4,4,4,4,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41],t.t)
+B.Gp=s([80,88,23,71,30,30,62,62,4,4,4,4,4,4,4,4,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41],t.t)
 B.anW=s([35,30,20,25,30,35,30,25,25],t.n)
 B.qw=new A.QY(0,"oneShot")
 B.au7=new A.QY(1,"loop")
@@ -215066,11 +215173,11 @@ B.a9N=new A.yu("No activity yet","File opens and security events show up here.",
 B.anZ=s([B.a9N],t.p)
 B.ae9=new A.IR(2,"cubic")
 B.aea=new A.IR(3,"elastic")
-B.Gp=s([B.mb,B.wE,B.ae9,B.aea],A.am("z<IR>"))
+B.Gq=s([B.mb,B.wE,B.ae9,B.aea],A.am("z<IR>"))
 B.q9=s([0,1,4,5,16,17,20,21,64,65,68,69,80,81,84,85,256,257,260,261,272,273,276,277,320,321,324,325,336,337,340,341,1024,1025,1028,1029,1040,1041,1044,1045,1088,1089,1092,1093,1104,1105,1108,1109,1280,1281,1284,1285,1296,1297,1300,1301,1344,1345,1348,1349,1360,1361,1364,1365,4096,4097,4100,4101,4112,4113,4116,4117,4160,4161,4164,4165,4176,4177,4180,4181,4352,4353,4356,4357,4368,4369,4372,4373,4416,4417,4420,4421,4432,4433,4436,4437,5120,5121,5124,5125,5136,5137,5140,5141,5184,5185,5188,5189,5200,5201,5204,5205,5376,5377,5380,5381,5392,5393,5396,5397,5440,5441,5444,5445,5456,5457,5460,5461,16384,16385,16388,16389,16400,16401,16404,16405,16448,16449,16452,16453,16464,16465,16468,16469,16640,16641,16644,16645,16656,16657,16660,16661,16704,16705,16708,16709,16720,16721,16724,16725,17408,17409,17412,17413,17424,17425,17428,17429,17472,17473,17476,17477,17488,17489,17492,17493,17664,17665,17668,17669,17680,17681,17684,17685,17728,17729,17732,17733,17744,17745,17748,17749,20480,20481,20484,20485,20496,20497,20500,20501,20544,20545,20548,20549,20560,20561,20564,20565,20736,20737,20740,20741,20752,20753,20756,20757,20800,20801,20804,20805,20816,20817,20820,20821,21504,21505,21508,21509,21520,21521,21524,21525,21568,21569,21572,21573,21584,21585,21588,21589,21760,21761,21764,21765,21776,21777,21780,21781,21824,21825,21828,21829,21840,21841,21844,21845],t.t)
-B.Gq=s([127,127,191,127,159,191,223,127,143,159,175,191,207,223,239,127,135,143,151,159,167,175,183,191,199,207,215,223,231,239,247,127,131,135,139,143,147,151,155,159,163,167,171,175,179,183,187,191,195,199,203,207,211,215,219,223,227,231,235,239,243,247,251,127,129,131,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199,201,203,205,207,209,211,213,215,217,219,221,223,225,227,229,231,233,235,237,239,241,243,245,247,249,251,253,127],t.t)
+B.Gr=s([127,127,191,127,159,191,223,127,143,159,175,191,207,223,239,127,135,143,151,159,167,175,183,191,199,207,215,223,231,239,247,127,131,135,139,143,147,151,155,159,163,167,171,175,179,183,187,191,195,199,203,207,211,215,219,223,227,231,235,239,243,247,251,127,129,131,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199,201,203,205,207,209,211,213,215,217,219,221,223,225,227,229,231,233,235,237,239,241,243,245,247,249,251,253,127],t.t)
 B.ao0=s(["Pixel B/W","Noir","Original"],t.s)
-B.Gr=s([7,6,6,5,5,5,5,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],t.t)
+B.Gs=s([7,6,6,5,5,5,5,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],t.t)
 B.ayl=new A.JI(0,"none")
 B.aym=new A.JI(1,"clockwise90")
 B.ayn=new A.JI(2,"clockwise180")
@@ -215089,7 +215196,7 @@ B.zh=new A.F5(2,"clipped")
 B.zi=new A.F5(3,"ellipsis")
 B.TI=new A.F5(4,"fit")
 B.iu=s([B.aJt,B.aJu,B.zh,B.zi,B.TI],A.am("z<F5>"))
-B.Gs=s([6430,6400,6400,6400,3225,3225,3225,3225,944,944,944,944,976,976,976,976,1456,1456,1456,1456,1488,1488,1488,1488,718,718,718,718,718,718,718,718,750,750,750,750,750,750,750,750,1520,1520,1520,1520,1552,1552,1552,1552,428,428,428,428,428,428,428,428,428,428,428,428,428,428,428,428,654,654,654,654,654,654,654,654,1072,1072,1072,1072,1104,1104,1104,1104,1136,1136,1136,1136,1168,1168,1168,1168,1200,1200,1200,1200,1232,1232,1232,1232,622,622,622,622,622,622,622,622,1008,1008,1008,1008,1040,1040,1040,1040,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,396,396,396,396,396,396,396,396,396,396,396,396,396,396,396,396,1712,1712,1712,1712,1744,1744,1744,1744,846,846,846,846,846,846,846,846,1264,1264,1264,1264,1296,1296,1296,1296,1328,1328,1328,1328,1360,1360,1360,1360,1392,1392,1392,1392,1424,1424,1424,1424,686,686,686,686,686,686,686,686,910,910,910,910,910,910,910,910,1968,1968,1968,1968,2000,2000,2000,2000,2032,2032,2032,2032,16,16,16,16,10257,10257,10257,10257,12305,12305,12305,12305,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,878,878,878,878,878,878,878,878,1904,1904,1904,1904,1936,1936,1936,1936,-18413,-18413,-16365,-16365,-14317,-14317,-10221,-10221,590,590,590,590,590,590,590,590,782,782,782,782,782,782,782,782,1584,1584,1584,1584,1616,1616,1616,1616,1648,1648,1648,1648,1680,1680,1680,1680,814,814,814,814,814,814,814,814,1776,1776,1776,1776,1808,1808,1808,1808,1840,1840,1840,1840,1872,1872,1872,1872,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,14353,14353,14353,14353,16401,16401,16401,16401,22547,22547,24595,24595,20497,20497,20497,20497,18449,18449,18449,18449,26643,26643,28691,28691,30739,30739,-32749,-32749,-30701,-30701,-28653,-28653,-26605,-26605,-24557,-24557,-22509,-22509,-20461,-20461,8207,8207,8207,8207,8207,8207,8207,8207,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,524,524,524,524,524,524,524,524,524,524,524,524,524,524,524,524,556,556,556,556,556,556,556,556,556,556,556,556,556,556,556,556,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,492,492,492,492,492,492,492,492,492,492,492,492,492,492,492,492,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232],t.t)
+B.Gt=s([6430,6400,6400,6400,3225,3225,3225,3225,944,944,944,944,976,976,976,976,1456,1456,1456,1456,1488,1488,1488,1488,718,718,718,718,718,718,718,718,750,750,750,750,750,750,750,750,1520,1520,1520,1520,1552,1552,1552,1552,428,428,428,428,428,428,428,428,428,428,428,428,428,428,428,428,654,654,654,654,654,654,654,654,1072,1072,1072,1072,1104,1104,1104,1104,1136,1136,1136,1136,1168,1168,1168,1168,1200,1200,1200,1200,1232,1232,1232,1232,622,622,622,622,622,622,622,622,1008,1008,1008,1008,1040,1040,1040,1040,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,396,396,396,396,396,396,396,396,396,396,396,396,396,396,396,396,1712,1712,1712,1712,1744,1744,1744,1744,846,846,846,846,846,846,846,846,1264,1264,1264,1264,1296,1296,1296,1296,1328,1328,1328,1328,1360,1360,1360,1360,1392,1392,1392,1392,1424,1424,1424,1424,686,686,686,686,686,686,686,686,910,910,910,910,910,910,910,910,1968,1968,1968,1968,2000,2000,2000,2000,2032,2032,2032,2032,16,16,16,16,10257,10257,10257,10257,12305,12305,12305,12305,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,330,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,878,878,878,878,878,878,878,878,1904,1904,1904,1904,1936,1936,1936,1936,-18413,-18413,-16365,-16365,-14317,-14317,-10221,-10221,590,590,590,590,590,590,590,590,782,782,782,782,782,782,782,782,1584,1584,1584,1584,1616,1616,1616,1616,1648,1648,1648,1648,1680,1680,1680,1680,814,814,814,814,814,814,814,814,1776,1776,1776,1776,1808,1808,1808,1808,1840,1840,1840,1840,1872,1872,1872,1872,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,6157,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,-12275,14353,14353,14353,14353,16401,16401,16401,16401,22547,22547,24595,24595,20497,20497,20497,20497,18449,18449,18449,18449,26643,26643,28691,28691,30739,30739,-32749,-32749,-30701,-30701,-28653,-28653,-26605,-26605,-24557,-24557,-22509,-22509,-20461,-20461,8207,8207,8207,8207,8207,8207,8207,8207,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,104,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,4107,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,266,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,298,524,524,524,524,524,524,524,524,524,524,524,524,524,524,524,524,556,556,556,556,556,556,556,556,556,556,556,556,556,556,556,556,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,136,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,492,492,492,492,492,492,492,492,492,492,492,492,492,492,492,492,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,2059,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,200,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232,232],t.t)
 B.aou=s(["display_name","email"],t.s)
 B.qm=new A.vx(0,"enter")
 B.mj=new A.vx(1,"exit")
@@ -215265,29 +215372,29 @@ B.aoD=s([".....KKKKK......","...KKYYYYYKK....","..KYYYYYYYWWK...","..KYYYYYYYWKK
 B.wV=s(["email"],t.s)
 B.qg=s([],t.eC)
 B.ap_=s([],t.QP)
-B.Gv=s([],t.CG)
+B.Gw=s([],t.CG)
 B.ap0=s([],t.kg)
 B.aoP=s([],t.sq)
 B.k9=s([],A.am("z<mU>"))
 B.aoM=s([],t.C1)
 B.aoU=s([],t.Ug)
-B.GA=s([],A.am("z<d0d>"))
+B.GB=s([],A.am("z<d0d>"))
 B.aoO=s([],t.d)
-B.Gt=s([],A.am("z<t6>"))
+B.Gu=s([],A.am("z<t6>"))
 B.wW=s([],t.wD)
 B.ap2=s([],t.fJ)
 B.aoN=s([],t.ER)
 B.aoH=s([],t.ss)
 B.aoJ=s([],t.m1)
-B.Gz=s([],t.tc)
+B.GA=s([],t.tc)
 B.aoX=s([],t.fX)
 B.qc=s([],t.jl)
 B.aoV=s([],t.yv)
-B.Gu=s([],t.wi)
+B.Gv=s([],t.wi)
 B.aTI=s([],t.AT)
 B.aoZ=s([],A.am("z<vK<@>>"))
 B.aoR=s([],t.cx)
-B.Gy=s([],t.x6)
+B.Gz=s([],t.x6)
 B.aoQ=s([],t.F7)
 B.k8=s([],t.Np)
 B.ap1=s([],t.NK)
@@ -215304,9 +215411,9 @@ B.aoG=s([],t.Lx)
 B.aoI=s([],t.AS)
 B.aoL=s([],t.n)
 B.x_=s([],t.ee)
-B.Gx=s([],t.ef)
+B.Gy=s([],t.ef)
 B.aoT=s([],t._m)
-B.Gw=s([],t.e5)
+B.Gx=s([],t.e5)
 B.mg=s([],t.Qf)
 B.aoS=s([],t.YS)
 B.kM=new A.TT(0,"autoWidth")
@@ -215334,7 +215441,7 @@ B.aya=new A.kV(204,11,"cyrillic")
 B.ayb=new A.kV(222,12,"thai")
 B.ayc=new A.kV(238,13,"easternEuropean")
 B.apy=s([B.ay0,B.ay9,B.ayd,B.ay1,B.ay2,B.ay3,B.ay4,B.ay5,B.ay6,B.ay7,B.ay8,B.aya,B.ayb,B.ayc],A.am("z<kV>"))
-B.GB=s([0,1,2,3,6,4,5,6,6,6,6,6,6,6,6,7,0],t.t)
+B.GC=s([0,1,2,3,6,4,5,6,6,6,6,6,6,6,6,7,0],t.t)
 B.xF=new A.qL(0,"center")
 B.avY=new A.qL(1,"topLeft")
 B.Mg=new A.qL(2,"topCenter")
@@ -215350,16 +215457,16 @@ B.azm=new A.DR(1,"sub")
 B.azn=new A.DR(2,"up")
 B.azo=new A.DR(3,"average")
 B.azp=new A.DR(4,"paeth")
-B.GC=s([B.azl,B.azm,B.azn,B.azo,B.azp],A.am("z<DR>"))
+B.GD=s([B.azl,B.azm,B.azn,B.azo,B.azp],A.am("z<DR>"))
 B.awU=new A.v(0,2)
 B.a0z=new A.eH(0.75,B.bJ,B.C3,B.awU,1.5)
-B.GD=s([B.a0z],t.sq)
+B.GE=s([B.a0z],t.sq)
 B.fx=s([0,1996959894,3993919788,2567524794,124634137,1886057615,3915621685,2657392035,249268274,2044508324,3772115230,2547177864,162941995,2125561021,3887607047,2428444049,498536548,1789927666,4089016648,2227061214,450548861,1843258603,4107580753,2211677639,325883990,1684777152,4251122042,2321926636,335633487,1661365465,4195302755,2366115317,997073096,1281953886,3579855332,2724688242,1006888145,1258607687,3524101629,2768942443,901097722,1119000684,3686517206,2898065728,853044451,1172266101,3705015759,2882616665,651767980,1373503546,3369554304,3218104598,565507253,1454621731,3485111705,3099436303,671266974,1594198024,3322730930,2970347812,795835527,1483230225,3244367275,3060149565,1994146192,31158534,2563907772,4023717930,1907459465,112637215,2680153253,3904427059,2013776290,251722036,2517215374,3775830040,2137656763,141376813,2439277719,3865271297,1802195444,476864866,2238001368,4066508878,1812370925,453092731,2181625025,4111451223,1706088902,314042704,2344532202,4240017532,1658658271,366619977,2362670323,4224994405,1303535960,984961486,2747007092,3569037538,1256170817,1037604311,2765210733,3554079995,1131014506,879679996,2909243462,3663771856,1141124467,855842277,2852801631,3708648649,1342533948,654459306,3188396048,3373015174,1466479909,544179635,3110523913,3462522015,1591671054,702138776,2966460450,3352799412,1504918807,783551873,3082640443,3233442989,3988292384,2596254646,62317068,1957810842,3939845945,2647816111,81470997,1943803523,3814918930,2489596804,225274430,2053790376,3826175755,2466906013,167816743,2097651377,4027552580,2265490386,503444072,1762050814,4150417245,2154129355,426522225,1852507879,4275313526,2312317920,282753626,1742555852,4189708143,2394877945,397917763,1622183637,3604390888,2714866558,953729732,1340076626,3518719985,2797360999,1068828381,1219638859,3624741850,2936675148,906185462,1090812512,3747672003,2825379669,829329135,1181335161,3412177804,3160834842,628085408,1382605366,3423369109,3138078467,570562233,1426400815,3317316542,2998733608,733239954,1555261956,3268935591,3050360625,752459403,1541320221,2607071920,3965973030,1969922972,40735498,2617837225,3943577151,1913087877,83908371,2512341634,3803740692,2075208622,213261112,2463272603,3855990285,2094854071,198958881,2262029012,4057260610,1759359992,534414190,2176718541,4139329115,1873836001,414664567,2282248934,4279200368,1711684554,285281116,2405801727,4167216745,1634467795,376229701,2685067896,3608007406,1308918612,956543938,2808555105,3495958263,1231636301,1047427035,2932959818,3654703836,1088359270,936918e3,2847714899,3736837829,1202900863,817233897,3183342108,3401237130,1404277552,615818150,3134207493,3453421203,1423857449,601450431,3009837614,3294710456,1567103746,711928724,3020668471,3272380065,1510334235,755167117],t.t)
 B.apQ=s([43,95,45,46,48,49,50,51,52,53,54,55,56,57,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122],t.t)
 B.adL=new A.D6(2,"cubic")
 B.adM=new A.D6(3,"cubicValue")
 B.adN=new A.D6(4,"elastic")
-B.GE=s([B.wy,B.wz,B.adL,B.adM,B.adN],A.am("z<D6>"))
+B.GF=s([B.wy,B.wz,B.adL,B.adM,B.adN],A.am("z<D6>"))
 B.aq3=s([47,47,47,47,72,97,122,147],t.t)
 B.mh=s([0,1,3,7,15,31,63,127,255],t.t)
 B.x1=s([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15],t.t)
@@ -215375,18 +215482,18 @@ B.ail=s([249,253,253,255,255,255,255,255,255,255,255],t.t)
 B.ami=s([B.alP,B.arZ,B.ail],t.q)
 B.al1=s([255,244,252,255,255,255,255,255,255,255,255],t.t)
 B.aky=s([234,254,254,255,255,255,255,255,255,255,255],t.t)
-B.GJ=s([253,255,255,255,255,255,255,255,255,255,255],t.t)
-B.aiG=s([B.al1,B.aky,B.GJ],t.q)
+B.GK=s([253,255,255,255,255,255,255,255,255,255,255],t.t)
+B.aiG=s([B.al1,B.aky,B.GK],t.q)
 B.arj=s([255,246,254,255,255,255,255,255,255,255,255],t.t)
 B.aoj=s([239,253,254,255,255,255,255,255,255,255,255],t.t)
-B.GF=s([254,255,254,255,255,255,255,255,255,255,255],t.t)
-B.aq4=s([B.arj,B.aoj,B.GF],t.q)
-B.G3=s([255,248,254,255,255,255,255,255,255,255,255],t.t)
+B.GG=s([254,255,254,255,255,255,255,255,255,255,255],t.t)
+B.aq4=s([B.arj,B.aoj,B.GG],t.q)
+B.G4=s([255,248,254,255,255,255,255,255,255,255,255],t.t)
 B.aju=s([251,255,254,255,255,255,255,255,255,255,255],t.t)
-B.ann=s([B.G3,B.aju,B.e7],t.q)
+B.ann=s([B.G4,B.aju,B.e7],t.q)
 B.wI=s([255,253,254,255,255,255,255,255,255,255,255],t.t)
 B.anh=s([251,254,254,255,255,255,255,255,255,255,255],t.t)
-B.ajL=s([B.wI,B.anh,B.GF],t.q)
+B.ajL=s([B.wI,B.anh,B.GG],t.q)
 B.agl=s([255,254,253,255,254,255,255,255,255,255,255],t.t)
 B.akV=s([250,255,254,255,254,255,255,255,255,255,255],t.t)
 B.qi=s([254,255,255,255,255,255,255,255,255,255,255],t.t)
@@ -215401,17 +215508,17 @@ B.aio=s([223,254,254,255,255,255,255,255,255,255,255],t.t)
 B.ahU=s([238,253,254,254,255,255,255,255,255,255,255],t.t)
 B.aoe=s([B.x7,B.aio,B.ahU],t.q)
 B.akD=s([249,254,255,255,255,255,255,255,255,255,255],t.t)
-B.arf=s([B.G3,B.akD,B.e7],t.q)
+B.arf=s([B.G4,B.akD,B.e7],t.q)
 B.aqy=s([255,253,255,255,255,255,255,255,255,255,255],t.t)
 B.ang=s([247,254,255,255,255,255,255,255,255,255,255],t.t)
 B.amW=s([B.aqy,B.ang,B.e7],t.q)
 B.ahH=s([252,255,255,255,255,255,255,255,255,255,255],t.t)
 B.afP=s([B.wI,B.ahH,B.e7],t.q)
 B.GL=s([255,254,254,255,255,255,255,255,255,255,255],t.t)
-B.ahS=s([B.GL,B.GJ,B.e7],t.q)
+B.ahS=s([B.GL,B.GK,B.e7],t.q)
 B.ao9=s([255,254,253,255,255,255,255,255,255,255,255],t.t)
-B.G8=s([250,255,255,255,255,255,255,255,255,255,255],t.t)
-B.ahF=s([B.ao9,B.G8,B.qi],t.q)
+B.G9=s([250,255,255,255,255,255,255,255,255,255,255],t.t)
+B.ahF=s([B.ao9,B.G9,B.qi],t.q)
 B.agq=s([B.aqq,B.aoe,B.arf,B.amW,B.afP,B.ahS,B.ahF,B.ka],t.wX)
 B.apt=s([186,251,250,255,255,255,255,255,255,255,255],t.t)
 B.ajj=s([234,251,244,254,255,255,255,255,255,255,255],t.t)
@@ -215450,7 +215557,7 @@ B.as4=s([249,255,254,255,255,255,255,255,255,255,255],t.t)
 B.ak8=s([255,255,254,255,255,255,255,255,255,255,255],t.t)
 B.aeG=s([B.ahh,B.as4,B.ak8],t.q)
 B.asw=s([255,255,253,255,255,255,255,255,255,255,255],t.t)
-B.ajt=s([B.asw,B.G8,B.e7],t.q)
+B.ajt=s([B.asw,B.G9,B.e7],t.q)
 B.ahD=s([B.alp,B.aqK,B.anv,B.aif,B.apN,B.aeG,B.ajt,B.GM],t.wX)
 B.aqk=s([B.akn,B.agq,B.agn,B.ahD],t.B1)
 B.a_P=new A.li(1,"rle8")
@@ -215464,7 +215571,7 @@ B.a_Q=new A.li(10,"reserved10")
 B.a_R=new A.li(11,"cmyk")
 B.a_S=new A.li(12,"cmykRle8")
 B.a_T=new A.li(13,"cmykRle4")
-B.GG=s([B.AQ,B.a_P,B.a_U,B.u3,B.a_V,B.a_W,B.u4,B.a_X,B.a_Y,B.a_Z,B.a_Q,B.a_R,B.a_S,B.a_T],A.am("z<li>"))
+B.GH=s([B.AQ,B.a_P,B.a_U,B.u3,B.a_V,B.a_W,B.u4,B.a_X,B.a_Y,B.a_Z,B.a_Q,B.a_R,B.a_S,B.a_T],A.am("z<li>"))
 B.mi=s([B.hN,B.cP,B.l9,B.la,B.nP],t.QP)
 B.a6g=new A.Pq(0,"easeIn")
 B.a6h=new A.Pq(1,"easeOut")
@@ -215478,8 +215585,8 @@ B.aOt=new A.Ak(4,"lessThan")
 B.aOu=new A.Ak(5,"greaterThan")
 B.x2=s([B.Xn,B.Xo,B.aOr,B.aOs,B.aOt,B.aOu],A.am("z<Ak>"))
 B.aqx=s(["name"],t.s)
-B.GH=s(["newPassword"],t.s)
-B.GI=s(["nickname"],t.s)
+B.GI=s(["newPassword"],t.s)
+B.GJ=s(["nickname"],t.s)
 B.x3=s([0,128,192,224,240,248,252,254,255],t.t)
 B.aGf=new A.zS("Loading views\u2026","Views update live while this screen is open.",null,null)
 B.aqE=s([B.aGf],t.p)
@@ -215509,113 +215616,6 @@ B.aiS=s([0.00010146692491640572,0.0005364214359186694,0.0032979401770712076],t.n
 B.ar7=s([B.ahW,B.aor,B.aiS],t.zg)
 B.e8=s([0,17,34,51,68,85,102,119,136,153,170,187,204,221,238,255],t.t)
 B.ard=s([45,95,45,20,45,90,45,45,45],t.n)
-B.aaE=new A.d0("Home","At the top is You: a chat with yourself, kept in your own Google Drive. Below it are your groups, and All files, which lists every file from your groups.",!1)
-B.aap=new A.d0("Send","Tap Send at the bottom of Home. Pick a file or write a note, pick where it goes, then pick how it opens: One open, Watermarked or Traceable copies.",!1)
-B.aaa=new A.d0("What needs an account","Nothing, to send a note or file that opens once, or to open a link or code. Your own chat and groups need you to sign in with Google.",!1)
-B.aa5=new A.d0("Everything else","Your picture at the top opens your account. Settings has Activity, notifications and Help.",!1)
-B.apF=s([B.aaE,B.aap,B.aaa,B.aa5],t.eH)
-B.amv=s(["about","overview","start","what is this","purpose","tabs","navigation","where"],t.s)
-B.aaK=new A.jq("what-is-no-sus","What NO SUS is","Home is everything you keep. The Send button is everything you give away.",B.Em,B.apF,B.amv)
-B.abX=new A.b_(63023,"MaterialIcons",!1)
-B.aad=new A.d0("Where it lives","In a NO SUS folder in your own Google Drive. NO SUS can open only the files it creates there, so connecting does not let it see the rest of your Drive.",!1)
-B.aa7=new A.d0("Adding to it","Open Chat, then You. Type a note or attach a file. You can also share something to NO SUS from another app: it opens Send with You already picked.",!1)
-B.aas=new A.d0("Before Drive is connected","What you add waits on this phone as Not saved yet, and is stored as soon as you connect.",!1)
-B.ahG=s([B.aad,B.aa7,B.aas],t.eH)
-B.ap8=s(["saved","you","drive","google drive","notes to self","library","keep"],t.s)
-B.aaJ=new A.jq("no-sus-chat","NO SUS Chat","A chat with yourself for notes, links and files, kept in your own Google Drive.",B.abX,B.ahG,B.ap8)
-B.aa4=new A.d0("How","On the other screen, open nosus.foo/go. On your phone, open Chat, tap Open on any screen and scan the QR it shows. Match the number, then choose what that screen can open.",!1)
-B.aaw=new A.d0("Your account stays on your phone","The other screen only gets the items you approve, and only while the session is open.",!1)
-B.aah=new A.d0("After the session","Ending the session stops that screen from opening anything else. Files you downloaded or printed there can stay on it, so use a screen you trust.",!0)
-B.alM=s([B.aa4,B.aaw,B.aah],t.eH)
-B.aov=s(["go","computer","borrowed","laptop","qr","scan","print","desk"],t.s)
-B.aaT=new A.jq("open-on-any-screen","Open on any screen","Open your own chat on a computer without signing in to Google there.",B.m6,B.alM,B.aov)
-B.aaf=new A.d0("What and where","Choose a file or write a note. Send it to You, to one of your groups, or to Anyone with a link. Anyone with a link needs no account to open it.",!1)
-B.aa9=new A.d0("How it opens","For a link, turn on one of: One open, Watermarked, or Traceable copies. Each one says what it does right under it.",!1)
-B.a9W=new A.d0("Opening a link or code","Send \u2192 Open a link or code. Codes work once and expire.",!1)
-B.aaB=new A.d0("Sending nearby","Sending between two phones on the same Wi-Fi was removed. Send a link instead.",!1)
-B.ajq=s([B.aaf,B.aa9,B.a9W,B.aaB],t.eH)
-B.anq=s(["share","send","link","share sheet","nearby","receive","address","drop"],t.s)
-B.aaN=new A.jq("send","Send","One flow: what, where, how.",B.Eu,B.ajq,B.anq)
-B.aaA=new A.d0("How it works","It is encrypted on your phone first. The key goes in the link, after the # sign, which browsers never send to a server. The first person to open the link gets it, and the stored copy is deleted.",!1)
-B.a9T=new A.d0("Limits","Up to 10 files and 50 MB together in one link. Instead of a link you can ask for a 6-digit code to type in. While that code is unused, a copy of the key is kept on our server for up to 10 minutes.",!1)
-B.aan=new A.d0("It really is one open","If a chat app previews the link, that counts as the open. The person then sees that it was already opened, which tells you something got to it first.",!0)
-B.aa2=new A.d0("Did they open it?","Links you sent, on Send, shows if each one was opened and when. Nobody learns who opened it. Signed in, you are told when it happens: to do that, our server knows which account sent which link (never what is in it) until it is opened or expires. Turn off Link opened in Settings \u2192 Notifications and new links are not tied to you. Not signed in, a link is tied to no one.",!1)
-B.amt=s([B.aaA,B.a9T,B.aan,B.aa2],t.eH)
-B.ap6=s(["burn","burn note","burn file","secret","self destruct","one time","password","anonymous","size limit","opened","read receipt"],t.s)
-B.aaO=new A.jq("one-open","One open","A note or file that is gone after the first person opens it. No account needed on either end.",B.wo,B.amt,B.ap6)
-B.wm=new A.b_(61170,"MaterialIcons",!1)
-B.a9V=new A.d0("How it works","Watermarked links are made from a file in one of your groups, so Send adds the file to a group first. You set how long the link works and how many times it can be opened.",!1)
-B.aam=new A.d0("What you see","Each link has a log of when it was opened. You can revoke it at any time.",!1)
-B.a9S=new A.d0("In a browser","A browser cannot block screenshots. The name on every page is what points back to the reader.",!0)
-B.aj8=s([B.a9V,B.aam,B.a9S],t.eH)
-B.ahe=s(["securesend","share link","access controls","expiry","view limit","revoke","analytics"],t.s)
-B.aaR=new A.jq("watermarked","Watermarked","A link to one file that shows the reader\u2019s name on every page. You can revoke it.",B.wm,B.aj8,B.ahe)
-B.abZ=new A.b_(63330,"MaterialIcons",!1)
-B.aae=new A.d0("How it works","NO SUS makes one copy per reader, each with tiny wording changes that read the same. The note needs enough lines for the changes to fit; if it is too short, add a few more.",!1)
-B.a9Z=new A.d0("If it leaks","Paste the leaked text into the leak check on your note. It tells you which copy it came from.",!1)
-B.aag=new A.d0("Notes only for now",u.fD,!1)
-B.aaq=new A.d0("What it can\u2019t catch","Someone who rewrites the text in their own words can remove the changes.",!0)
-B.amM=s([B.aae,B.a9Z,B.aag,B.aaq],t.eH)
-B.ap3=s(["canary","leak","trace","fingerprint","copies","who leaked"],t.s)
-B.aaM=new A.jq("traceable-copies","Traceable copies","Each person gets a slightly different copy of a note. If it leaks, you\u2019ll know whose.",B.abZ,B.amM,B.ap3)
-B.abD=new A.b_(61657,"MaterialIcons",!1)
-B.aar=new A.d0("Joining","Chat \u2192 Join with a link, then paste the invite link or code. You see the group name and how many members it has before you join. There is no list of groups to browse.",!1)
-B.aa6=new A.d0("Starting one","Chat \u2192 New group. You become its admin. You can turn on an 8-character invite code, or invite people only with links you make.",!1)
-B.aa1=new A.d0("Leaving","Open the group \u2192 Group options (top right) \u2192 Leave group. Anything you added stays with the group. The only admin has to make someone else admin first, and the only member deletes the group by leaving.",!1)
-B.agD=s([B.aar,B.aa6,B.aa1],t.eH)
-B.aqC=s(["community","join","invite","create group","leave","new group"],t.s)
-B.aaI=new A.jq("groups","Groups","A group chat for files, with its own members and activity. You join by invite.",B.abD,B.agD,B.aqC)
-B.aay=new A.d0("Members can","Read every file in the group, add their own, rename and delete what they added, and see the group\u2019s activity.",!1)
-B.aal=new A.d0("Admins can also","Promote and demote members, remove and ban people, delete any file, manage invite links, and delete the group.",!1)
-B.aaC=new A.d0("How it is enforced","By the database, not the app. The check runs on the server on every change, so an edited app gets a refusal, not a shortcut.",!1)
-B.aqj=s([B.aay,B.aal,B.aaC],t.eH)
-B.alk=s(["admin","member","permission","promote","demote","remove","ban","moderation"],t.s)
-B.aaU=new A.jq("roles","Roles and permissions","Groups have admins and members. Admins manage people and files; members read and add.",B.Ev,B.aqj,B.alk)
-B.a9U=new A.d0("Adding","Open a group \u2192 Add a group file, or Send a file to the group. Everyone in the group can read it.",!1)
-B.aaz=new A.d0("Reading","Tap a file to open it in the protected viewer. Chat \u2192 All files lists every file from your groups.",!1)
-B.aaD=new A.d0("Touch to reveal","The page stays blurred until you hold your finger on it, which stops the person behind you. Turn it off in Settings \u2192 Privacy & Security.",!1)
-B.aau=new A.d0("What this does not do","Group files are not end-to-end encrypted. They are stored on our server and access is checked by database rules. For that, send a One open link instead: it is encrypted on your phone.",!0)
-B.apx=s([B.a9U,B.aaz,B.aaD,B.aau],t.eH)
-B.ajy=s(["file","upload","pdf","vault","all files","viewer","study desk"],t.s)
-B.aaH=new A.jq("secure-documents","Files in groups","Files in a group open in the protected viewer, marked with the reader\u2019s name.",B.c4,B.apx,B.ajy)
-B.aaj=new A.d0("Watermarks","Your email and the time are drawn over every page you open. A photo of the screen carries them too, so a leaked page points back to who opened it.",!1)
-B.a9P=new A.d0("Screenshot blocking is Android-only","On Android the app blocks screenshots and screen recording, and records the attempt. On the web and on iOS nothing can stop a screenshot. There, the watermark and the activity log protect you.",!0)
-B.a9Y=new A.d0("A camera always wins","No app can stop someone photographing their screen with another phone. These controls tell you who, after the fact.",!0)
-B.aku=s([B.aaj,B.a9P,B.a9Y],t.eH)
-B.app=s(["watermark","screenshot","screen record","capture","leak"],t.s)
-B.aaL=new A.jq("watermarking","Watermarks and screenshots","Open files carry your name on screen, and on Android screenshots are blocked.",B.wm,B.aku,B.app)
-B.abE=new A.b_(61697,"MaterialIcons",!1)
-B.aac=new A.d0("What is recorded","Joins and leaves, files added, renamed, deleted and opened, screenshot attempts, and admin actions. It records who and when, never what a file says.",!1)
-B.aa8=new A.d0("Visible to everyone in the group","Members see what admins do as easily as admins see members. Nobody gets a private log.",!1)
-B.a9Q=new A.d0("Tamper evidence","Entries are chained, so removing or editing one breaks the chain. Nothing can be quietly taken back, including by admins.",!1)
-B.aqV=s([B.aac,B.aa8,B.a9Q],t.eH)
-B.asf=s(["audit","log","activity","history","who opened","tamper","security alerts"],t.s)
-B.aaS=new A.jq("audit-log","Activity","A record of what happened in your groups and on your account. Settings \u2192 Activity.",B.abE,B.aqV,B.asf)
-B.abH=new A.b_(62005,"MaterialIcons",!1)
-B.a9X=new A.d0("What you can hear about","Invites and join requests, role changes, admin actions that affect you, files added to your groups, a one-open link you sent being opened, and security alerts (your account was locked, or a screen connected to it). Turn each one off in Settings \u2192 Notifications.",!1)
-B.aat=new A.d0("Nothing sensitive on the lock screen","A notification names the group and what kind of thing happened, never a file\u2019s name or what it says.",!1)
-B.aa_=new A.d0("If you said no to the permission","Android asks once. Everything still shows under the bell in the app, and Settings \u2192 Notifications has a button to open the system setting.",!1)
-B.aiY=s([B.a9X,B.aat,B.aa_],t.eH)
-B.afQ=s(["push","alert","permission","mute","lock screen","privacy"],t.s)
-B.aaP=new A.jq("notifications","Notifications","Hear when something you care about happens, without details on your lock screen.",B.abH,B.aiY,B.afQ)
-B.abk=new A.b_(58519,"MaterialIcons",!1)
-B.aav=new A.d0("Signing in","New accounts use Google. If you made your account with email, GitHub or a phone number, tap Other ways to sign in.",!1)
-B.a9R=new A.d0("What is stored","Your email, display name and avatar. Files you add to groups. Activity entries for things you did. Your own chat is kept in your Google Drive, not on our server.",!1)
-B.aa3=new A.d0("Who can see your email","Members of your groups. Activity names people by email, which is what makes it useful.",!0)
-B.aao=new A.d0("Deleting your account","Your picture \u2192 Settings \u2192 Danger zone \u2192 Delete account. It removes your profile, your group memberships, every file you added (in every group) and the activity records of what you did. It can\u2019t be undone. Your own chat stays in your Google Drive.",!1)
-B.asr=s([B.aav,B.a9R,B.aa3,B.aao],t.eH)
-B.ak6=s(["profile","password","delete account","privacy","email","data","google","github","phone"],t.s)
-B.aaQ=new A.jq("account","Your account and your data","What is stored about you, who can see it, and how to delete it.",B.abk,B.asr,B.ak6)
-B.abw=new A.b_(61190,"MaterialIcons",!1)
-B.aab=new A.d0('"This link has already been opened"',"A One open link is gone after the first open. Ask for a new one. If you never opened it, assume something else did.",!1)
-B.aax=new A.d0('"This invite has expired or been revoked"',"Invite links can expire, have a limit, or be revoked by an admin. Ask for a new one.",!1)
-B.aa0=new A.d0("A file will not open","Usually your access was removed or the file was deleted. Pull down to refresh.",!1)
-B.aak=new A.d0("The app says it is offline","Groups, files, your own chat and sending need a connection. Settings \u2192 Connection check shows whether this phone can reach NO SUS.",!1)
-B.aai=new A.d0("Asked to sign in again","If unusual security signals show up on your account, the app asks you to sign in again. Signing back in clears it once the risk has passed.",!1)
-B.asC=s([B.aab,B.aax,B.aa0,B.aak,B.aai],t.eH)
-B.aj7=s(["error","expired","broken","cannot open","offline","stuck","failed"],t.s)
-B.aaG=new A.jq("troubleshooting","When something goes wrong","The problems people actually hit, and what each one means.",B.abw,B.asC,B.aj7)
-B.GK=s([B.aaK,B.aaJ,B.aaT,B.aaN,B.aaO,B.aaR,B.aaM,B.aaI,B.aaU,B.aaH,B.aaL,B.aaS,B.aaP,B.aaQ,B.aaG],A.am("z<jq>"))
 B.a9L=new A.yu("No members to show","The member list loads from NO SUS. Check your connection, then pull down to refresh.",B.a2,B.Y,null)
 B.arh=s([B.a9L],t.p)
 B.ari=s([120,120,20,45,20,15,20,120,120],t.n)
@@ -215753,7 +215753,7 @@ B.ahC=s([6,6,2,2],t.t)
 B.afV=s([3,9,1,3],t.t)
 B.aeE=s([12,0,4,0],t.t)
 B.aik=s([9,3,3,1],t.t)
-B.cX=s([B.FO,B.afA,B.wJ,B.ahs,B.aft,B.af0,B.agr,B.afS,B.ai7,B.agt,B.aeK,B.aeF,B.ahC,B.afV,B.aeE,B.aik],t.q)
+B.cX=s([B.FP,B.afA,B.wJ,B.ahs,B.aft,B.af0,B.agr,B.afS,B.ai7,B.agt,B.aeK,B.aeF,B.ahC,B.afV,B.aeE,B.aik],t.q)
 B.kb=s([0,-128,64,-64,32,-96,96,-32,16,-112,80,-48,48,-80,112,-16,8,-120,72,-56,40,-88,104,-24,24,-104,88,-40,56,-72,120,-8,4,-124,68,-60,36,-92,100,-28,20,-108,84,-44,52,-76,116,-12,12,-116,76,-52,44,-84,108,-20,28,-100,92,-36,60,-68,124,-4,2,-126,66,-62,34,-94,98,-30,18,-110,82,-46,50,-78,114,-14,10,-118,74,-54,42,-86,106,-22,26,-102,90,-38,58,-70,122,-6,6,-122,70,-58,38,-90,102,-26,22,-106,86,-42,54,-74,118,-10,14,-114,78,-50,46,-82,110,-18,30,-98,94,-34,62,-66,126,-2,1,-127,65,-63,33,-95,97,-31,17,-111,81,-47,49,-79,113,-15,9,-119,73,-55,41,-87,105,-23,25,-103,89,-39,57,-71,121,-7,5,-123,69,-59,37,-91,101,-27,21,-107,85,-43,53,-75,117,-11,13,-115,77,-51,45,-83,109,-19,29,-99,93,-35,61,-67,125,-3,3,-125,67,-61,35,-93,99,-29,19,-109,83,-45,51,-77,115,-13,11,-117,75,-53,43,-85,107,-21,27,-101,91,-37,59,-69,123,-5,7,-121,71,-57,39,-89,103,-25,23,-105,87,-41,55,-73,119,-9,15,-113,79,-49,47,-81,111,-17,31,-97,95,-33,63,-65,127,-1],t.t)
 B.R=new A.a2d(0,"ignored")
 B.xb=new A.E(32)
@@ -216411,9 +216411,9 @@ B.wR=s(["Noto Sans TC"],t.s)
 B.an1=s(["Noto Sans HK","Noto Sans TC"],t.s)
 B.ah0=s(["Noto Sans JP"],t.s)
 B.afF=s(["Noto Sans KR"],t.s)
-B.Gb=s(["Noto Sans SC"],t.s)
+B.Gc=s(["Noto Sans SC"],t.s)
 B.as5=s(["Noto Sans SC","Noto Sans TC"],t.s)
-B.qy=new A.cO(B.awy,[B.wR,B.wR,B.wR,B.an1,B.ah0,B.afF,B.Gb,B.Gb,B.as5],t.VJ)
+B.qy=new A.cO(B.awy,[B.wR,B.wR,B.wR,B.an1,B.ah0,B.afF,B.Gc,B.Gc,B.as5],t.VJ)
 B.awt={Abort:0,Again:1,AltLeft:2,AltRight:3,ArrowDown:4,ArrowLeft:5,ArrowRight:6,ArrowUp:7,AudioVolumeDown:8,AudioVolumeMute:9,AudioVolumeUp:10,Backquote:11,Backslash:12,Backspace:13,BracketLeft:14,BracketRight:15,BrightnessDown:16,BrightnessUp:17,BrowserBack:18,BrowserFavorites:19,BrowserForward:20,BrowserHome:21,BrowserRefresh:22,BrowserSearch:23,BrowserStop:24,CapsLock:25,Comma:26,ContextMenu:27,ControlLeft:28,ControlRight:29,Convert:30,Copy:31,Cut:32,Delete:33,Digit0:34,Digit1:35,Digit2:36,Digit3:37,Digit4:38,Digit5:39,Digit6:40,Digit7:41,Digit8:42,Digit9:43,DisplayToggleIntExt:44,Eject:45,End:46,Enter:47,Equal:48,Escape:49,Esc:50,F1:51,F10:52,F11:53,F12:54,F13:55,F14:56,F15:57,F16:58,F17:59,F18:60,F19:61,F2:62,F20:63,F21:64,F22:65,F23:66,F24:67,F3:68,F4:69,F5:70,F6:71,F7:72,F8:73,F9:74,Find:75,Fn:76,FnLock:77,GameButton1:78,GameButton10:79,GameButton11:80,GameButton12:81,GameButton13:82,GameButton14:83,GameButton15:84,GameButton16:85,GameButton2:86,GameButton3:87,GameButton4:88,GameButton5:89,GameButton6:90,GameButton7:91,GameButton8:92,GameButton9:93,GameButtonA:94,GameButtonB:95,GameButtonC:96,GameButtonLeft1:97,GameButtonLeft2:98,GameButtonMode:99,GameButtonRight1:100,GameButtonRight2:101,GameButtonSelect:102,GameButtonStart:103,GameButtonThumbLeft:104,GameButtonThumbRight:105,GameButtonX:106,GameButtonY:107,GameButtonZ:108,Help:109,Home:110,Hyper:111,Insert:112,IntlBackslash:113,IntlRo:114,IntlYen:115,KanaMode:116,KeyA:117,KeyB:118,KeyC:119,KeyD:120,KeyE:121,KeyF:122,KeyG:123,KeyH:124,KeyI:125,KeyJ:126,KeyK:127,KeyL:128,KeyM:129,KeyN:130,KeyO:131,KeyP:132,KeyQ:133,KeyR:134,KeyS:135,KeyT:136,KeyU:137,KeyV:138,KeyW:139,KeyX:140,KeyY:141,KeyZ:142,KeyboardLayoutSelect:143,Lang1:144,Lang2:145,Lang3:146,Lang4:147,Lang5:148,LaunchApp1:149,LaunchApp2:150,LaunchAssistant:151,LaunchControlPanel:152,LaunchMail:153,LaunchScreenSaver:154,MailForward:155,MailReply:156,MailSend:157,MediaFastForward:158,MediaPause:159,MediaPlay:160,MediaPlayPause:161,MediaRecord:162,MediaRewind:163,MediaSelect:164,MediaStop:165,MediaTrackNext:166,MediaTrackPrevious:167,MetaLeft:168,MetaRight:169,MicrophoneMuteToggle:170,Minus:171,NonConvert:172,NumLock:173,Numpad0:174,Numpad1:175,Numpad2:176,Numpad3:177,Numpad4:178,Numpad5:179,Numpad6:180,Numpad7:181,Numpad8:182,Numpad9:183,NumpadAdd:184,NumpadBackspace:185,NumpadClear:186,NumpadClearEntry:187,NumpadComma:188,NumpadDecimal:189,NumpadDivide:190,NumpadEnter:191,NumpadEqual:192,NumpadMemoryAdd:193,NumpadMemoryClear:194,NumpadMemoryRecall:195,NumpadMemoryStore:196,NumpadMemorySubtract:197,NumpadMultiply:198,NumpadParenLeft:199,NumpadParenRight:200,NumpadSubtract:201,Open:202,PageDown:203,PageUp:204,Paste:205,Pause:206,Period:207,Power:208,PrintScreen:209,PrivacyScreenToggle:210,Props:211,Quote:212,Resume:213,ScrollLock:214,Select:215,SelectTask:216,Semicolon:217,ShiftLeft:218,ShiftRight:219,ShowAllWindows:220,Slash:221,Sleep:222,Space:223,Super:224,Suspend:225,Tab:226,Turbo:227,Undo:228,WakeUp:229,ZoomToggle:230}
 B.PQ=new A.a6(458907)
 B.Pw=new A.a6(458873)
@@ -218874,8 +218874,8 @@ B.aX=new A.Mu(3,"maxHeight")
 B.aRF=new A.Vm(B.c4,"Files","PDFs and images for later.",null)
 B.aRG=new A.Vm(B.ep,"Links","Pages you want to find again.",null)
 B.aRH=new A.Vm(B.eY,"Notes","In your Drive the moment you send them.",null)
-B.aRI=new A.abR("Terms",B.Fu,null)
-B.aRJ=new A.abR("Privacy Policy",B.Fv,null)
+B.aRI=new A.abR("Privacy Policy",B.Fu,null)
+B.aRJ=new A.abR("Terms",B.Fv,null)
 B.aA=new A.lT(1)
 B.aRK=new A.abX(null)
 B.bX=new A.hi(0,"size")
@@ -219547,7 +219547,7 @@ r($,"cAJ","c6Z",()=>{var q=new A.aQv()
 q.op($.c7_())
 return q})
 s($,"d75","cxF",()=>A.cc3(B.q7,B.FI,257,286,15))
-s($,"d74","cxE",()=>A.cc3(B.G2,B.q6,0,30,15))
+s($,"d74","cxE",()=>A.cc3(B.G3,B.q6,0,30,15))
 s($,"d73","cxD",()=>A.cc3(null,B.afD,0,19,7))
 s($,"d2a","cvo",()=>A.anQ(B.as0))
 s($,"d29","cvn",()=>A.anQ(B.aip))
