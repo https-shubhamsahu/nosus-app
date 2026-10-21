@@ -18,7 +18,21 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="NO SUS: your own chat in your Google Drive, plus links that open once or carry the reader’s name.">
+  <!--
+    Link previews. Every burn link points at this one page and its key lives
+    in the part after "#", which never reaches a server, so a preview crawler
+    sees the same tags for every route. Keep them neutral: they must not
+    describe a feature the link may not be, or claim anything about the note.
+  -->
+  <meta name="description" content="Opens in your browser. No app needed.">
+  <meta property="og:title" content="NO SUS">
+  <meta property="og:description" content="Opens in your browser. No app needed.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://app.nosus.foo/og-link.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The NO SUS wordmark">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -31,6 +45,35 @@
 
   <title>NO SUS</title>
   <link rel="manifest" href="manifest.json">
+
+  <!--
+    The engine fetches every font in FontManifest.json only after main.dart.js
+    has downloaded and run, and paints nothing until all of them are in. Start
+    them now, at low priority, so they download while main.dart.js and
+    CanvasKit do: the same bytes and URLs as the engine's own fetch
+    (assets/ + the pubspec path). This preloads, it defers nothing.
+    test/unit/web_font_preload_test.dart keeps this list equal to pubspec.yaml
+    `fonts:`.
+  -->
+  <link rel="preload" href="assets/FontManifest.json" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/fonts/MaterialIcons-Regular.otf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Medium.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-ExtraBold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Kalam-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Inter-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Inter-Medium.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Inter-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Inter-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Outfit-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Outfit-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Outfit-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/Roboto-Regular-latin.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/NotoSansDevanagari-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/NotoSansDevanagari-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
+  <link rel="preload" href="assets/assets/google_fonts/VT323-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
 
   <!--
     The first web frame is the NO SUS wordmark itself. This has no image,
@@ -48,6 +91,7 @@
       inset: 0;
       z-index: 2147483647;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100svh;
@@ -56,6 +100,19 @@
       background: var(--boot-bg);
       transition: opacity 100ms linear;
     }
+    /* One-time-link routes say what is opening (see the route script under
+       #boot-loader). Plain text: no shimmer, no button. */
+    #boot-loader .boot-line {
+      margin: 18px 0 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--boot-ink);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: center;
+      opacity: 0.72;
+    }
+    #boot-loader .boot-line[hidden] { display: none; }
     #boot-loader.boot-hidden {
       opacity: 0;
       pointer-events: none;
@@ -90,12 +147,22 @@
     // The app keeps Day / Night / Follow phone in localStorage (SharedPreferences
     // on web: key "flutter.nosus_theme_mode", value JSON-encoded). Read it before
     // first paint so a Night reader is not flashed a bright boot screen.
+    //
+    // The one-time-link viewers (#/burn/, #burn/, #/burnfile/, #/burnfiles/)
+    // follow the phone instead of the saved choice (viewerThemeMode in
+    // share_states.dart), so their boot colours come from prefers-color-scheme
+    // only. Only the route prefix is read: never the key, never logged.
     (function () {
       try {
-        var raw = localStorage.getItem('flutter.nosus_theme_mode');
-        var mode = raw ? JSON.parse(raw) : 'light';
-        var night = mode === 'dark' ||
-          (mode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var night;
+        if (/^#(\/?burn|\/burnfiles?)\//.test(location.hash || '')) {
+          night = !!mq;
+        } else {
+          var raw = localStorage.getItem('flutter.nosus_theme_mode');
+          var mode = raw ? JSON.parse(raw) : 'light';
+          night = mode === 'dark' || (mode === 'system' && !!mq);
+        }
         if (night) document.documentElement.classList.add('boot-night');
       } catch (e) {}
     })();
@@ -130,6 +197,24 @@
     })();
   </script>
 
+  <script>
+    // Notes and files waiting to save to Drive live only in this tab's memory
+    // on the web. While any wait, the app sets sessionStorage "nosus_unsaved"
+    // to "1" (SavedController.unsavedTabKey) and the browser asks before the
+    // tab closes or reloads. A reload has already lost them, so the flag is
+    // cleared as the page starts.
+    (function () {
+      try { sessionStorage.removeItem('nosus_unsaved'); } catch (e) {}
+      window.addEventListener('beforeunload', function (event) {
+        try {
+          if (sessionStorage.getItem('nosus_unsaved') !== '1') return;
+        } catch (e) { return; }
+        event.preventDefault();
+        event.returnValue = '';
+      });
+    })();
+  </script>
+
   <!--
     supabase_flutter's Auth client wires up passkey/WebAuthn support by
     default, which pulls in the `passkeys_web` plugin. That plugin's
@@ -161,9 +246,13 @@
     //  - App links (#/go/, #/burn/, #/join/ …): hand off at once.
     //  - Plain visits: a dismissible "Open in the app" bar, no redirect.
     //  - Sign-in callbacks: never — the session belongs to this tab.
+    //  - In-app browsers (Instagram, Facebook, any Android WebView "; wv)"):
+    //    neither. They can't follow intent:// reliably, so the reader would
+    //    land on a blank or error page; they stay on this web app.
     (function (w) {
       try {
-        if (!/android/i.test(w.navigator.userAgent || '')) return;
+        var ua = w.navigator.userAgent || '';
+        if (!/android/i.test(ua)) return;
         var l = w.location, h = l.hash || '', s = l.search || '';
         if (/[?&]code=/.test(s) || /(access_token|refresh_token|error_description|type=recovery)/.test(h)) return;
         var params = new URLSearchParams(s);
@@ -175,6 +264,7 @@
           try { w.history.replaceState(null, '', l.pathname + (q ? '?' + q : '') + h); } catch (e) {}
           return;
         }
+        if (/; wv\)|Instagram|FBAN|FBAV|FB_IAB/.test(ua)) return;
         var fallback = l.origin + l.pathname + '?' + (q ? q + '&' : '') + 'nosus_web=1' + h;
         var intent = 'intent://open?u=' + encodeURIComponent(here) +
           '#Intent;scheme=foo.nosus.app;package=foo.nosus.app;S.browser_fallback_url=' +
@@ -218,7 +308,34 @@
   </script>
   <div id="boot-loader">
     <div class="boot-mark" role="status" aria-live="polite" aria-label="NO SUS opening application">NO SUS<span class="boot-stop" aria-hidden="true"></span></div>
+    <p class="boot-line" aria-hidden="true" hidden></p>
   </div>
+  <script>
+    // Route-aware boot line. A one-time link says what is opening, so a reader
+    // on a slow connection knows the page is working. The status node above
+    // keeps its role; its aria-label is what screen readers hear (it overrides
+    // the text inside), so it carries the line and the visible copy stays
+    // aria-hidden: still exactly one status node. Only the route prefix is
+    // read, never the key; nothing is logged or sent.
+    (function () {
+      try {
+        var h = location.hash || '';
+        var line = null;
+        if (/^#\/?burn\//.test(h)) line = 'A note that opens once.';
+        else if (/^#\/burnfiles?\//.test(h)) line = 'A file that opens once.';
+        else if (/^#\/redeem\//.test(h)) line = 'Opening a link…';
+        if (!line) return;
+        var root = document.getElementById('boot-loader');
+        var mark = root.querySelector('.boot-mark');
+        var el = root.querySelector('.boot-line');
+        el.textContent = line;
+        el.hidden = false;
+        mark.setAttribute('aria-label', line === 'Opening a link…'
+          ? 'NO SUS. Opening a link.'
+          : 'NO SUS. ' + line + ' Opening.');
+      } catch (e) {}
+    })();
+  </script>
   <script>
     (function() {
       // Flutter Web dispatches this once the engine paints its first real
@@ -234,6 +351,17 @@
       window.addEventListener('flutter-first-frame', hideBootLoader, { once: true });
       setTimeout(hideBootLoader, 12000);
     })();
+  </script>
+  <script>
+    // A new one-open link opened in a tab that is already running (pasted
+    // into the address bar, or a link tapped on this page): the app reads its
+    // link only when it starts, and a standalone viewer has no route for it,
+    // so start again with the new one. Flutter's own URL updates use the
+    // History API and never fire hashchange. Prefix test only: the key is
+    // never read or logged.
+    window.addEventListener('hashchange', function() {
+      if (/^#\/?burn(?:file|files)?\//.test(window.location.hash)) window.location.reload();
+    });
   </script>
   <script>
     // Android only: a sign-in that came back to this browser tab can be
