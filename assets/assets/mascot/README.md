@@ -1,5 +1,16 @@
 # Mascot assets
 
+**Status (1.1.7):** the Rive runtime is removed. No `.riv` file was ever authored, and the old
+`rive` 0.13 package shipped `librive_text.so` with 4 KB alignment, which Google Play flags as
+"Does not support 16 KB" and which blocks the production release. `MascotView` now draws Nox in
+code, the Duo as `assets/icon/LuxandNox.png`, and solo Lux as the call site's `fallback`.
+
+If real animation art arrives: add a 16 KB-ready runtime (`rive_native` / rive 0.14+), restore the
+loader in `lib/core/mascot/mascot_view.dart` (git history before 1.1.7), and check the uploaded
+bundle in Play Console → App bundle explorer → "Memory page size" before shipping.
+
+The spec the art should follow (kept for that day):
+
 Drop the authored Rive files here with these exact names — `MascotView` (see
 `lib/core/mascot/mascot_view.dart`) looks them up by convention:
 
