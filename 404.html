@@ -21,17 +21,18 @@
   <!--
     Link previews. Every burn link points at this one page and its key lives
     in the part after "#", which never reaches a server, so a preview crawler
-    sees the same tags for every route. Keep them neutral: they must not
-    describe a feature the link may not be, or claim anything about the note.
+    sees the same tags for every route. They stay generic: never per-link
+    data, never a claim about what the note says. The ?v= busts crawlers'
+    image caches when og-link.png changes (tool/store_assets/og_link.html).
   -->
   <meta name="description" content="Opens in your browser. No app needed.">
-  <meta property="og:title" content="NO SUS">
+  <meta property="og:title" content="A note for you. It opens once.">
   <meta property="og:description" content="Opens in your browser. No app needed.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://app.nosus.foo/og-link.png">
+  <meta property="og:image" content="https://app.nosus.foo/og-link.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="The NO SUS wordmark">
+  <meta property="og:image:alt" content="Nox the cat and the line: A note for you. It opens once.">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- iOS meta tags & icons -->
@@ -48,32 +49,20 @@
 
   <!--
     The engine fetches every font in FontManifest.json only after main.dart.js
-    has downloaded and run, and paints nothing until all of them are in. Start
-    them now, at low priority, so they download while main.dart.js and
-    CanvasKit do: the same bytes and URLs as the engine's own fetch
-    (assets/ + the pubspec path). This preloads, it defers nothing.
-    test/unit/web_font_preload_test.dart keeps this list equal to pubspec.yaml
+    has downloaded and run, and paints nothing until all of them are in. That
+    list is only what a one-open link's first screen draws (pubspec.yaml
+    `fonts:`); the app's other faces load later (lib/ui/theme/deferred_fonts.dart).
+    Start the three weights that screen paints now, at low priority, so they
+    download while main.dart.js and CanvasKit do: the same bytes and URLs as
+    the engine's own fetch (assets/ + the pubspec path).
+    test/unit/web_font_preload_test.dart keeps this list inside pubspec.yaml
     `fonts:`.
   -->
   <link rel="preload" href="assets/FontManifest.json" as="fetch" crossorigin fetchpriority="low">
   <link rel="preload" href="assets/fonts/MaterialIcons-Regular.otf" as="fetch" crossorigin fetchpriority="low">
   <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Medium.ttf" as="fetch" crossorigin fetchpriority="low">
   <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
   <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/HankenGrotesk-ExtraBold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Kalam-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Inter-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Inter-Medium.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Inter-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Inter-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Outfit-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Outfit-SemiBold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Outfit-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/Roboto-Regular-latin.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/NotoSansDevanagari-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/NotoSansDevanagari-Bold.ttf" as="fetch" crossorigin fetchpriority="low">
-  <link rel="preload" href="assets/assets/google_fonts/VT323-Regular.ttf" as="fetch" crossorigin fetchpriority="low">
 
   <!--
     The first web frame is the NO SUS wordmark itself. This has no image,
@@ -100,8 +89,8 @@
       background: var(--boot-bg);
       transition: opacity 100ms linear;
     }
-    /* One-time-link routes say what is opening (see the route script under
-       #boot-loader). Plain text: no shimmer, no button. */
+    /* One line says what is opening (see the route script under
+       #boot-loader), with a small spinner under it. */
     #boot-loader .boot-line {
       margin: 18px 0 0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
@@ -113,6 +102,33 @@
       opacity: 0.72;
     }
     #boot-loader .boot-line[hidden] { display: none; }
+    #boot-loader .boot-spin {
+      width: 18px;
+      height: 18px;
+      margin-top: 18px;
+      box-sizing: border-box;
+      border: 2px solid var(--boot-ink);
+      border-right-color: transparent;
+      border-radius: 50%;
+      opacity: 0.45;
+      animation: boot-spin 900ms linear infinite;
+    }
+    @keyframes boot-spin { to { transform: rotate(360deg); } }
+    /* Android only: shown when the hand-off to the app did not happen. */
+    #boot-loader .boot-here {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 12px;
+      padding: 0 14px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--boot-ink);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    #boot-loader .boot-here[hidden] { display: none; }
     #boot-loader.boot-hidden {
       opacity: 0;
       pointer-events: none;
@@ -141,6 +157,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       #boot-loader, #boot-loader .boot-stop { transition: none; animation: none; }
+      #boot-loader .boot-spin { animation-duration: 2.4s; }
     }
   </style>
   <script>
@@ -233,6 +250,38 @@
   <script src="passkeys-bundle.js"></script>
 </head>
 <body>
+  <div id="boot-loader">
+    <div class="boot-mark" role="status" aria-live="polite" aria-label="NO SUS opening application">NO SUS<span class="boot-stop" aria-hidden="true"></span></div>
+    <p class="boot-line" aria-hidden="true" hidden></p>
+    <div class="boot-spin" aria-hidden="true"></div>
+    <a class="boot-here" id="boot-here" href="#" hidden>Open here instead</a>
+  </div>
+  <script>
+    // Route-aware boot line. A one-time link says what is opening (anything else
+    // says "Opening…"), so a reader on a slow connection knows the page works.
+    // The status node above keeps its role; its aria-label is what screen readers hear (it overrides
+    // the text inside), so it carries the line and the visible copy stays
+    // aria-hidden: still exactly one status node. Only the route prefix is
+    // read, never the key; nothing is logged or sent.
+    (function () {
+      try {
+        var h = location.hash || '';
+        var line = null;
+        if (/^#\/?burn\//.test(h)) line = 'A note that opens once.';
+        else if (/^#\/burnfiles?\//.test(h)) line = 'A file that opens once.';
+        else if (/^#\/redeem\//.test(h)) line = 'Opening a link…';
+        else line = 'Opening…';
+        var root = document.getElementById('boot-loader');
+        var mark = root.querySelector('.boot-mark');
+        var el = root.querySelector('.boot-line');
+        el.textContent = line;
+        el.hidden = false;
+        mark.setAttribute('aria-label', line === 'Opening a link…'
+          ? 'NO SUS. Opening a link.'
+          : line === 'Opening…' ? 'NO SUS. Opening.' : 'NO SUS. ' + line + ' Opening.');
+      } catch (e) {}
+    })();
+  </script>
   <script>
     // Android: open the installed app instead of this web app.
     //
@@ -270,6 +319,23 @@
           '#Intent;scheme=foo.nosus.app;package=foo.nosus.app;S.browser_fallback_url=' +
           encodeURIComponent(fallback) + ';end';
         if (/^#\/?(go|burn|burnfile|burnfiles|redeem|v|join)\//.test(h)) {
+          // A browser that does not follow the hand-off (and never opens
+          // browser_fallback_url) used to leave a blank page: starting the
+          // navigation stops this page's parser, so nothing below this
+          // script ever ran. The boot screen is already up (it sits above
+          // this script). If the page is still on screen after 1.5 s, offer
+          // "Open here instead" and go on to the web app through the
+          // fallback URL, which never hands off again. Hidden by then means
+          // the app took the link; the link waits there for a return.
+          var here = document.getElementById('boot-here');
+          if (here) here.href = fallback;
+          w.setTimeout(function () {
+            try {
+              if (here) here.hidden = false;
+              if (document.visibilityState === 'hidden') return;
+              if (!w.nosusBootTail) w.location.replace(fallback);
+            } catch (e) {}
+          }, 1500);
           w.location.replace(intent);
           return;
         }
@@ -305,36 +371,6 @@
         });
       } catch (e) {}
     })(window);
-  </script>
-  <div id="boot-loader">
-    <div class="boot-mark" role="status" aria-live="polite" aria-label="NO SUS opening application">NO SUS<span class="boot-stop" aria-hidden="true"></span></div>
-    <p class="boot-line" aria-hidden="true" hidden></p>
-  </div>
-  <script>
-    // Route-aware boot line. A one-time link says what is opening, so a reader
-    // on a slow connection knows the page is working. The status node above
-    // keeps its role; its aria-label is what screen readers hear (it overrides
-    // the text inside), so it carries the line and the visible copy stays
-    // aria-hidden: still exactly one status node. Only the route prefix is
-    // read, never the key; nothing is logged or sent.
-    (function () {
-      try {
-        var h = location.hash || '';
-        var line = null;
-        if (/^#\/?burn\//.test(h)) line = 'A note that opens once.';
-        else if (/^#\/burnfiles?\//.test(h)) line = 'A file that opens once.';
-        else if (/^#\/redeem\//.test(h)) line = 'Opening a link…';
-        if (!line) return;
-        var root = document.getElementById('boot-loader');
-        var mark = root.querySelector('.boot-mark');
-        var el = root.querySelector('.boot-line');
-        el.textContent = line;
-        el.hidden = false;
-        mark.setAttribute('aria-label', line === 'Opening a link…'
-          ? 'NO SUS. Opening a link.'
-          : 'NO SUS. ' + line + ' Opening.');
-      } catch (e) {}
-    })();
   </script>
   <script>
     (function() {
@@ -427,6 +463,11 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    // The parser got this far, so the app hand-off above did not cut the page
+    // off: its 1.5 s check leaves this page to boot instead of reloading it.
+    window.nosusBootTail = true;
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
