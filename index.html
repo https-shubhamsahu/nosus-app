@@ -248,6 +248,13 @@
     registration runs during engine boot, not after DOMContentLoaded.
   -->
   <script src="passkeys-bundle.js"></script>
+
+  <!--
+    Google Analytics 4 (founder decision, 27 Oct 2026): one page view per app
+    load. GA runs in a hidden same-origin frame (ga.html), never on this page,
+    because this page's address holds keys and codes. See ga.js.
+  -->
+  <script src="ga.js" data-mode="app" defer></script>
 </head>
 <body>
   <div id="boot-loader">
