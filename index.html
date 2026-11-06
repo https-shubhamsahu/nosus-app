@@ -17,6 +17,21 @@
   <base href="/">
 
   <meta charset="UTF-8">
+  <!--
+    Content Security Policy (red team 6 Nov 2026). This page decrypts one-open
+    notes and files with the key from its own address, so it limits where any
+    script on it can send data: this origin, the NO SUS Supabase project
+    (lib/config/supabase_credentials.dart), Google's sign-in and Drive APIs
+    (only after the app asks for them), Sentry when SENTRY_DSN is set, and
+    fonts.gstatic.com, where the engine gets fallback fonts (emoji, scripts the
+    bundled fonts lack).
+    'unsafe-inline' stays because the boot scripts below are inline; the
+    connect, image and frame lists are the part that matters. GitHub Pages sends
+    no headers, so this meta is the only CSP (it cannot set frame-ancestors).
+    web/ga.html is its own document and keeps Google Analytics out of this one.
+    test/unit/web_csp_test.dart pins it. Add a host here before the app calls it.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://accounts.google.com/gsi/; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/; connect-src 'self' blob: data: https://akfghnaxkcvqiheknuyw.supabase.co wss://akfghnaxkcvqiheknuyw.supabase.co https://nosus.foo https://*.nosus.foo https://www.googleapis.com https://oauth2.googleapis.com https://accounts.google.com https://*.googleusercontent.com https://*.sentry.io https://fonts.gstatic.com; img-src 'self' data: blob: https://akfghnaxkcvqiheknuyw.supabase.co https://*.googleusercontent.com; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' data: blob:; worker-src 'self' blob:; frame-src 'self' https://accounts.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <!--
     Link previews. Every burn link points at this one page and its key lives

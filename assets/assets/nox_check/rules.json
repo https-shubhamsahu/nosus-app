@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "updated": "2026-11-06",
+  "about": "Nox Check rule pack. Every pattern is a case-insensitive, Unicode regex run on the phone. A rule fires when each of its groups matches somewhere in the text and none of its unless patterns does. Never use \\b next to Devanagari: it only knows ASCII letters. Tests: test/features/nox_check/nox_check_engine_test.dart.",
+  "rules": [
+    {
+      "id": "digital_arrest",
+      "weight": 50,
+      "strong": true,
+      "groups": [
+        ["\\bcbi\\b", "\\bncb\\b", "\\bed (officer|department|case)", "enforcement directorate", "narcotics", "\\bcustoms\\b", "police", "crime branch", "cyber ?(cell|crime) (department|branch|officer|police)", "\\btrai\\b", "\\brbi\\b", "income tax (department|officer)", "supreme court", "high court", "\\bcourt\\b", "\\bjudge\\b", "interpol", "\\bnia\\b", "सीबीआई", "पुलिस", "पोलीस", "कस्टम", "ईडी", "नारकोटिक्स", "क्राइम ब्रांच", "कोर्ट", "न्यायालय", "आरबीआई"],
+        ["arrest", "warrant", "\\bfir\\b", "money laundering", "\\bdrugs?\\b", "illegal (parcel|items?|transactions?|activit)", "case (is |has been )?(registered|filed|booked)", "under investigation", "video call", "(stay|remain) on (the )?(call|video)", "gir?aftar", "गिरफ्तार", "गिरफ़्तार", "अटक", "वॉरंट", "वारंट", "मनी लॉन्ड्रिंग", "ड्रग्स", "केस दर्ज", "एफआईआर", "गुन्हा दाखल", "डिजिटल अरेस्ट"],
+        ["\\byou(r)?\\b", "\\baap\\b", "\\baapk", "आप", "तुम", "तुम्ही", "तुमच्या", "तुमचे", "आपल्या"]
+      ],
+      "unless": ["no such thing as", "never (arrest|asks?|calls?|demands?)", "beware", "awareness", "be alert", "does not exist", "is a (scam|fraud)", "सावधान", "जागरूक", "कभी नहीं", "कधीही", "असं काही नसतं", "ऐसा कुछ नहीं"],
+      "title": {"en": "Fake police or agency threat", "hi": "पुलिस या एजेंसी के नाम पर धमकी", "mr": "पोलीस किंवा तपास यंत्रणेच्या नावाने धमकी"},
+      "explain": {"en": "Police, CBI or courts never arrest anyone on a call or WhatsApp. There is no 'digital arrest'.", "hi": "पुलिस, CBI या कोर्ट कभी फ़ोन या WhatsApp पर गिरफ्तार नहीं करते। 'डिजिटल अरेस्ट' जैसा कुछ नहीं होता।", "mr": "पोलीस, CBI किंवा कोर्ट कधीही फोनवर किंवा WhatsApp वर अटक करत नाहीत. 'डिजिटल अरेस्ट' असं काही नसतं."}
+    },
+    {
+      "id": "otp_request",
+      "weight": 50,
+      "strong": true,
+      "groups": [
+        [
+          "(?<!not |n'?t |never |no )(share|send|tell|forward|give|read out|provide|confirm|type|say)\\s((me|us|the|your|that|this|it|back)\\s){0,3}(otp|one[- ]time password|verification code|6[- ]digit code|code you (got|received)|upi pin|mpin|cvv)",
+          "(otp|one[- ]time password|verification code)\\s.{0,40}(by mistake|galti se|wrong number)",
+          "(otp|code|pin)\\s.{0,25}(bata\\s?do|batao|bhej\\s?do|bhejo|de do|dedo|share kar)",
+          "(ओटीपी|otp|पिन|कोड).{0,30}(?<!न |ना |मत )(बताएं|बताइए|बताओ|बता दो|भेजें|भेजो|भेज दो|शेयर करें|शेयर करो|दे दो|सांगा|पाठवा|शेअर करा)",
+          "(ओटीपी|otp|कोड).{0,40}(गलती से|चुकून)"
+        ]
+      ],
+      "unless": ["will never (ask|call)", "never asks? (for|you)"],
+      "title": {"en": "Asks for your OTP or PIN", "hi": "OTP या PIN मांग रहा है", "mr": "OTP किंवा PIN मागतोय"},
+      "explain": {"en": "Nobody genuine asks for an OTP or PIN. Sharing it lets them take your money or your account.", "hi": "कोई भी असली व्यक्ति OTP या PIN नहीं मांगता। बताते ही पैसे या खाता उनके हाथ में चला जाता है।", "mr": "खरं कोणीही OTP किंवा PIN मागत नाही. सांगितला की पैसे किंवा खातं त्यांच्या हातात जातं."}
+    },
+    {
+      "id": "upi_pin_to_receive",
+      "weight": 55,
+      "strong": true,
+      "groups": [
+        [
+          "(enter|type|put|daalo|dalo|daal)\\s.{0,30}(upi )?pin.{0,40}(receive|get|credit|refund|cashback|prize|money|amount)",
+          "pin (to|for) (receive|get|claim)",
+          "(receive|get|claim)\\s.{0,40}(enter|type)\\s.{0,15}pin",
+          "scan.{0,40}(to|and) (receive|get|claim)",
+          "approve.{0,50}(to )?(receive|get your|claim|refund|cashback)",
+          "(पैसे|रकम|रिफंड|कैशबैक).{0,30}(पाने|लेने|प्राप्त).{0,30}(पिन|pin)",
+          "(पिन|pin).{0,30}(डालें|डालो|डालिए).{0,30}(पैसे|रकम|रिफंड)",
+          "(पैसे|रक्कम|परतावा).{0,30}(मिळवण्यासाठी|घेण्यासाठी).{0,30}(पिन|pin)",
+          "स्कॅन करा.{0,30}(पैसे|रक्कम) मिळ",
+          "स्कैन कर.{0,30}(पैसे (पा|मिल)|रकम (पा|मिल))"
+        ]
+      ],
+      "title": {"en": "PIN to 'receive' money", "hi": "पैसे 'पाने' के लिए PIN", "mr": "पैसे 'मिळवण्यासाठी' PIN"},
+      "explain": {"en": "Your UPI PIN only ever sends money. You never need it, or a scan, to receive.", "hi": "UPI PIN डालने से पैसे सिर्फ़ जाते हैं। पैसे पाने के लिए न PIN चाहिए, न स्कैन।", "mr": "UPI PIN टाकल्यावर पैसे फक्त जातात. पैसे मिळवण्यासाठी PIN किंवा स्कॅन लागत नाही."}
+    },
+    {
+      "id": "apk_file",
+      "weight": 50,
+      "strong": true,
+      "groups": [["\\.apk\\b", "\\bapk\\b", "एपीके"]],
+      "unless": ["(do not|don'?t|never|avoid) (install|download|open|click)", "unknown sources? (are|is)", "सावधान", "इंस्टॉल न करें", "डाउनलोड न करें", "करू नका"],
+      "title": {"en": "Asks you to install an APK", "hi": "APK फ़ाइल इंस्टॉल करवा रहा है", "mr": "APK फाइल इन्स्टॉल करायला सांगतोय"},
+      "explain": {"en": "An app file sent on chat can read your SMS and OTPs. Install apps only from the Play Store.", "hi": "चैट पर आई ऐप फ़ाइल आपके SMS और OTP पढ़ सकती है। ऐप सिर्फ़ Play Store से लें।", "mr": "चॅटवर आलेली ॲप फाइल तुमचे SMS आणि OTP वाचू शकते. ॲप फक्त Play Store वरून घ्या."}
+    },
+    {
+      "id": "remote_access",
+      "weight": 50,
+      "strong": true,
+      "groups": [["anydesk", "any desk", "teamviewer", "team viewer", "quick ?support", "rustdesk", "airdroid", "एनीडेस्क"]],
+      "unless": ["(do not|don'?t|never|avoid) (install|download|use|share)", "सावधान", "न करें", "करू नका"],
+      "title": {"en": "Asks for a screen-sharing app", "hi": "स्क्रीन शेयर ऐप डलवा रहा है", "mr": "स्क्रीन शेअर ॲप टाकायला सांगतोय"},
+      "explain": {"en": "Apps like AnyDesk let a stranger see and use your phone, bank app included.", "hi": "AnyDesk जैसे ऐप से अनजान व्यक्ति आपका फ़ोन और बैंक ऐप चला सकता है।", "mr": "AnyDesk सारख्या ॲपने अनोळखी व्यक्ती तुमचा फोन आणि बँक ॲप वापरू शकते."}
+    },
+    {
+      "id": "kyc_block",
+      "weight": 40,
+      "supersedes": ["account_block"],
+      "groups": [
+        ["\\be-?kyc\\b", "\\bre-?kyc\\b", "\\bkyc\\b", "\\bpan( card)? (link|update|not linked|is not)", "aadhaa?r (link|update|not linked)", "केवाईसी", "के\\.वाई\\.सी", "पैन कार्ड", "पॅन कार्ड"],
+        ["block", "suspend", "deactivat", "freez", "frozen", "(will be|has been|is) closed", "on hold", "\\bband\\b", "बंद", "ब्लॉक", "निलंबित", "रद्द", "फ्रीज"]
+      ],
+      "unless": ["visit (your )?(nearest|home|base) branch", "never asks?", "will never"],
+      "title": {"en": "KYC or account-block threat", "hi": "KYC या खाता बंद होने की धमकी", "mr": "KYC किंवा खाते बंद होण्याची धमकी"},
+      "explain": {"en": "Banks don't block accounts over a text, and never send KYC links on SMS or WhatsApp.", "hi": "बैंक SMS या WhatsApp पर KYC लिंक नहीं भेजते और न ही ऐसे खाता बंद करते हैं।", "mr": "बँका SMS किंवा WhatsApp वर KYC लिंक पाठवत नाहीत आणि असं खातं बंद करत नाहीत."}
+    },
+    {
+      "id": "account_block",
+      "weight": 30,
+      "groups": [
+        ["(bank |savings |your )?(account|a/c|khata)\\s.{0,30}(will be |has been |is |are |get )(blocked|suspended|deactivated|frozen|closed|band)", "(खाता|खाते|अकाउंट).{0,30}(बंद|ब्लॉक|फ्रीज|निलंबित)"]
+      ],
+      "unless": ["unblocked", "successfully", "as per your request", "at your request", "visit (your )?(nearest|home|base) branch"],
+      "title": {"en": "Threat to block your account", "hi": "खाता बंद करने की धमकी", "mr": "खाते बंद करण्याची धमकी"},
+      "explain": {"en": "Banks don't close accounts through a forwarded message. Call the number on your card or passbook.", "hi": "बैंक फ़ॉरवर्ड मैसेज से खाता बंद नहीं करते। अपने कार्ड या पासबुक पर लिखे नंबर पर फ़ोन करें।", "mr": "बँका फॉरवर्ड मेसेजने खाते बंद करत नाहीत. तुमच्या कार्डवर किंवा पासबुकवर दिलेल्या नंबरवर फोन करा."}
+    },
+    {
+      "id": "electricity_cut",
+      "weight": 50,
+      "strong": true,
+      "groups": [
+        ["electricity", "power (supply|connection|cut)", "\\bbijli\\b", "light bill", "\\beb bill\\b", "\\bmseb\\b", "msedcl", "mahavitaran", "\\bbses\\b", "discom", "बिजली", "वीज", "लाइट बिल", "महावितरण"],
+        ["disconnect", "\\bcut\\b", "\\bkaat", "कट", "काट", "खंडित", "बंद"],
+        ["tonight", "\\b(9|9\\.30|9:30|10|10\\.30|10:30) ?pm\\b", "\\b9[:.]30\\b", "(call|contact|whatsapp|officer)\\D{0,25}[6-9]\\d{4}", "आज रात", "आज रात्री", "रात्री", "(संपर्क|कॉल|फोन)\\D{0,20}[6-9]\\d{4}"]
+      ],
+      "title": {"en": "Power-cut threat", "hi": "बिजली काटने की धमकी", "mr": "वीज कापण्याची धमकी"},
+      "explain": {"en": "Power companies don't ask you to call a personal number before a cut. Pay only in the official app or site.", "hi": "बिजली कंपनी कनेक्शन काटने से पहले किसी निजी नंबर पर फ़ोन करने को नहीं कहती। बिल सिर्फ़ ऑफ़िशियल ऐप या साइट पर भरें।", "mr": "वीज कंपनी कनेक्शन कापण्याआधी खाजगी नंबरवर फोन करायला सांगत नाही. बिल फक्त अधिकृत ॲप किंवा साइटवर भरा."}
+    },
+    {
+      "id": "job_fee",
+      "weight": 45,
+      "groups": [
+        ["intern(ship)?", "\\bjobs?\\b", "offer letter", "placement", "work from home", "part[- ]time", "hiring", "recruit", "vacanc", "\\bselected\\b", "नौकरी", "जॉब", "इंटर्नशिप", "नोकरी", "भरती", "वर्क फ्रॉम होम", "चयन", "निवड"],
+        ["registration (fee|charges?|amount)", "security (deposit|fee|amount)", "training (fee|charges?)", "processing (fee|charges?)", "joining (fee|charges?|kit)", "kit (fee|charges?)", "certificate (fee|charges?)", "(refundable|one[- ]time) (fee|amount|deposit|charges?)", "pay\\s.{0,25}(to (confirm|book|reserve|secure)|for (your |the )?(seat|slot|registration|offer|id card|laptop))", "रजिस्ट्रेशन (फीस|शुल्क|चार्ज)", "पंजीकरण शुल्क", "नोंदणी (शुल्क|फी)", "सिक्योरिटी डिपॉजिट", "सिक्युरिटी डिपॉझिट", "प्रशिक्षण शुल्क", "फीस (भरें|भरनी|जमा)", "फी भरा"]
+      ],
+      "title": {"en": "Fee for a job or internship", "hi": "नौकरी या इंटर्नशिप के लिए फ़ीस", "mr": "नोकरी किंवा इंटर्नशिपसाठी फी"},
+      "explain": {"en": "Real employers and AICTE internships don't charge you to join. A 'refundable' fee is the scam.", "hi": "असली कंपनी या AICTE इंटर्नशिप जॉइन करने के पैसे नहीं लेती। 'रिफंडेबल' फ़ीस ही ठगी है।", "mr": "खरी कंपनी किंवा AICTE इंटर्नशिप जॉइन करण्यासाठी पैसे घेत नाही. 'रिफंडेबल' फी हीच फसवणूक आहे."}
+    },
+    {
+      "id": "task_scam",
+      "weight": 45,
+      "strong": true,
+      "groups": [
+        [
+          "(like|subscribe|rate|review|follow)\\s.{0,40}(earn|per task|daily income|₹\\s?\\d+ (per|each))",
+          "(like|subscribe|rate|follow)\\s.{0,30}(kamao|kamaye|kamaiye|kamai)",
+          "ghar baithe.{0,40}(kamai|kamao|kamaye|earn|₹|rs\\.?\\s?\\d)",
+          "\\broz\\s.{0,15}\\d.{0,15}(kamao|kamaye|kamai)",
+          "(earn|income|kamai)\\s.{0,30}(daily|per day|every day|ghar baithe)",
+          "prepaid task",
+          "telegram (task|group).{0,40}(earn|profit|income)",
+          "work from home.{0,60}(earn|daily|₹|rs\\.?\\s?\\d)",
+          "घर बैठे.{0,30}(कमा|₹|रु)",
+          "(कमाई|कमाएं|कमाओ).{0,20}(रोज़|रोज|प्रतिदिन)",
+          "(रोज़|रोज|प्रतिदिन).{0,20}(कमाई|कमाएं|कमाओ)",
+          "घरबसल्या.{0,30}(कमवा|कमाई|₹)",
+          "दररोज.{0,20}(कमवा|कमाई|₹)"
+        ]
+      ],
+      "title": {"en": "Paid-task or easy-money offer", "hi": "टास्क या घर बैठे कमाई का ऑफ़र", "mr": "टास्क किंवा घरबसल्या कमाईची ऑफर"},
+      "explain": {"en": "Getting paid to like videos or rate hotels is how task scams start. Then they ask you to 'invest'.", "hi": "वीडियो लाइक या होटल रेटिंग के पैसे देकर टास्क स्कैम शुरू होता है, फिर 'इन्वेस्ट' करवाते हैं।", "mr": "व्हिडिओ लाईक किंवा हॉटेल रेटिंगचे पैसे देऊन टास्क स्कॅम सुरू होतो, मग 'इन्व्हेस्ट' करायला लावतात."}
+    },
+    {
+      "id": "investment",
+      "weight": 45,
+      "groups": [
+        [
+          "guaranteed (returns?|profits?|income)",
+          "double (your|the) money",
+          "money doubl",
+          "\\d{2,3} ?% (returns?|profits?|monthly|daily|per (day|month|week))",
+          "(daily|weekly|monthly) (profit|returns?) of",
+          "(stock|share market|trading|crypto|forex|ipo).{0,40}(vip group|whatsapp group|telegram group|tips group|insider)",
+          "ipo allot",
+          "पैसे डबल",
+          "पैसा डबल",
+          "गारंटी(ड)? (रिटर्न|मुनाफा|लाभ)",
+          "पैसे दुप्पट",
+          "हमखास (परतावा|नफा)"
+        ]
+      ],
+      "title": {"en": "Promised returns", "hi": "पक्के मुनाफ़े का वादा", "mr": "हमखास नफ्याचं आश्वासन"},
+      "explain": {"en": "No real investment guarantees profit. 'VIP trading groups' show fake gains, then block withdrawals.", "hi": "कोई असली निवेश पक्का मुनाफ़ा नहीं देता। 'VIP ट्रेडिंग ग्रुप' नकली कमाई दिखाकर पैसे निकालने नहीं देते।", "mr": "कोणतीही खरी गुंतवणूक हमखास नफा देत नाही. 'VIP ट्रेडिंग ग्रुप' खोटा नफा दाखवून पैसे काढू देत नाहीत."}
+    },
+    {
+      "id": "prize_lottery",
+      "weight": 40,
+      "groups": [
+        ["\\bwon\\b", "\\bwinner\\b", "lottery", "lucky draw", "\\bkbc\\b", "kaun banega crorepati", "jackpot", "prize (money|amount|of)", "reward points?.{0,30}(expir|redeem)", "इनाम", "लॉटरी", "जीता", "जीते हैं", "लकी ड्रॉ", "बक्षीस", "जिंकल", "केबीसी"],
+        ["claim", "processing (fee|charge)", "\\btax\\b", "\\bgst\\b", "\\b(pay|deposit|transfer)\\b", "registration", "contact", "whatsapp", "\\bcall\\b", "click", "\\blink\\b", "redeem", "क्लेम", "शुल्क", "संपर्क", "कॉल", "क्लिक", "लिंक", "दावा"]
+      ],
+      "unless": ["cashback (of )?(rs\\.?|₹)?\\s?[\\d,]+ (has been |is )?credited", "has been credited to your"],
+      "title": {"en": "Prize you didn't enter", "hi": "ऐसा इनाम जिसमें आपने हिस्सा नहीं लिया", "mr": "ज्यात भाग घेतला नाही असं बक्षीस"},
+      "explain": {"en": "You can't win a lottery you never entered, and real prizes never ask for a fee first.", "hi": "जिस लॉटरी में आपने हिस्सा नहीं लिया, वो आप जीत नहीं सकते। असली इनाम पहले फ़ीस नहीं मांगता।", "mr": "ज्या लॉटरीत भाग घेतला नाही ती जिंकता येत नाही. खरं बक्षीस आधी फी मागत नाही."}
+    },
+    {
+      "id": "parcel_customs",
+      "weight": 40,
+      "groups": [
+        ["parcel", "courier", "package", "consignment", "shipment", "fedex", "\\bdhl\\b", "blue ?dart", "india ?post", "speed ?post", "पार्सल", "कूरियर", "कुरियर", "पॅकेज"],
+        ["customs", "seized", "illegal", "\\bdrugs?\\b", "passports?", "(address|pin ?code) (is )?(incomplete|incorrect|wrong|invalid|not (clear|found))", "update (your )?(delivery )?address", "re-?deliver", "undeliver", "(held|on hold|stuck|detained) (at|in|due)", "clearance (fee|charge)", "कस्टम", "जब्त", "पता (अधूरा|गलत|अपडेट)", "पत्ता (अपूर्ण|चुकीचा|अपडेट)"]
+      ],
+      "title": {"en": "Parcel or customs problem", "hi": "पार्सल या कस्टम की परेशानी", "mr": "पार्सल किंवा कस्टमची अडचण"},
+      "explain": {"en": "'Your parcel is held' messages lead to a fake fee page or a fake police call. Check in the courier's own app.", "hi": "'आपका पार्सल रुका है' वाले मैसेज नकली फ़ीस पेज या नकली पुलिस कॉल तक ले जाते हैं। कूरियर के अपने ऐप में देखें।", "mr": "'तुमचं पार्सल अडकलंय' असे मेसेज खोट्या फी पेजवर किंवा खोट्या पोलीस कॉलकडे नेतात. कुरियरच्या स्वतःच्या ॲपमध्ये तपासा."}
+    },
+    {
+      "id": "refund_agent",
+      "weight": 40,
+      "groups": [
+        ["refund", "cashback", "customer (care|support|service)", "helpline", "support (team|executive|agent)", "रिफंड", "कस्टमर केयर", "कस्टमर केअर", "ग्राहक सेवा", "हेल्पलाइन"],
+        ["screen ?shar", "\\bupi pin\\b", "(enter|share|send) (your )?(pin|card number|card details|debit card|credit card|bank details)", "google form", "fill (the |this |a )?form", "(download|install) (the |this )?app (from|on) (this|the|given) link", "anydesk|teamviewer|quick ?support|rustdesk", "(call|whatsapp)\\D{0,20}[6-9]\\d{4}", "स्क्रीन शेयर", "फॉर्म भरें", "फॉर्म भरा", "ऐप डाउनलोड", "ॲप डाउनलोड"]
+      ],
+      "title": {"en": "Fake refund or customer care", "hi": "नकली रिफंड या कस्टमर केयर", "mr": "खोटा रिफंड किंवा कस्टमर केअर"},
+      "explain": {"en": "Refunds come back on their own. Real customer care never needs your PIN, card details or a screen share.", "hi": "रिफंड अपने आप वापस आता है। असली कस्टमर केयर को PIN, कार्ड डिटेल या स्क्रीन शेयर नहीं चाहिए।", "mr": "रिफंड आपोआप परत येतो. खऱ्या कस्टमर केअरला PIN, कार्डचा तपशील किंवा स्क्रीन शेअर लागत नाही."}
+    },
+    {
+      "id": "bank_details",
+      "weight": 45,
+      "strong": true,
+      "groups": [
+        [
+          "(?<!not |n'?t |never )(share|send|enter|update|provide|verify|confirm|fill|reply with)\\s.{0,20}(card number|card details|\\bcvv\\b|expiry date|net ?banking (password|id|user ?id|login)|atm pin|debit card|credit card|bank details|login details|account number)",
+          "(कार्ड नंबर|कार्ड की जानकारी|खाता नंबर|बैंक डिटेल|नेट बैंकिंग पासवर्ड).{0,20}(?<!न )(भेजें|बताएं|भरें|दें)",
+          "(कार्ड नंबर|खाते क्रमांक|बँक तपशील).{0,20}(पाठवा|सांगा|भरा)"
+        ]
+      ],
+      "unless": ["(will )?never (asks?|calls?)", "(do not|don'?t|never) (share|disclose)", "शेयर न करें", "शेअर करू नका"],
+      "title": {"en": "Asks for card or bank details", "hi": "कार्ड या बैंक की जानकारी मांग रहा है", "mr": "कार्ड किंवा बँकेचा तपशील मागतोय"},
+      "explain": {"en": "Your bank already has these. Anyone asking for a card number, CVV or net-banking login is not your bank.", "hi": "ये जानकारी आपके बैंक के पास पहले से है। जो कार्ड नंबर, CVV या लॉगिन मांगे, वो बैंक नहीं है।", "mr": "हा तपशील तुमच्या बँकेकडे आधीच असतो. कार्ड नंबर, CVV किंवा लॉगिन मागणारा बँक नाही."}
+    },
+    {
+      "id": "sim_block",
+      "weight": 45,
+      "groups": [
+        ["mobile (number|connection|service)", "\\bsim\\b", "phone number", "whatsapp (account|number)", "मोबाइल (नंबर|सेवा|कनेक्शन)", "सिम", "मोबाईल (नंबर|सेवा)"],
+        ["block", "deactivat", "suspend", "disconnect", "(will be|be) (closed|stopped|cut)", "बंद", "ब्लॉक"],
+        ["\\btrai\\b", "\\bdot\\b", "department of telecom", "telecom (department|authority)", "\\b(2|two) hours", "press [0-9]", "दूरसंचार", "ट्राई", "2 घंटे", "दो घंटे", "2 तास", "दोन तास"]
+      ],
+      "title": {"en": "SIM or number-block threat", "hi": "सिम या नंबर बंद करने की धमकी", "mr": "सिम किंवा नंबर बंद करण्याची धमकी"},
+      "explain": {"en": "TRAI and the telecom department don't call or text to cut your number. Check on Sanchar Saathi.", "hi": "TRAI या दूरसंचार विभाग नंबर बंद करने के लिए कॉल या मैसेज नहीं करते। संचार साथी पर जांचें।", "mr": "TRAI किंवा दूरसंचार विभाग नंबर बंद करण्यासाठी कॉल किंवा मेसेज करत नाहीत. संचार साथीवर तपासा."}
+    },
+    {
+      "id": "traffic_challan",
+      "weight": 40,
+      "groups": [
+        ["challan", "चालान", "चलान", "ई-चलन", "ई चलन"],
+        ["\\bpay\\b", "\\blink\\b", "click", "download", "\\bapk\\b", "https?://", "भरें", "भुगतान", "लिंक", "भरा"]
+      ],
+      "unless": ["parivahan\\.gov\\.in"],
+      "title": {"en": "Traffic challan with a link", "hi": "लिंक वाला ट्रैफ़िक चालान", "mr": "लिंकसह ट्रॅफिक चलन"},
+      "explain": {"en": "Fake challan messages carry fake pay pages or APK files. Check only on echallan.parivahan.gov.in.", "hi": "नकली चालान मैसेज में नकली पेमेंट पेज या APK होती है। सिर्फ़ echallan.parivahan.gov.in पर जांचें।", "mr": "खोट्या चलन मेसेजमध्ये खोटं पेमेंट पेज किंवा APK असते. फक्त echallan.parivahan.gov.in वर तपासा."}
+    },
+    {
+      "id": "family_emergency",
+      "weight": 35,
+      "groups": [
+        ["(this is my|my) new number", "new number", "phone (is )?(broken|lost|switched off|not working)", "accident", "hospital", "(i am|i'm) in (trouble|danger)", "\\bstuck\\b", "नया नंबर", "मुसीबत", "अस्पताल", "एक्सीडेंट", "हॉस्पिटल", "नवीन नंबर", "अडचणीत", "दवाखान"],
+        ["(send|transfer|need)\\s.{0,20}(money|rs\\.?|₹|paise|amount)", "\\b(gpay|google pay|phonepe|paytm)\\b", "(पैसे|रुपये).{0,20}(भेज|डाल|ट्रांसफर|चाहिए)", "पैसे (पाठव|हवे)"]
+      ],
+      "title": {"en": "Urgent money for a 'relative'", "hi": "'रिश्तेदार' के लिए तुरंत पैसे", "mr": "'नातेवाईका'साठी तातडीने पैसे"},
+      "explain": {"en": "Call the person on their old number before you pay. Scammers copy names and photos.", "hi": "पैसे भेजने से पहले उस व्यक्ति को उनके पुराने नंबर पर फ़ोन करें। ठग नाम और फ़ोटो कॉपी कर लेते हैं।", "mr": "पैसे पाठवण्याआधी त्या व्यक्तीला जुन्या नंबरवर फोन करा. ठग नाव आणि फोटो कॉपी करतात."}
+    },
+    {
+      "id": "free_offer",
+      "weight": 35,
+      "groups": [
+        ["free (recharge|laptop|scooty|smartphone|gift|data|mobile)", "(मुफ्त|मुफ़्त|फ्री) (रिचार्ज|लैपटॉप|स्कूटी|मोबाइल|गिफ्ट|डेटा)", "मोफत (रिचार्ज|लॅपटॉप|मोबाईल)"],
+        ["click", "\\blink\\b", "https?://", "register", "लिंक", "क्लिक"]
+      ],
+      "title": {"en": "Free gift with a link", "hi": "लिंक के साथ मुफ़्त तोहफ़ा", "mr": "लिंकसोबत मोफत भेट"},
+      "explain": {"en": "Free recharge or laptop 'schemes' on forwards steal your details or install malware.", "hi": "फ़ॉरवर्ड में आने वाली मुफ़्त रिचार्ज या लैपटॉप 'योजनाएं' आपकी जानकारी चुराती हैं या मालवेयर डालती हैं।", "mr": "फॉरवर्डमधल्या मोफत रिचार्ज किंवा लॅपटॉप 'योजना' तुमची माहिती चोरतात किंवा मालवेअर टाकतात."}
+    },
+    {
+      "id": "upi_collect",
+      "weight": 25,
+      "needsCompany": true,
+      "groups": [["collect request", "payment request", "request (money|payment) from", "approve (the |this )?(request|payment)", "accept (the |this )?(payment )?request", "कलेक्ट रिक्वेस्ट", "रिक्वेस्ट (स्वीकार|अप्रूव|एक्सेप्ट)", "विनंती (स्वीकार|मंजूर)"]],
+      "title": {"en": "UPI collect request", "hi": "UPI कलेक्ट रिक्वेस्ट", "mr": "UPI कलेक्ट रिक्वेस्ट"},
+      "explain": {"en": "Approving a collect request takes money out of your account. It never puts money in.", "hi": "कलेक्ट रिक्वेस्ट मंज़ूर करने से पैसे आपके खाते से जाते हैं, आते नहीं।", "mr": "कलेक्ट रिक्वेस्ट मंजूर केल्यावर पैसे खात्यातून जातात, येत नाहीत."}
+    },
+    {
+      "id": "payment_demand",
+      "weight": 20,
+      "needsCompany": true,
+      "groups": [[
+        "(?<!will |'ll |shall )(pay|transfer|deposit|send)\\s.{0,40}(rs\\.?|₹|inr|rupees|amount|money|fee|fine|penalty|charges)",
+        "(rs\\.?|₹)\\s?\\d[\\d,]*.{0,30}\\b(?<!//)(pay|transfer|deposit)\\b",
+        "verification (amount|fee|charges?)",
+        "(safe|secure) account",
+        "rbi (account|verification)",
+        "\\brefundable\\b",
+        "\\bpenalty\\b",
+        "fine of",
+        "जुर्माना",
+        "पैसे (भेज|जमा|ट्रांसफर|ट्रान्सफर)",
+        "(रुपये|रुपए|पैसे).{0,25}(भेज दो|भेजो|ट्रांसफर कर|कर दो|डाल दो)",
+        "(google pay|gpay|phonepe|paytm)\\s?(kar|kardo|kar do|कर)",
+        "भुगतान कर",
+        "पेमेंट कर",
+        "पैसे पाठवा",
+        "रक्कम (भरा|जमा|पाठवा)",
+        "पैसे भरा",
+        "फीस (भर|जमा)",
+        "फी भरा",
+        "दंड भर"
+      ]],
+      "title": {"en": "Asks you to pay", "hi": "पैसे भेजने को कह रहा है", "mr": "पैसे भरायला सांगतोय"},
+      "explain": {"en": "It wants money from you. These scams always end with a payment.", "hi": "ये आपसे पैसे मांग रहा है। ऐसी ठगी आखिर में पैसे पर ही आती है।", "mr": "हा तुमच्याकडून पैसे मागतोय. अशी फसवणूक शेवटी पैशांवरच येते."}
+    },
+    {
+      "id": "secrecy",
+      "weight": 20,
+      "needsCompany": true,
+      "groups": [[
+        "(don'?t|do not|never) (tell|inform) (anyone|anybody|your family|family|police|the bank|your bank)",
+        "keep (it|this) (secret|confidential)",
+        "confidential (matter|case|investigation)",
+        "(stay|remain) on (the )?(call|video|line)",
+        "(don'?t|do not) (disconnect|cut) the call",
+        "kisi ko mat bata",
+        "किसी को (मत|न) बता",
+        "किसी को कुछ न",
+        "फ़ोन (मत|न) काट",
+        "फोन (मत|न) काट",
+        "कोणालाही सांगू नका",
+        "कुणालाही सांगू नका",
+        "फोन (कट|बंद) करू नका"
+      ]],
+      "title": {"en": "Tells you to keep it secret", "hi": "किसी को न बताने को कह रहा है", "mr": "कोणालाही न सांगायला सांगतोय"},
+      "explain": {"en": "Real officers and banks never ask you to hide a case from your family.", "hi": "असली अफ़सर या बैंक कभी नहीं कहते कि बात परिवार से छुपाओ।", "mr": "खरे अधिकारी किंवा बँक कधीही कुटुंबापासून गोष्ट लपवायला सांगत नाहीत."}
+    },
+    {
+      "id": "urgency",
+      "weight": 10,
+      "needsCompany": true,
+      "groups": [["immediately", "\\burgent", "within (24|2|12|48) ?(hours|hrs)", "\\btoday\\b", "tonight", "last (warning|reminder|chance)", "final (notice|warning)", "\\bturant\\b", "तुरंत", "आज ही", "आज रात", "24 घंटे", "लगेच", "ताबडतोब", "आजच", "अंतिम (चेतावनी|सूचना)"]],
+      "title": {"en": "Rushes you", "hi": "जल्दबाज़ी करवा रहा है", "mr": "घाई करायला लावतोय"},
+      "explain": {"en": "A deadline of hours is how they stop you from checking with anyone.", "hi": "घंटों की मोहलत इसलिए दी जाती है ताकि आप किसी से पूछ न सकें।", "mr": "काही तासांची मुदत यासाठी देतात की तुम्ही कोणाला विचारू नये."}
+    },
+    {
+      "id": "click_link",
+      "weight": 10,
+      "needsCompany": true,
+      "groups": [["click (on )?(the |this |below |given )?link", "tap (on )?(the |this )?link", "लिंक पर क्लिक", "लिंकवर क्लिक", "link pe click"]],
+      "title": {"en": "Pushes you to tap a link", "hi": "लिंक पर क्लिक करवा रहा है", "mr": "लिंकवर क्लिक करायला लावतोय"},
+      "explain": {"en": "Open the bank or company app yourself instead of a link in a message.", "hi": "मैसेज के लिंक के बजाय बैंक या कंपनी का ऐप खुद खोलें।", "mr": "मेसेजमधल्या लिंकऐवजी बँक किंवा कंपनीचं ॲप स्वतः उघडा."}
+    }
+  ],
+  "builtins": {
+    "lookalike_domain": {
+      "weight": 45,
+      "strong": true,
+      "supersedes": ["risky_tld"],
+      "title": {"en": "Fake {brand} web address", "hi": "{brand} का नकली वेब पता", "mr": "{brand} चा खोटा वेब पत्ता"},
+      "explain": {"en": "{host} uses the name {brand} but is not {brand}'s website.", "hi": "{host} में {brand} का नाम है, पर ये {brand} की वेबसाइट नहीं है।", "mr": "{host} मध्ये {brand} चं नाव आहे, पण ही {brand} ची वेबसाइट नाही."}
+    },
+    "brand_in_address": {
+      "weight": 25,
+      "title": {"en": "Uses {brand}'s name", "hi": "{brand} के नाम का इस्तेमाल", "mr": "{brand} च्या नावाचा वापर"},
+      "explain": {"en": "{host} has {brand} in it but is not one of {brand}'s known addresses. Open {brand}'s own app instead.", "hi": "{host} में {brand} लिखा है, पर ये {brand} का जाना-पहचाना पता नहीं है। इसके बजाय {brand} का अपना ऐप खोलें।", "mr": "{host} मध्ये {brand} लिहिलं आहे, पण हा {brand} चा ओळखीचा पत्ता नाही. त्याऐवजी {brand} चं स्वतःचं ॲप उघडा."}
+    },
+    "risky_host": {
+      "weight": 30,
+      "title": {"en": "Free website host", "hi": "मुफ़्त वेबसाइट होस्ट", "mr": "मोफत वेबसाइट होस्ट"},
+      "explain": {"en": "{host} is on a free hosting service. Banks and government offices don't use these.", "hi": "{host} मुफ़्त होस्टिंग पर है। बैंक या सरकारी दफ़्तर इनका इस्तेमाल नहीं करते।", "mr": "{host} मोफत होस्टिंगवर आहे. बँका किंवा सरकारी कार्यालयं हे वापरत नाहीत."}
+    },
+    "ip_link": {
+      "weight": 35,
+      "title": {"en": "Link with no name", "hi": "बिना नाम का लिंक", "mr": "नाव नसलेली लिंक"},
+      "explain": {"en": "The link is a bare number address. Real services use their own name.", "hi": "ये लिंक सिर्फ़ नंबरों वाला पता है। असली सेवाएं अपने नाम का पता रखती हैं।", "mr": "ही लिंक फक्त आकड्यांचा पत्ता आहे. खऱ्या सेवा स्वतःच्या नावाचा पत्ता वापरतात."}
+    },
+    "url_shortener": {
+      "weight": 15,
+      "needsCompany": true,
+      "title": {"en": "Hidden link", "hi": "छुपा हुआ लिंक", "mr": "लपवलेली लिंक"},
+      "explain": {"en": "A short link hides where it really goes.", "hi": "छोटा लिंक असली पता छुपा देता है।", "mr": "छोटी लिंक खरा पत्ता लपवते."}
+    },
+    "risky_tld": {
+      "weight": 15,
+      "needsCompany": true,
+      "title": {"en": "Unusual web address", "hi": "अजीब वेब पता", "mr": "विचित्र वेब पत्ता"},
+      "explain": {"en": "Addresses like {host} are cheap to register and common on fake sites.", "hi": "{host} जैसे पते सस्ते मिलते हैं और नकली साइटों पर आम हैं।", "mr": "{host} सारखे पत्ते स्वस्त मिळतात आणि खोट्या साइटवर सामान्य आहेत."}
+    },
+    "qr_to_receive": {
+      "weight": 55,
+      "strong": true,
+      "supersedes": ["upi_pin_to_receive"],
+      "title": {"en": "QR to 'receive' money", "hi": "पैसे 'पाने' के लिए QR", "mr": "पैसे 'मिळवण्यासाठी' QR"},
+      "explain": {"en": "Scanning a UPI QR only sends money. Nobody pays you by making you scan.", "hi": "UPI QR स्कैन करने से पैसे सिर्फ़ जाते हैं। स्कैन करवाकर कोई पैसे नहीं देता।", "mr": "UPI QR स्कॅन केल्यावर पैसे फक्त जातात. स्कॅन करायला लावून कोणी पैसे देत नाही."}
+    },
+    "qr_preset_amount": {
+      "weight": 25,
+      "title": {"en": "QR asks you to pay {amount}", "hi": "QR {amount} भेजने को कह रहा है", "mr": "QR {amount} पाठवायला सांगतोय"},
+      "explain": {"en": "This QR is set to take {amount} from you. Pay only if you are buying something from them.", "hi": "ये QR आपसे {amount} लेने के लिए बना है। तभी भरें जब आप उनसे कुछ खरीद रहे हों।", "mr": "हा QR तुमच्याकडून {amount} घेण्यासाठी बनवला आहे. त्यांच्याकडून काही विकत घेत असाल तरच भरा."}
+    }
+  },
+  "receiveWords": ["\\breceive", "\\brefund", "cashback", "\\bprize", "\\bwon\\b", "\\breward", "get (your |the )?(money|payment|amount)", "पैसे (पाने|लेने|मिलेंगे|मिलेगा|मिल जाएंगे)", "रिफंड", "कैशबैक", "इनाम", "पैसे मिळ", "परतावा", "बक्षीस"],
+  "trustedSuffixes": [".gov.in", ".nic.in", ".bank.in", ".ac.in", ".edu.in", ".res.in", ".mil.in", ".gov"],
+  "shorteners": ["bit.ly", "tinyurl.com", "t.ly", "cutt.ly", "rb.gy", "is.gd", "v.gd", "shorturl.at", "rebrand.ly", "tiny.cc", "s.id", "ow.ly", "t.co", "shrtco.de", "u.to", "clck.ru", "short.gy", "bl.ink", "tny.im", "qr.ae", "surl.li", "goo.su"],
+  "riskyHosts": ["ngrok.io", "ngrok-free.app", "ngrok.app", "trycloudflare.com", "vercel.app", "netlify.app", "web.app", "firebaseapp.com", "pages.dev", "workers.dev", "github.io", "glitch.me", "repl.co", "replit.app", "replit.dev", "000webhostapp.com", "blogspot.com", "wixsite.com", "weebly.com", "godaddysites.com", "herokuapp.com", "onrender.com", "surge.sh", "square.site", "carrd.co", "webflow.io", "sites.google.com"],
+  "riskyTlds": ["top", "xyz", "icu", "buzz", "cyou", "sbs", "click", "rest", "monster", "cfd", "lol", "bond", "quest", "cam", "tk", "ml", "ga", "cf", "gq", "work", "vip", "win", "loan", "bid", "kim", "men", "party", "review", "date", "racing", "download", "stream", "zip", "mov"],
+  "brands": [
+    {"name": "SBI", "tokens": ["sbi", "onlinesbi", "yonosbi", "sbiyono"], "domains": ["sbi.co.in", ".sbi", "sbicard.com", "onlinesbi.com", "sbimf.com", "sbilife.co.in", "sbigeneral.in"]},
+    {"name": "HDFC Bank", "tokens": ["hdfc", "hdfcbank"], "domains": ["hdfcbank.com", "hdfc.com", "hdfclife.com", "hdfcergo.com", "hdfcfund.com", "hdfcsec.com", "hdfcbank.net"]},
+    {"name": "ICICI Bank", "tokens": ["icici", "icicibank"], "domains": ["icicibank.com", "icicidirect.com", "icicilombard.com", "iciciprulife.com", "icicibank.co.in", "icicisecurities.com", "icicipruamc.com"]},
+    {"name": "Axis Bank", "tokens": ["axisbank"], "domains": ["axisbank.com", "axisbank.co.in"]},
+    {"name": "Kotak", "tokens": ["kotak"], "domains": ["kotak.com", "kotaksecurities.com", "kotakmf.com", "kotaklife.com"]},
+    {"name": "Paytm", "tokens": ["paytm"], "domains": ["paytm.com", "paytm.in", "paytmbank.com", "paytmmoney.com", "paytmpayments.com", "paytm.me", "paytmmall.com"]},
+    {"name": "PhonePe", "tokens": ["phonepe"], "domains": ["phonepe.com"]},
+    {"name": "Google Pay", "tokens": ["googlepay"], "domains": ["google.com", "google.co.in", "g.co"]},
+    {"name": "Amazon", "tokens": ["amazon", "amazonpay"], "domains": ["amazon.in", "amazon.com", "amazonpay.in", "amazon.co.in", "amzn.to", "amzn.in", "amazon.jobs", "media-amazon.com", "amazonaws.com", "amazon.co.uk", "amazon.ae", "amazontrust.com", "amazonpay.com", "primevideo.com"]},
+    {"name": "Flipkart", "tokens": ["flipkart"], "domains": ["flipkart.com", "fkrt.it", "flipkart.net", "flixcart.com", "flipkartwholesale.com"]},
+    {"name": "India Post", "tokens": ["indiapost", "speedpost", "ippb"], "domains": ["ippbonline.com", "ippbonline.in"]},
+    {"name": "Income Tax", "tokens": ["incometax", "itrefund"], "domains": []},
+    {"name": "Aadhaar", "tokens": ["uidai", "aadhaar", "aadhar"], "domains": []},
+    {"name": "NPCI", "tokens": ["npci", "bhimupi"], "domains": ["npci.org.in", "bhimupi.org.in"]},
+    {"name": "RBI", "tokens": ["rbi"], "domains": ["rbi.org.in"]},
+    {"name": "IRCTC", "tokens": ["irctc"], "domains": ["irctc.co.in", "irctc.com", "irctctourism.com"]},
+    {"name": "EPFO", "tokens": ["epfo", "epfindia"], "domains": []},
+    {"name": "Parivahan", "tokens": ["parivahan", "echallan", "mparivahan"], "domains": []},
+    {"name": "Mahavitaran", "tokens": ["mahadiscom", "msedcl", "mahavitaran"], "domains": ["mahadiscom.in", "mahadiscom.co.in"]},
+    {"name": "BSES", "tokens": ["bses"], "domains": ["bsesdelhi.com", "bsesrajdhani.com", "bsesyamuna.com"]},
+    {"name": "Tata Power", "tokens": ["tatapower"], "domains": ["tatapower.com", "tatapower-ddl.com"]},
+    {"name": "Adani Electricity", "tokens": ["adanielectricity"], "domains": ["adanielectricity.com", "adani.com"]},
+    {"name": "Jio", "tokens": ["jio", "myjio", "jiomart"], "domains": ["jio.com", "jiomart.com", "jiocinema.com", "jiohotstar.com", "jiosaavn.com", "jiomeet.jio.com"]},
+    {"name": "Airtel", "tokens": ["airtel"], "domains": ["airtel.in", "airtel.com", "airtelxstream.in", "airtelpayments.bank.in"]},
+    {"name": "Vi", "tokens": ["vodafone", "vodafoneidea"], "domains": ["myvi.in", "vodafoneidea.com", "vodafone.com"]},
+    {"name": "BSNL", "tokens": ["bsnl"], "domains": ["bsnl.co.in", "bsnl.in"]},
+    {"name": "TRAI", "tokens": ["trai"], "domains": []},
+    {"name": "Sanchar Saathi", "tokens": ["sancharsaathi"], "domains": []},
+    {"name": "Cybercrime portal", "tokens": ["cybercrime"], "domains": []},
+    {"name": "FASTag", "tokens": ["fastag"], "domains": ["ihmcl.co.in", "npci.org.in"]},
+    {"name": "LIC", "tokens": ["lic", "licindia"], "domains": ["licindia.in", "licindia.com"]},
+    {"name": "WhatsApp", "tokens": ["whatsapp"], "domains": ["whatsapp.com", "wa.me", "whatsapp.net"]},
+    {"name": "Instagram", "tokens": ["instagram"], "domains": ["instagram.com", "cdninstagram.com"]},
+    {"name": "Facebook", "tokens": ["facebook"], "domains": ["facebook.com", "fb.com", "fb.me", "facebookmail.com", "fbcdn.net"]},
+    {"name": "Google", "tokens": ["google"], "domains": ["google.com", "google.co.in", "youtube.com", "youtu.be", "g.co", "forms.gle", "goo.gl", "googleusercontent.com", "googleapis.com", "gstatic.com", "googlevideo.com", "googleadservices.com", "googletagmanager.com", "googlesyndication.com", "google.dev", "withgoogle.com", ".google", "googleblog.com", "googlemail.com"]},
+    {"name": "Netflix", "tokens": ["netflix"], "domains": ["netflix.com", "nflxext.com"]},
+    {"name": "Myntra", "tokens": ["myntra"], "domains": ["myntra.com"]},
+    {"name": "Meesho", "tokens": ["meesho"], "domains": ["meesho.com"]},
+    {"name": "Swiggy", "tokens": ["swiggy"], "domains": ["swiggy.com", "swiggy.in"]},
+    {"name": "Zomato", "tokens": ["zomato"], "domains": ["zomato.com"]},
+    {"name": "Delhivery", "tokens": ["delhivery"], "domains": ["delhivery.com"]},
+    {"name": "Blue Dart", "tokens": ["bluedart"], "domains": ["bluedart.com"]},
+    {"name": "DHL", "tokens": ["dhl"], "domains": ["dhl.com", "dhl.co.in", "dhl.de"]},
+    {"name": "FedEx", "tokens": ["fedex"], "domains": ["fedex.com"]},
+    {"name": "Naukri", "tokens": ["naukri"], "domains": ["naukri.com", "naukrigulf.com"]},
+    {"name": "Internshala", "tokens": ["internshala"], "domains": ["internshala.com"]},
+    {"name": "LinkedIn", "tokens": ["linkedin"], "domains": ["linkedin.com", "lnkd.in", "licdn.com"]},
+    {"name": "AICTE", "tokens": ["aicte"], "domains": ["aicte-india.org"]},
+    {"name": "DigiLocker", "tokens": ["digilocker"], "domains": []},
+    {"name": "GST", "tokens": ["gst"], "domains": []}
+  ]
+}

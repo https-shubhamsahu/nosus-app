@@ -1,0 +1,247 @@
+{
+ "checkedOn": "2026-11-06",
+ "about": "Bank fraud helplines and card-block SMS formats for the after-scam helper (lib/features/scam_help). Every SMS format here was read on the bank's own website on the date above; formats seen only on third-party sites are left out (null). The app offers an SMS draft only when its body needs nothing but the card's last four digits ({last4}) or no card detail at all; bodies that need a full card number, customer ID or date of birth stay here for reference and are not offered. Recheck before each release.",
+ "banks": [
+  {
+   "id": "sbi",
+   "name": "State Bank of India",
+   "helpline": "1800111109",
+   "helplineAlt": "18001234",
+   "helplineSource": "https://sbi.bank.in/web/customer-care/contact-us",
+   "cardBlockSms": {
+    "to": "567676",
+    "body": "BLOCK {last4}",
+    "source": "https://sbi.bank.in/web/personal-banking/cards/debit-card/sbi-virtual-debit-card"
+   },
+   "creditCardBlockSms": {
+    "to": "5676791",
+    "body": "BLOCK {last4}",
+    "source": "https://www.sbicard.com/en/faq/lost-stolen-reissue-replace-cards.page"
+   },
+   "upiBlockSms": null,
+   "notes": "1800 11 1109: SBI toll-free line for reporting unauthorised electronic transactions. On 1800 1234, IVR 0 blocks ATM card, UPI or net banking. 567676 is premium-rate. Credit cards are SBI Card (sbicard.com)."
+  },
+  {
+   "id": "hdfc",
+   "name": "HDFC Bank",
+   "helpline": "18001600",
+   "helplineAlt": "18002600",
+   "helplineSource": "https://www.hdfc.bank.in/contact-us",
+   "cardBlockSms": {
+    "to": "7308080808",
+    "body": "BLOCK DC {last4}",
+    "source": "https://www.hdfc.bank.in/debit-cards/services/block-debit-card-instantly"
+   },
+   "creditCardBlockSms": {
+    "to": "7308080808",
+    "body": "BLOCK CC {last4}",
+    "source": "https://hdfc.bank.in/credit-cards/block-loststolen-card"
+   },
+   "upiBlockSms": {
+    "to": "7308080808",
+    "body": "BLOCK UPI",
+    "source": "https://www.hdfc.bank.in/content/dam/hdfcbankpws/in/en/pdf/notice-board/customer-awareness/blockdebitcardandcreditcardthroughhdfcbanksmsbankingserviceenglish.pdf"
+   },
+   "notes": "The contact page names 1800 1600 / 1800 2600 for reporting fraud. The UPI keyword comes from a PDF marked valid to 30 June 2024 that is still hosted."
+  },
+  {
+   "id": "icici",
+   "name": "ICICI Bank",
+   "helpline": "18002662",
+   "helplineAlt": "18001080",
+   "helplineSource": "https://www.icici.bank.in/personal-banking/help/online-safe-banking/report-unauthorized-transaction",
+   "cardBlockSms": null,
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "1800 2662 is the fraud helpline; 1800 1080 is 24/7 customer care. ICICI's own SMS keyword list has no card-block keyword; 'BLOCK xxxx to 9215676766' is only on third-party sites."
+  },
+  {
+   "id": "axis",
+   "name": "Axis Bank",
+   "helpline": "18004030",
+   "helplineAlt": "04067174100",
+   "helplineSource": "https://www.axis.bank.in/contact-us",
+   "cardBlockSms": {
+    "to": "5676782",
+    "body": "BLOCKCARD",
+    "source": "https://www.axis.bank.in/docs/default-source/default-document-library/debitcard-mitc.pdf"
+   },
+   "creditCardBlockSms": {
+    "to": "56161600",
+    "body": "BLOCK {cardNumber}",
+    "source": "https://application.axis.bank.in/webforms/axis-support/sub-issues/Cards-Credit-BlockReplaceCreditCard-1.aspx"
+   },
+   "upiBlockSms": null,
+   "notes": "040-67174100 is the 24-hour emergency card-block line (not toll-free); 1800 4030 is toll-free. The credit-card SMS needs the full card number, so the app does not offer it."
+  },
+  {
+   "id": "kotak",
+   "name": "Kotak Mahindra Bank",
+   "helpline": "18002090000",
+   "helplineAlt": "18004100",
+   "helplineSource": "https://www.kotak.bank.in/en/customer-service/contact-us.html",
+   "cardBlockSms": {
+    "to": "5676788",
+    "body": "DCBLOCK {last4}",
+    "source": "https://www.kotak.bank.in/en/digital-banking/ways-to-bank/sms-banking.html"
+   },
+   "creditCardBlockSms": {
+    "to": "5676788",
+    "body": "CCLOST {last4}",
+    "source": "https://www.kotak.bank.in/en/help-center/credit-card/block--unblock--report-lost---stolen-card/how-can-i-block-my-credit-card-.html"
+   },
+   "upiBlockSms": null,
+   "notes": "1800 209 0000 is the 24x7 fraud reporting helpline."
+  },
+  {
+   "id": "pnb",
+   "name": "Punjab National Bank",
+   "helpline": "18001800",
+   "helplineAlt": "18002021",
+   "helplineSource": "https://pnb.bank.in/hotlist-debit-card.html",
+   "cardBlockSms": {
+    "to": "5607040",
+    "body": "HOT {cardNumber}",
+    "source": "https://pnb.bank.in/hotlist-debit-card.html"
+   },
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "The debit SMS needs the full card number, so the app does not offer it; call instead. Credit cards: 1800 180 2345."
+  },
+  {
+   "id": "bob",
+   "name": "Bank of Baroda",
+   "helpline": "18005700",
+   "helplineAlt": "18005000",
+   "helplineSource": "https://bankofbaroda.bank.in/contact-us",
+   "cardBlockSms": null,
+   "creditCardBlockSms": null,
+   "upiBlockSms": {
+    "to": "8422009988",
+    "body": "BOBUPIBLK",
+    "source": "https://bankofbaroda.bank.in/digital-products/instant-banking/bob-e-pay"
+   },
+   "notes": "The SMS-banking page's 'BLOCK C xxxx' row is inside an HTML comment (withdrawn). The UPI block keyword is live."
+  },
+  {
+   "id": "canara",
+   "name": "Canara Bank",
+   "helpline": "18001030",
+   "helplineAlt": null,
+   "helplineSource": "https://www.canarabank.bank.in/hotlisting-debit-and-credit-cards",
+   "cardBlockSms": null,
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "No SMS block published. Email route: blockchannels@canarabank.com, subject 'BLOCKDC <last 6>' from the registered email."
+  },
+  {
+   "id": "union",
+   "name": "Union Bank of India",
+   "helpline": "18008332",
+   "helplineAlt": "18002333",
+   "helplineSource": "https://www.unionbankofindia.bank.in/en/common/customer-care",
+   "cardBlockSms": null,
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "1800 8332 is the dedicated fraud helpline. The 'UBLOCK' SMS row is commented out on the live page."
+  },
+  {
+   "id": "indusind",
+   "name": "IndusInd Bank",
+   "helpline": "18602677777",
+   "helplineAlt": null,
+   "helplineSource": "https://www.indusind.bank.in/in/en/personal/customer-limited-liability.html",
+   "cardBlockSms": {
+    "to": "9223512966",
+    "body": "LOST {dobDDMMYYYY}",
+    "source": "https://www.indusind.bank.in/in/en/personal/managing-your-debit-card.html"
+   },
+   "creditCardBlockSms": {
+    "to": "5676757",
+    "body": "BLOCK {last4}",
+    "source": "https://www.indusind.bank.in/in/en/personal/customer-limited-liability.html"
+   },
+   "upiBlockSms": null,
+   "notes": "1860 267 7777 is shared-cost. The debit SMS needs the date of birth, so the app does not offer it."
+  },
+  {
+   "id": "yes",
+   "name": "Yes Bank",
+   "helpline": "18001200",
+   "helplineAlt": "18001031212",
+   "helplineSource": "https://www.yes.bank.in/sites/web/content/published/api/v1.1/assets/CONT673972BF5A404FAC838327917DF2CB53/native/card-hotlisting-assistance.pdf?download=false",
+   "cardBlockSms": {
+    "to": "9840909000",
+    "body": "BLKDC {custId} {last4}",
+    "source": "https://www.yes.bank.in/sites/web/content/published/api/v1.1/assets/CONTB0E37B02C9934B4D8535BC34AA500C8D/native/secure_and_safe_usage_guidelines_debit_card_english.pdf?download=false"
+   },
+   "creditCardBlockSms": {
+    "to": "9840909000",
+    "body": "BLKCC {last4}",
+    "source": "https://www.yes.bank.in/sites/web/content/published/api/v1.1/assets/CONT673972BF5A404FAC838327917DF2CB53/native/card-hotlisting-assistance.pdf?download=false"
+   },
+   "upiBlockSms": null,
+   "notes": "1800 1200 for debit cards, 1800 103 1212 for credit cards. The debit SMS needs the customer ID, so the app does not offer it."
+  },
+  {
+   "id": "idfcfirst",
+   "name": "IDFC FIRST Bank",
+   "helpline": "180010888",
+   "helplineAlt": null,
+   "helplineSource": "https://www.idfcfirst.bank.in/customer-care-sr/frequently-asked-questions/cards/debit-card/block-unblock-related",
+   "cardBlockSms": {
+    "to": "5676732",
+    "body": "BLOCK {last4}",
+    "source": "https://www.idfcfirst.bank.in/customer-care-sr/frequently-asked-questions/cards/debit-card/block-unblock-related"
+   },
+   "creditCardBlockSms": {
+    "to": "5676732",
+    "body": "CCBLOCK {last4}",
+    "source": "https://www.idfcfirst.bank.in/customer-care-sr/frequently-asked-questions/cards/credit-card/block-unblock-related"
+   },
+   "upiBlockSms": null,
+   "notes": "The debit SMS is listed under temporary block."
+  },
+  {
+   "id": "boi",
+   "name": "Bank of India",
+   "helpline": "18001031906",
+   "helplineAlt": "18004251112",
+   "helplineSource": "https://bankofindia.bank.in/customer-care",
+   "cardBlockSms": null,
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "Site returned 403 to direct fetches; helplines come from search-index excerpts of the official pages. A UPI block SMS (BLOCKUPI <mobile> to 8800501128) was seen only in excerpts, so it is left out."
+  },
+  {
+   "id": "federal",
+   "name": "Federal Bank",
+   "helpline": "18004251199",
+   "helplineAlt": "18004201199",
+   "helplineSource": "https://www.federal.bank.in/block-atm",
+   "cardBlockSms": {
+    "to": "5676762",
+    "body": "BLOCK {last4}",
+    "source": "https://www.federal.bank.in/block-atm"
+   },
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "Credit-card SMS seen only in search excerpts; left out."
+  },
+  {
+   "id": "indianbank",
+   "name": "Indian Bank",
+   "helpline": "18001700",
+   "helplineAlt": null,
+   "helplineSource": "https://indianbank.bank.in/en/indian-bank-contact-numbers-a-complete-guide-to-customer-care-services",
+   "cardBlockSms": {
+    "to": "9289592895",
+    "body": "BLOCK",
+    "source": "https://indianbank.bank.in/en/indian-bank-contact-numbers-a-complete-guide-to-customer-care-services"
+   },
+   "creditCardBlockSms": null,
+   "upiBlockSms": null,
+   "notes": "'BLOCK' blocks all digital channels at once: debit cards, net banking, mobile banking and UPI."
+  }
+ ]
+}
