@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#F7F5EE",
     "theme_color": "#F7F5EE",
-    "description": "NO SUS: your own chat in your Google Drive, plus links that open once or carry the reader’s name.",
+    "description": "NO SUS: your own chat on every screen, plus links that open once or carry the reader’s name.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
